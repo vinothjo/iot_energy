@@ -1,0 +1,1237 @@
+2018-06-09 14:52:41,123 - flask.app - INFO - info INIT message
+2018-06-09 14:52:58,969 - flask.app - ERROR - Exception on /admin/create_user [GET]
+Traceback (most recent call last):
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/oscorp/Desktop/iot_energy/Source/Admin_Module/controllers.py", line 59, in create_user
+    Admin_service.save_user(user)
+  File "/home/oscorp/Desktop/iot_energy/Source/Admin_Module/admin_Service.py", line 68, in save_user
+    old = config.energy_iot_DB_READ[TABLE.IOT_APP_USER].find_one({"username": user.username , "defunct": "N"})
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/collection.py", line 1225, in find_one
+    for result in cursor.limit(-1):
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/cursor.py", line 1169, in next
+    if len(self.__data) or self._refresh():
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/cursor.py", line 1085, in _refresh
+    self.__send_message(q)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/cursor.py", line 924, in __send_message
+    **kwargs)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/mongo_client.py", line 1029, in _send_message_with_response
+    exhaust)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/mongo_client.py", line 1040, in _reset_on_error
+    return func(*args, **kwargs)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/server.py", line 85, in send_message_with_response
+    with self.get_socket(all_credentials, exhaust) as sock_info:
+  File "/usr/lib/python3.5/contextlib.py", line 59, in __enter__
+    return next(self.gen)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/server.py", line 138, in get_socket
+    with self.pool.get_socket(all_credentials, checkout) as sock_info:
+  File "/usr/lib/python3.5/contextlib.py", line 59, in __enter__
+    return next(self.gen)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/pool.py", line 920, in get_socket
+    sock_info.check_auth(all_credentials)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/pool.py", line 609, in check_auth
+    auth.authenticate(credentials, self)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/auth.py", line 486, in authenticate
+    auth_func(credentials, sock_info)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/auth.py", line 466, in _authenticate_default
+    return _authenticate_scram_sha1(credentials, sock_info)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/auth.py", line 209, in _authenticate_scram_sha1
+    res = sock_info.command(source, cmd)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/pool.py", line 517, in command
+    collation=collation)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/network.py", line 125, in command
+    parse_write_concern_error=parse_write_concern_error)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/helpers.py", line 145, in _check_command_response
+    raise OperationFailure(msg % errmsg, code, response)
+pymongo.errors.OperationFailure: Authentication failed.
+2018-06-09 15:02:09,624 - flask.app - INFO - info INIT message
+2018-06-09 15:02:09,738 - flask.app - ERROR - Exception on /admin/create_user [GET]
+Traceback (most recent call last):
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/oscorp/Desktop/iot_energy/Source/Admin_Module/controllers.py", line 59, in create_user
+    Admin_service.save_user(user)
+  File "/home/oscorp/Desktop/iot_energy/Source/Admin_Module/admin_Service.py", line 68, in save_user
+    old = config.energy_iot_DB_READ[TABLE.IOT_APP_USER].find_one({"username": user.username , "defunct": "N"})
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/collection.py", line 1225, in find_one
+    for result in cursor.limit(-1):
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/cursor.py", line 1169, in next
+    if len(self.__data) or self._refresh():
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/cursor.py", line 1085, in _refresh
+    self.__send_message(q)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/cursor.py", line 924, in __send_message
+    **kwargs)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/mongo_client.py", line 1029, in _send_message_with_response
+    exhaust)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/mongo_client.py", line 1040, in _reset_on_error
+    return func(*args, **kwargs)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/server.py", line 85, in send_message_with_response
+    with self.get_socket(all_credentials, exhaust) as sock_info:
+  File "/usr/lib/python3.5/contextlib.py", line 59, in __enter__
+    return next(self.gen)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/server.py", line 138, in get_socket
+    with self.pool.get_socket(all_credentials, checkout) as sock_info:
+  File "/usr/lib/python3.5/contextlib.py", line 59, in __enter__
+    return next(self.gen)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/pool.py", line 920, in get_socket
+    sock_info.check_auth(all_credentials)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/pool.py", line 609, in check_auth
+    auth.authenticate(credentials, self)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/auth.py", line 486, in authenticate
+    auth_func(credentials, sock_info)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/auth.py", line 466, in _authenticate_default
+    return _authenticate_scram_sha1(credentials, sock_info)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/auth.py", line 209, in _authenticate_scram_sha1
+    res = sock_info.command(source, cmd)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/pool.py", line 517, in command
+    collation=collation)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/network.py", line 125, in command
+    parse_write_concern_error=parse_write_concern_error)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/pymongo/helpers.py", line 145, in _check_command_response
+    raise OperationFailure(msg % errmsg, code, response)
+pymongo.errors.OperationFailure: Authentication failed.
+2018-06-09 15:16:57,693 - flask.app - INFO - info INIT message
+2018-06-09 15:16:58,059 - flask.app - ERROR - Exception on /admin/create_user [GET]
+Traceback (most recent call last):
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1816, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1831, in finalize_request
+    response = self.make_response(rv)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1957, in make_response
+    'The view function did not return a valid response. The'
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2018-06-09 15:18:13,440 - flask.app - INFO - info INIT message
+2018-06-09 15:18:25,449 - flask.app - INFO - Controller login >>   
+2018-06-09 15:18:25,451 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 15:18:25,451 - flask.app - INFO - validate user >>   
+2018-06-09 15:18:25,480 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 15:18:25,481 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 15:19:14,477 - flask.app - INFO - Controller login >>   
+2018-06-09 15:19:14,479 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 15:19:14,480 - flask.app - INFO - validate user >>   
+2018-06-09 15:19:14,483 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 15:19:14,484 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 15:26:10,309 - flask.app - INFO - info INIT message
+2018-06-09 15:26:10,769 - flask.app - ERROR - Exception on /admin/create_user [GET]
+Traceback (most recent call last):
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1816, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1831, in finalize_request
+    response = self.make_response(rv)
+  File "/home/oscorp/.local/lib/python3.5/site-packages/flask/app.py", line 1957, in make_response
+    'The view function did not return a valid response. The'
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2018-06-09 15:35:01,910 - flask.app - INFO - Controller login >>   
+2018-06-09 15:35:02,045 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 15:35:02,045 - flask.app - INFO - validate user >>   
+2018-06-09 15:35:02,048 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 15:35:02,049 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 15:35:25,311 - flask.app - INFO - Controller login >>   
+2018-06-09 15:35:25,312 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 15:35:25,313 - flask.app - INFO - validate user >>   
+2018-06-09 15:35:25,316 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 15:35:25,318 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 15:36:37,542 - flask.app - INFO - Controller login >>   
+2018-06-09 15:36:37,545 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 15:36:37,545 - flask.app - INFO - validate user >>   
+2018-06-09 15:36:37,548 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 15:36:37,549 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 15:41:48,373 - flask.app - INFO - info INIT message
+2018-06-09 15:43:30,194 - flask.app - INFO - Controller login >>   
+2018-06-09 15:43:30,214 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 15:43:30,215 - flask.app - INFO - validate user >>   
+2018-06-09 15:43:30,972 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 15:43:30,973 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 15:56:10,615 - flask.app - INFO - info INIT message
+2018-06-09 15:56:23,756 - flask.app - INFO - Controller login >>   
+2018-06-09 15:56:23,757 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 15:56:23,758 - flask.app - INFO - validate user >>   
+2018-06-09 15:56:25,102 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 15:56:25,103 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 16:00:25,610 - flask.app - INFO - Controller login >>   
+2018-06-09 16:00:25,612 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 16:00:25,613 - flask.app - INFO - validate user >>   
+2018-06-09 16:00:25,616 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 16:00:25,617 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 16:01:31,692 - flask.app - INFO - info INIT message
+2018-06-09 16:01:55,782 - flask.app - INFO - Controller login >>   
+2018-06-09 16:01:55,784 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 16:01:55,784 - flask.app - INFO - validate user >>   
+2018-06-09 16:01:55,818 - flask.app - ERROR - record dose not existiotadmin
+2018-06-09 16:01:55,819 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-09 16:24:04,439 - flask.app - INFO - info INIT message
+2018-06-09 16:24:04,440 - flask.app - INFO - Controller login >>   
+2018-06-09 16:24:04,441 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 16:24:04,442 - flask.app - INFO - validate user >>   
+2018-06-09 16:24:04,443 - flask.app - ERROR - validate_user >> error  name 'DB' is not defined
+2018-06-09 16:24:11,362 - flask.app - INFO - Controller login >>   
+2018-06-09 16:24:11,363 - flask.app - INFO - Validate_Auth >>   
+2018-06-09 16:24:11,364 - flask.app - INFO - validate user >>   
+2018-06-09 16:24:11,364 - flask.app - ERROR - validate_user >> error  name 'DB' is not defined
+2018-06-11 16:42:29,105 - flask.app - INFO - info INIT message
+2018-06-11 16:46:21,128 - flask.app - INFO - Controller login >>   
+2018-06-11 16:46:21,153 - flask.app - INFO - Validate_Auth >>   
+2018-06-11 16:46:21,155 - flask.app - INFO - validate user >>   
+2018-06-11 16:46:23,659 - flask.app - ERROR - record dose not existoscadmin
+2018-06-11 16:46:23,659 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-11 16:50:03,481 - flask.app - INFO - Controller login >>   
+2018-06-11 16:50:03,665 - flask.app - INFO - Validate_Auth >>   
+2018-06-11 16:50:03,665 - flask.app - INFO - validate user >>   
+2018-06-11 16:50:04,013 - flask.app - ERROR - record dose not existoscadmin
+2018-06-11 16:50:04,014 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-11 16:56:53,010 - flask.app - INFO - Controller login >>   
+2018-06-11 16:56:53,020 - flask.app - INFO - Validate_Auth >>   
+2018-06-11 16:56:53,021 - flask.app - INFO - validate user >>   
+2018-06-11 16:56:54,225 - flask.app - ERROR - record dose not existiotuser
+2018-06-11 16:56:54,225 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-11 16:57:38,988 - flask.app - INFO - Controller login >>   
+2018-06-11 16:57:38,990 - flask.app - INFO - Validate_Auth >>   
+2018-06-11 16:57:38,991 - flask.app - INFO - validate user >>   
+2018-06-11 16:57:38,995 - flask.app - ERROR - record dose not existiotuser
+2018-06-11 16:57:38,996 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-11 17:24:21,863 - flask.app - INFO - info INIT message
+2018-06-11 17:26:55,416 - flask.app - INFO - Controller login >>   
+2018-06-11 17:26:55,453 - flask.app - INFO - Validate_Auth >>   
+2018-06-11 17:26:55,454 - flask.app - INFO - validate user >>   
+2018-06-11 17:26:56,674 - flask.app - ERROR - record dose not existoscadmin
+2018-06-11 17:26:56,675 - flask.app - ERROR - Auth >> error  too many values to unpack (expected 2)
+2018-06-11 17:29:47,929 - flask.app - INFO - info INIT message
+2018-06-12 10:12:07,165 - flask.app - INFO - info INIT message
+2018-06-12 10:15:05,088 - flask.app - INFO - Controller login >>   
+2018-06-12 10:15:05,090 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 10:15:05,091 - flask.app - INFO - validate user >>   
+2018-06-12 10:15:08,004 - flask.app - ERROR - record dose not existiotadmin
+2018-06-12 10:15:08,005 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-12 10:19:29,006 - flask.app - INFO - info INIT message
+2018-06-12 10:19:38,850 - flask.app - INFO - Controller login >>   
+2018-06-12 10:19:38,852 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 10:19:38,853 - flask.app - INFO - validate user >>   
+2018-06-12 10:19:38,853 - flask.app - ERROR - validate_user >> error  module 'Util.TABLE' has no attribute 'USER'
+2018-06-12 10:40:30,713 - flask.app - INFO - info INIT message
+2018-06-12 10:47:13,702 - flask.app - INFO - info INIT message
+2018-06-12 10:49:10,451 - flask.app - INFO - Controller login >>   
+2018-06-12 10:49:10,453 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 10:49:10,454 - flask.app - INFO - validate user >>   
+2018-06-12 10:49:10,455 - flask.app - ERROR - validate_user >> error  name 'collection' is not defined
+2018-06-12 11:46:32,519 - flask.app - INFO - info INIT message
+2018-06-12 11:46:44,533 - flask.app - INFO - Controller login >>   
+2018-06-12 11:46:44,535 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 11:46:44,536 - flask.app - INFO - validate user >>   
+2018-06-12 11:46:44,708 - flask.app - ERROR - record dose not existiotadmin
+2018-06-12 11:46:44,709 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-12 11:50:26,599 - flask.app - INFO - info INIT message
+2018-06-12 11:51:11,810 - flask.app - INFO - Controller login >>   
+2018-06-12 11:51:11,871 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 11:51:11,872 - flask.app - INFO - validate user >>   
+2018-06-12 11:51:12,635 - flask.app - ERROR - validate_user >> error  Authentication failed.
+2018-06-12 12:05:15,265 - flask.app - INFO - info INIT message
+2018-06-12 12:06:22,840 - flask.app - INFO - Controller login >>   
+2018-06-12 12:06:22,886 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 12:06:22,887 - flask.app - ERROR - Auth >> error  validate_user() takes 2 positional arguments but 3 were given
+2018-06-12 12:16:55,355 - flask.app - INFO - info INIT message
+2018-06-12 12:17:25,346 - flask.app - INFO - Controller login >>   
+2018-06-12 12:17:25,348 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 12:17:25,349 - flask.app - INFO - validate user >>   
+2018-06-12 12:17:28,232 - flask.app - ERROR - validate_user >> error  Authentication failed.
+2018-06-12 12:21:35,860 - flask.app - INFO - info INIT message
+2018-06-12 12:22:13,214 - flask.app - INFO - Controller login >>   
+2018-06-12 12:22:13,240 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 12:22:13,241 - flask.app - ERROR - Auth >> error  validate_user() takes 2 positional arguments but 3 were given
+2018-06-12 12:23:03,954 - flask.app - INFO - info INIT message
+2018-06-12 12:23:18,205 - flask.app - INFO - Controller login >>   
+2018-06-12 12:23:18,208 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 12:23:18,209 - flask.app - INFO - validate user >>   
+2018-06-12 12:23:19,194 - flask.app - ERROR - validate_user >> error  Authentication failed.
+2018-06-12 12:29:53,121 - flask.app - INFO - info INIT message
+2018-06-12 12:29:53,217 - flask.app - INFO - Controller login >>   
+2018-06-12 12:29:53,219 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 12:29:53,220 - flask.app - INFO - validate user >>   
+2018-06-12 12:29:54,466 - flask.app - ERROR - validate_user >> error  Authentication failed.
+2018-06-12 12:33:45,525 - flask.app - INFO - info INIT message
+2018-06-12 12:34:46,087 - flask.app - INFO - Controller login >>   
+2018-06-12 12:34:46,132 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 12:34:46,133 - flask.app - INFO - validate user >>   
+2018-06-12 12:34:46,134 - flask.app - ERROR - validate_user >> error  'method' object is not subscriptable
+2018-06-12 12:35:07,014 - flask.app - INFO - Controller login >>   
+2018-06-12 12:35:07,015 - flask.app - INFO - Validate_Auth >>   
+2018-06-12 12:35:07,016 - flask.app - INFO - validate user >>   
+2018-06-12 12:35:07,027 - flask.app - ERROR - validate_user >> error  'method' object is not subscriptable
+2018-06-12 12:49:58,613 - flask.app - INFO - info INIT message
+2018-06-14 14:36:46,094 - flask.app - INFO - info INIT message
+2018-06-14 14:37:12,146 - flask.app - INFO - Controller login >>   
+2018-06-14 14:37:12,174 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 14:37:12,175 - flask.app - INFO - validate user >>   
+2018-06-14 14:37:12,754 - flask.app - ERROR - record dose not existiotadmin
+2018-06-14 14:37:12,755 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-14 14:45:47,027 - flask.app - INFO - info INIT message
+2018-06-14 14:46:48,337 - flask.app - INFO - info INIT message
+2018-06-14 14:47:48,145 - flask.app - INFO - info INIT message
+2018-06-14 14:50:56,485 - flask.app - INFO - info INIT message
+2018-06-14 14:50:56,488 - flask.app - INFO - Controller login >>   
+2018-06-14 14:50:56,510 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 14:50:56,517 - flask.app - INFO - validate user >>   
+2018-06-14 14:50:56,565 - flask.app - INFO - record Exist iotadmin
+2018-06-14 14:50:56,567 - flask.app - ERROR - Auth >> error  Can't convert 'dict' object to str implicitly
+2018-06-14 14:53:23,119 - flask.app - INFO - info INIT message
+2018-06-14 14:53:33,818 - flask.app - INFO - Controller login >>   
+2018-06-14 14:53:33,826 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 14:53:33,839 - flask.app - INFO - validate user >>   
+2018-06-14 14:53:33,861 - flask.app - INFO - record Exist iotadmin
+2018-06-14 14:59:16,530 - flask.app - INFO - info INIT message
+2018-06-14 14:59:27,655 - flask.app - INFO - Controller login >>   
+2018-06-14 14:59:27,667 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 14:59:27,697 - flask.app - INFO - validate user >>   
+2018-06-14 14:59:27,712 - flask.app - ERROR - record dose not existiotadmin
+2018-06-14 14:59:27,714 - flask.app - ERROR - Auth >> error  Can't convert 'NoneType' object to str implicitly
+2018-06-14 15:01:05,035 - flask.app - INFO - info INIT message
+2018-06-14 15:33:09,188 - flask.app - INFO - info INIT message
+2018-06-14 15:33:23,002 - flask.app - INFO - Controller login >>   
+2018-06-14 15:33:23,055 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 15:33:23,056 - flask.app - INFO - validate user >>   
+2018-06-14 15:33:23,071 - flask.app - INFO - record Exist iotadmin
+2018-06-14 15:33:23,073 - flask.app - ERROR - validate_user >> error  check_password() missing 1 required positional argument: 'password_hash'
+2018-06-14 15:35:12,005 - flask.app - INFO - info INIT message
+2018-06-14 15:35:24,832 - flask.app - INFO - Controller login >>   
+2018-06-14 15:35:24,838 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 15:35:24,841 - flask.app - INFO - validate user >>   
+2018-06-14 15:35:24,860 - flask.app - INFO - record Exist iotadmin
+2018-06-14 15:35:25,000 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 15:35:25,193 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 15:35:25,488 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 15:36:09,964 - flask.app - INFO - -----------------------------
+2018-06-14 15:36:09,981 - flask.app - INFO -  get15MinSummaryData >>2018-06-14 00:00:00
+2018-06-14 15:36:09,997 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:04:04,370 - flask.app - INFO - info INIT message
+2018-06-14 16:04:16,953 - flask.app - INFO - Controller login >>   
+2018-06-14 16:04:16,959 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 16:04:16,960 - flask.app - INFO - validate user >>   
+2018-06-14 16:04:17,005 - flask.app - INFO - record Exist iotadmin
+2018-06-14 16:04:17,067 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:04:17,083 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:04:22,433 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:05:49,933 - flask.app - INFO - -----------------------------
+2018-06-14 16:05:49,971 - flask.app - INFO -  get15MinSummaryData >>2018-06-14 00:00:00
+2018-06-14 16:05:49,974 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:09:34,626 - flask.app - INFO - Controller login >>   
+2018-06-14 16:09:34,660 - flask.app - INFO - Validate_Auth >>   
+2018-06-14 16:09:34,667 - flask.app - INFO - validate user >>   
+2018-06-14 16:09:34,696 - flask.app - INFO - record Exist iotadmin
+2018-06-14 16:09:34,727 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:09:34,734 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:09:35,069 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:09:48,875 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:09:48,958 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:10:18,840 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:10:18,889 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:10:19,253 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:13:00,773 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:13:00,840 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:13:40,029 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:13:40,044 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:13:40,576 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:18:47,502 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:18:47,588 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:18:48,176 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:19:03,244 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:19:03,280 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:19:03,557 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:21:06,910 - flask.app - INFO - -----------------------------
+2018-06-14 16:21:06,938 - flask.app - INFO -  get15MinSummaryData >>2018-06-14 00:00:00
+2018-06-14 16:21:06,941 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:21:41,718 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:21:41,755 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:21:42,203 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:23:39,746 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:23:39,790 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:24:07,951 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:24:07,977 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:24:36,275 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:24:36,335 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:26:59,757 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:26:59,789 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:27:00,166 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:27:27,637 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:27:27,661 - flask.app - INFO - getLocationDetails >> 
+2018-06-14 16:58:42,412 - flask.app - INFO - getrecord_from_table >> 
+2018-06-14 16:58:42,540 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 10:34:21,027 - flask.app - INFO - info INIT message
+2018-06-20 10:47:55,558 - flask.app - INFO - Controller login >>   
+2018-06-20 10:47:55,780 - flask.app - INFO - Validate_Auth >>   
+2018-06-20 10:47:55,781 - flask.app - INFO - validate user >>   
+2018-06-20 10:47:55,924 - flask.app - INFO - record Exist iotadmin
+2018-06-20 10:47:56,115 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:47:56,749 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:47:57,643 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 10:48:47,921 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:48:48,738 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 10:49:29,813 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:49:29,822 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 10:49:41,089 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:49:41,130 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 10:49:59,554 - flask.app - INFO - -----------------------------
+2018-06-20 10:49:59,554 - flask.app - INFO -  get15MinSummaryData >>2018-06-20 00:00:00
+2018-06-20 10:49:59,555 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:50:32,128 - flask.app - INFO - Controller login >>   
+2018-06-20 10:50:32,130 - flask.app - INFO - Validate_Auth >>   
+2018-06-20 10:50:32,131 - flask.app - INFO - validate user >>   
+2018-06-20 10:50:32,134 - flask.app - INFO - record Exist iotadmin
+2018-06-20 10:50:32,167 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:50:32,172 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:50:34,580 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 10:58:36,996 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:58:37,091 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 10:58:37,694 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 11:04:24,488 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 11:04:29,586 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 11:04:29,863 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 11:11:22,474 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 11:11:26,583 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 11:18:04,028 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 11:18:04,405 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 11:18:05,084 - flask.app - INFO - getLocationDetails >> 
+2018-06-20 14:27:47,978 - flask.app - INFO - Controller login >>   
+2018-06-20 14:27:48,043 - flask.app - INFO - Validate_Auth >>   
+2018-06-20 14:27:48,044 - flask.app - INFO - validate user >>   
+2018-06-20 14:27:48,725 - flask.app - INFO - record Exist iotadmin
+2018-06-20 14:27:48,766 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 14:27:49,017 - flask.app - INFO - getrecord_from_table >> 
+2018-06-20 14:27:50,899 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 10:52:33,412 - flask.app - INFO - info INIT message
+2018-06-21 13:41:20,520 - flask.app - INFO - info INIT message
+2018-06-21 13:44:35,836 - flask.app - INFO - Controller login >>   
+2018-06-21 13:44:35,917 - flask.app - INFO - Validate_Auth >>   
+2018-06-21 13:44:35,918 - flask.app - INFO - validate user >>   
+2018-06-21 13:44:36,040 - flask.app - INFO - record Exist iotadmin
+2018-06-21 13:44:36,092 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 13:44:36,245 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 13:44:37,923 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 13:55:39,791 - flask.app - INFO - info INIT message
+2018-06-21 13:56:03,213 - flask.app - INFO - Controller login >>   
+2018-06-21 13:56:03,217 - flask.app - INFO - Validate_Auth >>   
+2018-06-21 13:56:03,218 - flask.app - INFO - validate user >>   
+2018-06-21 13:56:03,221 - flask.app - INFO - record Exist iotadmin
+2018-06-21 13:56:03,267 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 13:56:03,275 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 13:56:03,728 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 13:57:42,879 - flask.app - INFO - info INIT message
+2018-06-21 13:57:42,890 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 13:57:42,902 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 13:57:43,208 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 14:08:27,050 - flask.app - INFO - info INIT message
+2018-06-21 14:08:27,086 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 14:08:27,097 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 14:08:27,572 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 14:11:06,390 - flask.app - INFO - info INIT message
+2018-06-21 14:15:02,382 - flask.app - INFO - info INIT message
+2018-06-21 14:15:42,932 - flask.app - INFO - info INIT message
+2018-06-21 14:16:27,568 - flask.app - INFO - info INIT message
+2018-06-21 14:16:49,003 - flask.app - INFO - info INIT message
+2018-06-21 14:17:17,565 - flask.app - INFO - info INIT message
+2018-06-21 14:18:00,296 - flask.app - INFO - info INIT message
+2018-06-21 14:18:51,712 - flask.app - INFO - info INIT message
+2018-06-21 14:38:38,718 - flask.app - INFO - info INIT message
+2018-06-21 14:39:25,306 - flask.app - INFO - info INIT message
+2018-06-21 14:40:29,945 - flask.app - INFO - info INIT message
+2018-06-21 14:43:46,241 - flask.app - INFO - info INIT message
+2018-06-21 14:44:25,090 - flask.app - INFO - info INIT message
+2018-06-21 14:44:45,169 - flask.app - INFO - info INIT message
+2018-06-21 14:45:13,167 - flask.app - INFO - info INIT message
+2018-06-21 14:45:24,637 - flask.app - INFO - info INIT message
+2018-06-21 14:47:15,758 - flask.app - INFO - info INIT message
+2018-06-21 14:48:47,089 - flask.app - INFO - info INIT message
+2018-06-21 14:56:26,490 - flask.app - INFO - info INIT message
+2018-06-21 14:57:31,905 - flask.app - INFO - info INIT message
+2018-06-21 15:01:17,058 - flask.app - INFO - info INIT message
+2018-06-21 15:01:41,065 - flask.app - INFO - info INIT message
+2018-06-21 15:02:05,030 - flask.app - INFO - info INIT message
+2018-06-21 15:04:25,396 - flask.app - INFO - info INIT message
+2018-06-21 15:04:43,954 - flask.app - INFO - Controller login >>   
+2018-06-21 15:04:44,009 - flask.app - INFO - Validate_Auth >>   
+2018-06-21 15:04:44,010 - flask.app - INFO - validate user >>   
+2018-06-21 15:04:44,098 - flask.app - INFO - record Exist iotadmin
+2018-06-21 15:04:44,143 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 15:04:44,322 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 15:04:47,965 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 15:06:17,025 - flask.app - INFO - info INIT message
+2018-06-21 15:06:38,643 - flask.app - INFO - Controller login >>   
+2018-06-21 15:06:38,651 - flask.app - INFO - Validate_Auth >>   
+2018-06-21 15:06:38,652 - flask.app - INFO - validate user >>   
+2018-06-21 15:06:38,656 - flask.app - INFO - record Exist iotadmin
+2018-06-21 15:06:38,684 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 15:06:38,696 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 15:06:43,861 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 15:09:32,914 - flask.app - INFO - info INIT message
+2018-06-21 15:09:46,481 - flask.app - INFO - Controller login >>   
+2018-06-21 15:09:46,487 - flask.app - INFO - Validate_Auth >>   
+2018-06-21 15:09:46,488 - flask.app - INFO - validate user >>   
+2018-06-21 15:09:46,491 - flask.app - INFO - record Exist iotadmin
+2018-06-21 15:09:46,529 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 15:09:46,538 - flask.app - INFO - getrecord_from_table >> 
+2018-06-21 15:09:48,238 - flask.app - INFO - getLocationDetails >> 
+2018-06-21 15:28:38,084 - flask.app - INFO - info INIT message
+2018-06-21 15:28:55,814 - flask.app - INFO - info INIT message
+2018-06-21 15:37:41,720 - flask.app - INFO - info INIT message
+2018-06-21 15:41:46,305 - flask.app - INFO - info INIT message
+2018-06-21 15:43:04,508 - flask.app - INFO - info INIT message
+2018-06-21 15:57:22,549 - flask.app - INFO - info INIT message
+2018-06-21 16:01:08,073 - flask.app - INFO - info INIT message
+2018-06-21 18:26:23,589 - flask.app - INFO - info INIT message
+2018-06-23 11:49:07,282 - flask.app - INFO - info INIT message
+2018-06-23 11:51:09,156 - flask.app - INFO - Controller login >>   
+2018-06-23 11:51:09,270 - flask.app - INFO - Validate_Auth >>   
+2018-06-23 11:51:09,270 - flask.app - INFO - validate user >>   
+2018-06-23 11:51:09,272 - flask.app - INFO - record Exist iotadmin
+2018-06-23 11:51:09,314 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 11:51:09,449 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 11:51:09,605 - flask.app - INFO - getLocationDetails >> 
+2018-06-23 11:59:04,401 - flask.app - INFO - info INIT message
+2018-06-23 12:09:00,064 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:09:00,146 - flask.app - INFO - getLocationDetails >> 
+2018-06-23 12:18:16,651 - flask.app - INFO - -----------------------------
+2018-06-23 12:18:16,687 - flask.app - INFO -  get15MinSummaryData >>2018-06-23 00:00:00
+2018-06-23 12:18:16,688 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:18:21,389 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:18:21,400 - flask.app - INFO - getLocationDetails >> 
+2018-06-23 12:18:42,525 - flask.app - INFO - Controller login >>   
+2018-06-23 12:18:42,528 - flask.app - INFO - Validate_Auth >>   
+2018-06-23 12:18:42,529 - flask.app - INFO - validate user >>   
+2018-06-23 12:18:42,532 - flask.app - INFO - record Exist iotadmin
+2018-06-23 12:18:42,559 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:18:42,575 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:18:45,611 - flask.app - INFO - getLocationDetails >> 
+2018-06-23 12:25:08,935 - flask.app - INFO - info INIT message
+2018-06-23 12:25:08,965 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:25:08,989 - flask.app - INFO - getLocationDetails >> 
+2018-06-23 12:25:22,783 - flask.app - INFO - Controller login >>   
+2018-06-23 12:25:22,786 - flask.app - INFO - Validate_Auth >>   
+2018-06-23 12:25:22,787 - flask.app - INFO - validate user >>   
+2018-06-23 12:25:22,790 - flask.app - INFO - record Exist iotadmin
+2018-06-23 12:25:22,818 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:25:22,831 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:25:23,100 - flask.app - INFO - getLocationDetails >> 
+2018-06-23 12:26:57,056 - flask.app - INFO - info INIT message
+2018-06-23 12:27:25,818 - flask.app - INFO - info INIT message
+2018-06-23 12:30:56,787 - flask.app - INFO - info INIT message
+2018-06-23 12:32:00,271 - flask.app - INFO - info INIT message
+2018-06-23 12:32:57,876 - flask.app - INFO - info INIT message
+2018-06-23 12:34:52,815 - flask.app - INFO - info INIT message
+2018-06-23 12:35:55,425 - flask.app - INFO - info INIT message
+2018-06-23 12:37:02,030 - flask.app - INFO - info INIT message
+2018-06-23 12:37:30,035 - flask.app - INFO - info INIT message
+2018-06-23 12:38:11,556 - flask.app - INFO - info INIT message
+2018-06-23 12:38:54,242 - flask.app - INFO - Controller login >>   
+2018-06-23 12:38:54,287 - flask.app - INFO - Validate_Auth >>   
+2018-06-23 12:38:54,289 - flask.app - INFO - validate user >>   
+2018-06-23 12:38:54,292 - flask.app - INFO - record Exist iotadmin
+2018-06-23 12:38:54,321 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:38:54,333 - flask.app - INFO - getrecord_from_table >> 
+2018-06-23 12:38:54,761 - flask.app - INFO - getLocationDetails >> 
+2018-06-23 12:39:39,405 - flask.app - INFO - info INIT message
+2018-06-23 12:40:14,190 - flask.app - INFO - info INIT message
+2018-06-23 13:08:57,904 - flask.app - INFO - info INIT message
+2018-06-23 13:13:29,856 - flask.app - INFO - info INIT message
+2018-06-23 13:19:48,894 - flask.app - INFO - info INIT message
+2018-06-23 13:21:41,250 - flask.app - INFO - info INIT message
+2018-06-24 11:35:43,731 - flask.app - INFO - info INIT message
+2018-06-24 11:36:28,917 - flask.app - INFO - Controller login >>   
+2018-06-24 11:36:28,937 - flask.app - INFO - Validate_Auth >>   
+2018-06-24 11:36:28,938 - flask.app - INFO - validate user >>   
+2018-06-24 11:36:28,941 - flask.app - INFO - record Exist iotadmin
+2018-06-24 11:36:29,061 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 11:36:29,177 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 11:36:30,781 - flask.app - INFO - getLocationDetails >> 
+2018-06-24 11:44:23,860 - flask.app - INFO - info INIT message
+2018-06-24 11:45:58,125 - flask.app - INFO - info INIT message
+2018-06-24 11:48:33,498 - flask.app - INFO - info INIT message
+2018-06-24 11:53:05,390 - flask.app - INFO - info INIT message
+2018-06-24 11:53:37,746 - flask.app - INFO - info INIT message
+2018-06-24 11:55:16,502 - flask.app - INFO - info INIT message
+2018-06-24 11:55:48,985 - flask.app - INFO - info INIT message
+2018-06-24 11:59:44,358 - flask.app - INFO - info INIT message
+2018-06-24 12:02:07,564 - flask.app - INFO - info INIT message
+2018-06-24 12:21:59,833 - flask.app - INFO - info INIT message
+2018-06-24 12:25:15,260 - flask.app - INFO - info INIT message
+2018-06-24 12:36:09,357 - flask.app - INFO - info INIT message
+2018-06-24 12:37:12,984 - flask.app - INFO - info INIT message
+2018-06-24 12:37:39,308 - flask.app - INFO - info INIT message
+2018-06-24 12:38:57,840 - flask.app - INFO - info INIT message
+2018-06-24 12:40:07,537 - flask.app - INFO - info INIT message
+2018-06-24 12:41:14,488 - flask.app - INFO - info INIT message
+2018-06-24 12:51:14,634 - flask.app - INFO - info INIT message
+2018-06-24 12:51:42,468 - flask.app - INFO - info INIT message
+2018-06-24 13:03:46,580 - flask.app - INFO - info INIT message
+2018-06-24 13:15:00,346 - flask.app - INFO - Controller login >>   
+2018-06-24 13:15:00,374 - flask.app - INFO - Validate_Auth >>   
+2018-06-24 13:15:00,375 - flask.app - INFO - validate user >>   
+2018-06-24 13:15:00,378 - flask.app - INFO - record Exist iotadmin
+2018-06-24 13:15:00,428 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:00,472 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:01,320 - flask.app - INFO - getLocationDetails >> 
+2018-06-24 13:15:11,133 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:11,139 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:11,326 - flask.app - INFO - getLocationDetails >> 
+2018-06-24 13:15:20,898 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:20,988 - flask.app - INFO - getLocationDetails >> 
+2018-06-24 13:15:25,373 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:25,413 - flask.app - INFO - getLocationDetails >> 
+2018-06-24 13:15:28,894 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:28,901 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:15:29,165 - flask.app - INFO - getLocationDetails >> 
+2018-06-24 13:17:02,908 - flask.app - INFO - info INIT message
+2018-06-24 13:17:02,918 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:17:02,933 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:17:03,079 - flask.app - INFO - getLocationDetails >> 
+2018-06-24 13:17:23,331 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:17:23,337 - flask.app - INFO - getrecord_from_table >> 
+2018-06-24 13:17:23,551 - flask.app - INFO - getLocationDetails >> 
+2018-06-25 10:57:25,385 - flask.app - INFO - info INIT message
+2018-06-25 10:57:37,391 - flask.app - INFO - Controller login >>   
+2018-06-25 10:57:37,436 - flask.app - INFO - Validate_Auth >>   
+2018-06-25 10:57:37,437 - flask.app - INFO - validate user >>   
+2018-06-25 10:57:37,440 - flask.app - INFO - record Exist iotadmin
+2018-06-25 10:57:37,494 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 10:57:37,649 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 10:57:38,535 - flask.app - INFO - getLocationDetails >> 
+2018-06-25 13:07:55,806 - flask.app - INFO - info INIT message
+2018-06-25 13:09:50,737 - flask.app - INFO - info INIT message
+2018-06-25 13:15:51,909 - flask.app - INFO - info INIT message
+2018-06-25 13:16:15,504 - flask.app - INFO - info INIT message
+2018-06-25 13:19:59,596 - flask.app - INFO - info INIT message
+2018-06-25 13:20:49,969 - flask.app - INFO - info INIT message
+2018-06-25 13:25:06,808 - flask.app - INFO - info INIT message
+2018-06-25 13:56:50,533 - flask.app - INFO - info INIT message
+2018-06-25 13:58:11,441 - flask.app - INFO - info INIT message
+2018-06-25 13:59:31,893 - flask.app - INFO - info INIT message
+2018-06-25 14:01:13,631 - flask.app - INFO - info INIT message
+2018-06-25 14:02:19,226 - flask.app - INFO - info INIT message
+2018-06-25 14:03:03,565 - flask.app - INFO - info INIT message
+2018-06-25 14:04:27,153 - flask.app - INFO - info INIT message
+2018-06-25 14:10:24,766 - flask.app - INFO - info INIT message
+2018-06-25 14:12:46,437 - flask.app - INFO - info INIT message
+2018-06-25 14:23:08,132 - flask.app - INFO - info INIT message
+2018-06-25 14:24:32,661 - flask.app - INFO - info INIT message
+2018-06-25 14:25:00,785 - flask.app - INFO - info INIT message
+2018-06-25 14:27:56,676 - flask.app - INFO - info INIT message
+2018-06-25 14:31:05,835 - flask.app - INFO - info INIT message
+2018-06-25 14:32:22,306 - flask.app - INFO - info INIT message
+2018-06-25 14:52:05,664 - flask.app - INFO - info INIT message
+2018-06-25 14:54:49,426 - flask.app - INFO - info INIT message
+2018-06-25 15:22:52,629 - flask.app - INFO - info INIT message
+2018-06-25 15:34:59,949 - flask.app - INFO - info INIT message
+2018-06-25 15:51:42,626 - flask.app - INFO - info INIT message
+2018-06-25 15:52:20,503 - flask.app - INFO - info INIT message
+2018-06-25 16:30:13,587 - flask.app - INFO - info INIT message
+2018-06-25 22:39:12,638 - flask.app - INFO - info INIT message
+2018-06-25 22:39:23,997 - flask.app - INFO - Controller login >>   
+2018-06-25 22:39:24,051 - flask.app - INFO - Validate_Auth >>   
+2018-06-25 22:39:24,052 - flask.app - INFO - validate user >>   
+2018-06-25 22:39:24,175 - flask.app - INFO - record Exist iotadmin
+2018-06-25 22:39:24,252 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 22:39:24,393 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 22:39:25,424 - flask.app - INFO - getLocationDetails >> 
+2018-06-25 22:42:19,941 - flask.app - INFO - info INIT message
+2018-06-25 22:45:00,255 - flask.app - INFO - info INIT message
+2018-06-25 22:45:00,265 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 22:45:00,275 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 22:45:00,517 - flask.app - INFO - getLocationDetails >> 
+2018-06-25 22:46:28,763 - flask.app - INFO - info INIT message
+2018-06-25 22:46:42,116 - flask.app - INFO - Controller login >>   
+2018-06-25 22:46:42,120 - flask.app - INFO - Validate_Auth >>   
+2018-06-25 22:46:42,121 - flask.app - INFO - validate user >>   
+2018-06-25 22:46:42,124 - flask.app - INFO - record Exist iotadmin
+2018-06-25 22:46:42,159 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 22:46:42,171 - flask.app - INFO - getrecord_from_table >> 
+2018-06-25 22:46:42,376 - flask.app - INFO - getLocationDetails >> 
+2018-06-25 22:51:08,464 - flask.app - INFO - info INIT message
+2018-06-25 22:52:03,649 - flask.app - INFO - info INIT message
+2018-06-25 22:52:25,574 - flask.app - INFO - info INIT message
+2018-06-25 23:06:29,459 - flask.app - INFO - info INIT message
+2018-06-25 23:08:46,291 - flask.app - INFO - info INIT message
+2018-06-25 23:09:46,574 - flask.app - INFO - info INIT message
+2018-06-25 23:28:00,812 - flask.app - INFO - info INIT message
+2018-06-26 10:04:22,847 - flask.app - INFO - info INIT message
+2018-06-26 11:35:46,286 - flask.app - INFO - info INIT message
+2018-06-26 11:35:46,316 - flask.app - INFO - Controller login >>   
+2018-06-26 11:35:46,383 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 11:35:46,384 - flask.app - INFO - validate user >>   
+2018-06-26 11:35:46,525 - flask.app - INFO - record Exist iotadmin
+2018-06-26 11:35:46,606 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 11:35:46,781 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 11:35:48,721 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 11:42:48,771 - flask.app - INFO - info INIT message
+2018-06-26 11:44:18,739 - flask.app - INFO - info INIT message
+2018-06-26 11:45:20,952 - flask.app - INFO - info INIT message
+2018-06-26 11:56:45,018 - flask.app - INFO - info INIT message
+2018-06-26 12:01:43,731 - flask.app - INFO - info INIT message
+2018-06-26 12:03:14,010 - flask.app - INFO - info INIT message
+2018-06-26 12:13:08,109 - flask.app - INFO - info INIT message
+2018-06-26 12:31:00,118 - flask.app - INFO - info INIT message
+2018-06-26 12:44:24,621 - flask.app - INFO - info INIT message
+2018-06-26 13:37:26,363 - flask.app - INFO - info INIT message
+2018-06-26 14:04:10,446 - flask.app - INFO - info INIT message
+2018-06-26 14:16:02,154 - flask.app - INFO - info INIT message
+2018-06-26 15:31:58,409 - flask.app - INFO - info INIT message
+2018-06-26 17:32:02,140 - flask.app - INFO - info INIT message
+2018-06-26 18:08:50,992 - flask.app - INFO - info INIT message
+2018-06-26 18:22:24,223 - flask.app - INFO - info INIT message
+2018-06-26 18:38:36,156 - flask.app - INFO - info INIT message
+2018-06-26 18:39:00,780 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 18:39:01,033 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 18:39:01,971 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 18:47:05,361 - flask.app - INFO - info INIT message
+2018-06-26 18:47:56,161 - flask.app - INFO - info INIT message
+2018-06-26 18:48:24,219 - flask.app - INFO - info INIT message
+2018-06-26 18:49:55,617 - flask.app - INFO - info INIT message
+2018-06-26 18:50:41,838 - flask.app - INFO - info INIT message
+2018-06-26 18:51:44,968 - flask.app - INFO - info INIT message
+2018-06-26 18:53:16,040 - flask.app - INFO - info INIT message
+2018-06-26 18:54:35,627 - flask.app - INFO - info INIT message
+2018-06-26 18:55:04,235 - flask.app - INFO - info INIT message
+2018-06-26 18:59:24,045 - flask.app - INFO - info INIT message
+2018-06-26 19:00:38,412 - flask.app - INFO - info INIT message
+2018-06-26 21:24:46,761 - flask.app - INFO - info INIT message
+2018-06-26 21:25:00,271 - flask.app - INFO - Controller login >>   
+2018-06-26 21:25:00,277 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 21:25:00,280 - flask.app - INFO - validate user >>   
+2018-06-26 21:25:00,293 - flask.app - INFO - record Exist iotadmin
+2018-06-26 21:25:00,327 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:25:00,338 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:25:01,324 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 21:34:56,805 - flask.app - INFO - info INIT message
+2018-06-26 21:40:20,761 - flask.app - INFO - info INIT message
+2018-06-26 21:40:32,415 - flask.app - INFO - Controller login >>   
+2018-06-26 21:40:32,418 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 21:40:32,419 - flask.app - INFO - validate user >>   
+2018-06-26 21:40:32,423 - flask.app - INFO - record Exist iotadmin
+2018-06-26 21:40:32,452 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:40:32,462 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:40:33,697 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 21:41:32,025 - flask.app - INFO - info INIT message
+2018-06-26 21:41:32,034 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:41:32,154 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 21:41:51,579 - flask.app - INFO - Controller login >>   
+2018-06-26 21:41:51,581 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 21:41:51,582 - flask.app - INFO - validate user >>   
+2018-06-26 21:41:51,586 - flask.app - INFO - record Exist iotadmin
+2018-06-26 21:41:51,608 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:41:51,619 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:41:51,921 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 21:47:19,228 - flask.app - INFO - info INIT message
+2018-06-26 21:49:00,458 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:49:00,503 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 21:49:38,792 - flask.app - INFO - Controller login >>   
+2018-06-26 21:49:38,796 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 21:49:38,797 - flask.app - INFO - validate user >>   
+2018-06-26 21:49:38,801 - flask.app - INFO - record Exist iotadmin
+2018-06-26 21:49:38,831 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:49:38,841 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 21:49:39,064 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 21:53:28,030 - flask.app - INFO - info INIT message
+2018-06-26 21:54:01,614 - flask.app - INFO - info INIT message
+2018-06-26 21:54:22,314 - flask.app - INFO - info INIT message
+2018-06-26 21:54:48,342 - flask.app - INFO - info INIT message
+2018-06-26 21:54:58,758 - flask.app - INFO - info INIT message
+2018-06-26 21:57:31,656 - flask.app - INFO - info INIT message
+2018-06-26 22:00:16,106 - flask.app - INFO - info INIT message
+2018-06-26 22:01:46,254 - flask.app - INFO - info INIT message
+2018-06-26 22:02:54,098 - flask.app - INFO - info INIT message
+2018-06-26 22:03:04,095 - flask.app - INFO - Controller login >>   
+2018-06-26 22:03:04,098 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 22:03:04,099 - flask.app - INFO - validate user >>   
+2018-06-26 22:03:04,102 - flask.app - INFO - record Exist iotadmin
+2018-06-26 22:03:04,163 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 22:03:04,173 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 22:03:04,815 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 22:05:28,468 - flask.app - INFO - info INIT message
+2018-06-26 22:05:42,538 - flask.app - INFO - info INIT message
+2018-06-26 22:06:41,362 - flask.app - INFO - info INIT message
+2018-06-26 22:11:16,929 - flask.app - INFO - info INIT message
+2018-06-26 22:11:54,663 - flask.app - INFO - info INIT message
+2018-06-26 22:16:01,918 - flask.app - INFO - info INIT message
+2018-06-26 22:16:14,280 - flask.app - INFO - info INIT message
+2018-06-26 22:17:04,494 - flask.app - INFO - info INIT message
+2018-06-26 22:17:42,155 - flask.app - INFO - info INIT message
+2018-06-26 22:19:05,966 - flask.app - INFO - info INIT message
+2018-06-26 22:19:34,402 - flask.app - INFO - info INIT message
+2018-06-26 22:20:01,652 - flask.app - INFO - info INIT message
+2018-06-26 22:20:32,950 - flask.app - INFO - info INIT message
+2018-06-26 22:21:05,712 - flask.app - INFO - info INIT message
+2018-06-26 22:23:06,494 - flask.app - INFO - info INIT message
+2018-06-26 22:24:25,437 - flask.app - INFO - info INIT message
+2018-06-26 22:33:39,258 - flask.app - INFO - info INIT message
+2018-06-26 22:39:03,927 - flask.app - INFO - info INIT message
+2018-06-26 22:40:56,507 - flask.app - INFO - info INIT message
+2018-06-26 22:43:43,190 - flask.app - INFO - info INIT message
+2018-06-26 22:44:25,048 - flask.app - INFO - info INIT message
+2018-06-26 22:51:41,436 - flask.app - INFO - info INIT message
+2018-06-26 23:00:15,728 - flask.app - INFO - info INIT message
+2018-06-26 23:01:32,860 - flask.app - INFO - info INIT message
+2018-06-26 23:02:37,823 - flask.app - INFO - info INIT message
+2018-06-26 23:05:19,397 - flask.app - INFO - info INIT message
+2018-06-26 23:06:00,334 - flask.app - INFO - info INIT message
+2018-06-26 23:06:31,061 - flask.app - INFO - info INIT message
+2018-06-26 23:09:22,444 - flask.app - INFO - info INIT message
+2018-06-26 23:14:47,559 - flask.app - INFO - info INIT message
+2018-06-26 23:15:42,427 - flask.app - INFO - info INIT message
+2018-06-26 23:18:44,145 - flask.app - INFO - info INIT message
+2018-06-26 23:20:18,266 - flask.app - INFO - info INIT message
+2018-06-26 23:20:38,062 - flask.app - INFO - info INIT message
+2018-06-26 23:21:25,024 - flask.app - INFO - info INIT message
+2018-06-26 23:22:25,842 - flask.app - INFO - info INIT message
+2018-06-26 23:22:44,210 - flask.app - INFO - info INIT message
+2018-06-26 23:23:45,142 - flask.app - INFO - info INIT message
+2018-06-26 23:23:55,011 - flask.app - INFO - Controller login >>   
+2018-06-26 23:23:55,021 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 23:23:55,022 - flask.app - INFO - validate user >>   
+2018-06-26 23:23:55,024 - flask.app - INFO - record Exist iotadmin
+2018-06-26 23:23:55,063 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 23:23:55,071 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 23:24:01,062 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 23:26:27,673 - flask.app - INFO - info INIT message
+2018-06-26 23:26:55,311 - flask.app - INFO - info INIT message
+2018-06-26 23:27:19,519 - flask.app - INFO - info INIT message
+2018-06-26 23:28:34,193 - flask.app - INFO - info INIT message
+2018-06-26 23:29:25,069 - flask.app - INFO - info INIT message
+2018-06-26 23:30:55,415 - flask.app - INFO - info INIT message
+2018-06-26 23:32:21,082 - flask.app - INFO - info INIT message
+2018-06-26 23:33:05,991 - flask.app - INFO - info INIT message
+2018-06-26 23:34:18,609 - flask.app - INFO - info INIT message
+2018-06-26 23:34:28,270 - flask.app - INFO - Controller login >>   
+2018-06-26 23:34:28,275 - flask.app - INFO - Validate_Auth >>   
+2018-06-26 23:34:28,276 - flask.app - INFO - validate user >>   
+2018-06-26 23:34:28,278 - flask.app - INFO - record Exist iotadmin
+2018-06-26 23:34:28,317 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 23:34:28,329 - flask.app - INFO - getrecord_from_table >> 
+2018-06-26 23:34:28,646 - flask.app - INFO - getLocationDetails >> 
+2018-06-26 23:36:49,903 - flask.app - INFO - info INIT message
+2018-06-26 23:42:49,894 - flask.app - INFO - info INIT message
+2018-06-26 23:55:21,907 - flask.app - INFO - info INIT message
+2018-06-26 23:58:59,221 - flask.app - INFO - info INIT message
+2018-06-27 00:08:40,756 - flask.app - INFO - info INIT message
+2018-06-27 10:50:29,026 - flask.app - INFO - info INIT message
+2018-06-27 10:50:45,868 - flask.app - INFO - Controller login >>   
+2018-06-27 10:50:45,971 - flask.app - INFO - Validate_Auth >>   
+2018-06-27 10:50:45,972 - flask.app - INFO - validate user >>   
+2018-06-27 10:50:46,005 - flask.app - INFO - record Exist iotadmin
+2018-06-27 10:50:46,226 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 10:50:46,402 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 10:50:47,040 - flask.app - INFO - getLocationDetails >> 
+2018-06-27 11:10:13,461 - flask.app - INFO - info INIT message
+2018-06-27 11:13:23,275 - flask.app - INFO - info INIT message
+2018-06-27 11:15:57,495 - flask.app - INFO - info INIT message
+2018-06-27 11:28:29,668 - flask.app - INFO - info INIT message
+2018-06-27 12:25:26,727 - flask.app - INFO - info INIT message
+2018-06-27 12:32:41,585 - flask.app - INFO - info INIT message
+2018-06-27 16:40:44,966 - flask.app - INFO - info INIT message
+2018-06-27 17:35:15,301 - flask.app - INFO - info INIT message
+2018-06-27 17:44:18,961 - flask.app - INFO - info INIT message
+2018-06-27 17:46:01,283 - flask.app - INFO - info INIT message
+2018-06-27 17:46:35,009 - flask.app - INFO - info INIT message
+2018-06-27 17:47:08,540 - flask.app - INFO - Controller login >>   
+2018-06-27 17:47:08,599 - flask.app - INFO - Validate_Auth >>   
+2018-06-27 17:47:08,600 - flask.app - INFO - validate user >>   
+2018-06-27 17:47:08,710 - flask.app - INFO - record Exist iotadmin
+2018-06-27 17:47:08,756 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 17:47:08,942 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 17:47:09,526 - flask.app - INFO - getLocationDetails >> 
+2018-06-27 17:48:19,386 - flask.app - INFO - info INIT message
+2018-06-27 17:54:38,619 - flask.app - INFO - info INIT message
+2018-06-27 17:55:28,528 - flask.app - INFO - info INIT message
+2018-06-27 17:56:23,125 - flask.app - INFO - info INIT message
+2018-06-27 17:57:18,098 - flask.app - INFO - info INIT message
+2018-06-27 18:04:51,959 - flask.app - INFO - info INIT message
+2018-06-27 18:06:31,377 - flask.app - INFO - info INIT message
+2018-06-27 18:06:53,217 - flask.app - INFO - info INIT message
+2018-06-27 18:07:54,969 - flask.app - INFO - info INIT message
+2018-06-27 18:08:42,573 - flask.app - INFO - info INIT message
+2018-06-27 20:49:30,414 - flask.app - INFO - info INIT message
+2018-06-27 20:50:38,417 - flask.app - INFO - Controller login >>   
+2018-06-27 20:50:38,460 - flask.app - INFO - Validate_Auth >>   
+2018-06-27 20:50:38,461 - flask.app - INFO - validate user >>   
+2018-06-27 20:50:38,464 - flask.app - INFO - record Exist iotadmin
+2018-06-27 20:50:38,505 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 20:50:38,762 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 20:50:38,819 - flask.app - INFO - getLocationDetails >> 
+2018-06-27 20:55:12,417 - flask.app - INFO - info INIT message
+2018-06-27 20:57:44,553 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 20:57:44,608 - flask.app - INFO - getLocationDetails >> 
+2018-06-27 20:57:52,024 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 20:57:52,031 - flask.app - INFO - getLocationDetails >> 
+2018-06-27 20:57:58,752 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 20:57:58,762 - flask.app - INFO - getrecord_from_table >> 
+2018-06-27 20:57:58,785 - flask.app - INFO - getLocationDetails >> 
+2018-06-27 21:11:04,544 - flask.app - INFO - info INIT message
+2018-06-27 21:11:56,947 - flask.app - INFO - info INIT message
+2018-06-27 21:13:13,107 - flask.app - INFO - info INIT message
+2018-06-27 21:14:34,743 - flask.app - INFO - info INIT message
+2018-06-27 21:15:32,044 - flask.app - INFO - info INIT message
+2018-06-27 21:17:53,669 - flask.app - INFO - info INIT message
+2018-06-27 21:18:47,905 - flask.app - INFO - info INIT message
+2018-06-27 21:25:42,101 - flask.app - INFO - info INIT message
+2018-06-27 21:30:54,746 - flask.app - INFO - info INIT message
+2018-06-27 21:31:42,330 - flask.app - INFO - info INIT message
+2018-06-27 21:34:56,908 - flask.app - INFO - info INIT message
+2018-06-27 21:36:39,862 - flask.app - INFO - info INIT message
+2018-06-28 12:15:46,964 - flask.app - INFO - info INIT message
+2018-06-28 12:16:03,653 - flask.app - INFO - Controller login >>   
+2018-06-28 12:16:03,685 - flask.app - INFO - Validate_Auth >>   
+2018-06-28 12:16:03,686 - flask.app - INFO - validate user >>   
+2018-06-28 12:16:03,770 - flask.app - INFO - record Exist iotadmin
+2018-06-28 12:16:03,820 - flask.app - INFO - getrecord_from_table >> 
+2018-06-28 12:16:04,064 - flask.app - INFO - getrecord_from_table >> 
+2018-06-28 12:16:07,822 - flask.app - INFO - getLocationDetails >> 
+2018-06-28 15:27:03,530 - flask.app - INFO - info INIT message
+2018-06-28 16:46:33,986 - flask.app - INFO - info INIT message
+2018-06-28 16:47:12,799 - flask.app - INFO - info INIT message
+2018-06-28 16:52:31,291 - flask.app - INFO - info INIT message
+2018-06-28 16:56:15,078 - flask.app - INFO - info INIT message
+2018-06-28 17:17:52,320 - flask.app - INFO - info INIT message
+2018-06-28 17:18:36,439 - flask.app - INFO - info INIT message
+2018-06-28 17:19:57,707 - flask.app - INFO - info INIT message
+2018-06-28 17:20:27,290 - flask.app - INFO - info INIT message
+2018-06-28 17:20:51,101 - flask.app - INFO - info INIT message
+2018-06-28 17:21:33,109 - flask.app - INFO - info INIT message
+2018-06-28 17:23:31,877 - flask.app - INFO - info INIT message
+2018-06-28 17:25:25,360 - flask.app - INFO - info INIT message
+2018-06-28 17:25:47,440 - flask.app - INFO - info INIT message
+2018-06-28 17:41:23,878 - flask.app - INFO - info INIT message
+2018-07-02 09:54:37,433 - flask.app - INFO - info INIT message
+2018-07-02 09:54:48,437 - flask.app - INFO - Controller login >>   
+2018-07-02 09:54:48,500 - flask.app - INFO - Validate_Auth >>   
+2018-07-02 09:54:48,501 - flask.app - INFO - validate user >>   
+2018-07-02 09:54:48,545 - flask.app - INFO - record Exist iotadmin
+2018-07-02 09:54:48,666 - flask.app - INFO - getrecord_from_table >> 
+2018-07-02 09:54:49,464 - flask.app - INFO - getrecord_from_table >> 
+2018-07-02 09:55:03,420 - flask.app - INFO - getLocationDetails >> 
+2018-07-02 10:26:10,505 - flask.app - INFO - info INIT message
+2018-07-02 10:32:04,450 - flask.app - INFO - info INIT message
+2018-07-02 10:50:04,952 - flask.app - INFO - info INIT message
+2018-07-02 11:01:54,585 - flask.app - INFO - info INIT message
+2018-07-02 11:03:39,570 - flask.app - INFO - info INIT message
+2018-07-02 11:05:16,115 - flask.app - INFO - info INIT message
+2018-07-02 11:11:29,036 - flask.app - INFO - info INIT message
+2018-07-02 11:16:01,287 - flask.app - INFO - info INIT message
+2018-07-02 11:16:43,950 - flask.app - INFO - info INIT message
+2018-07-02 11:22:15,156 - flask.app - INFO - info INIT message
+2018-07-02 11:25:32,292 - flask.app - INFO - info INIT message
+2018-07-02 11:30:05,066 - flask.app - INFO - info INIT message
+2018-07-02 12:03:57,109 - flask.app - INFO - info INIT message
+2018-07-02 12:23:36,246 - flask.app - INFO - info INIT message
+2018-07-02 12:24:34,436 - flask.app - INFO - info INIT message
+2018-07-02 12:24:59,784 - flask.app - INFO - info INIT message
+2018-07-02 12:28:28,382 - flask.app - INFO - info INIT message
+2018-07-02 12:29:34,739 - flask.app - INFO - info INIT message
+2018-07-02 12:31:33,716 - flask.app - INFO - info INIT message
+2018-07-02 12:32:31,979 - flask.app - INFO - info INIT message
+2018-07-02 12:36:42,555 - flask.app - INFO - info INIT message
+2018-07-02 12:42:03,102 - flask.app - INFO - info INIT message
+2018-07-02 12:42:44,241 - flask.app - INFO - info INIT message
+2018-07-02 12:51:04,238 - flask.app - INFO - info INIT message
+2018-07-02 12:53:32,179 - flask.app - INFO - info INIT message
+2018-07-02 13:04:00,362 - flask.app - INFO - info INIT message
+2018-07-02 13:07:33,015 - flask.app - INFO - info INIT message
+2018-07-02 13:08:06,566 - flask.app - INFO - info INIT message
+2018-07-02 13:08:37,686 - flask.app - INFO - info INIT message
+2018-07-02 14:16:31,170 - flask.app - INFO - info INIT message
+2018-07-02 14:18:02,981 - flask.app - INFO - get client id >>   
+2018-07-02 14:19:19,419 - flask.app - INFO - info INIT message
+2018-07-02 14:22:47,971 - flask.app - INFO - info INIT message
+2018-07-02 14:40:17,792 - flask.app - INFO - info INIT message
+2018-07-02 14:42:04,098 - flask.app - INFO - info INIT message
+2018-07-02 14:42:52,883 - flask.app - INFO - info INIT message
+2018-07-02 14:45:04,183 - flask.app - INFO - info INIT message
+2018-07-02 14:48:42,122 - flask.app - INFO - info INIT message
+2018-07-02 14:50:05,659 - flask.app - INFO - info INIT message
+2018-07-02 14:50:27,601 - flask.app - INFO - info INIT message
+2018-07-02 14:50:48,143 - flask.app - INFO - info INIT message
+2018-07-02 14:52:06,784 - flask.app - INFO - info INIT message
+2018-07-02 14:52:57,946 - flask.app - INFO - info INIT message
+2018-07-02 14:53:15,744 - flask.app - INFO - info INIT message
+2018-07-02 14:53:26,767 - flask.app - INFO - info INIT message
+2018-07-02 14:54:22,747 - flask.app - INFO - info INIT message
+2018-07-02 14:56:20,646 - flask.app - INFO - info INIT message
+2018-07-02 17:00:11,849 - flask.app - INFO - info INIT message
+2018-07-02 17:03:16,834 - flask.app - INFO - info INIT message
+2018-07-02 17:04:01,166 - flask.app - INFO - info INIT message
+2018-07-02 17:05:00,678 - flask.app - INFO - info INIT message
+2018-07-02 17:12:43,643 - flask.app - INFO - info INIT message
+2018-07-02 17:14:52,875 - flask.app - INFO - info INIT message
+2018-07-02 17:18:17,333 - flask.app - INFO - get client id >>   
+2018-07-02 17:27:42,725 - flask.app - INFO - info INIT message
+2018-07-02 17:36:30,633 - flask.app - INFO - info INIT message
+2018-07-02 17:36:51,367 - flask.app - INFO - info INIT message
+2018-07-02 17:50:37,587 - flask.app - INFO - info INIT message
+2018-07-02 17:50:51,227 - flask.app - INFO - info INIT message
+2018-07-03 14:13:06,614 - flask.app - INFO - info INIT message
+2018-07-03 14:13:27,435 - flask.app - INFO - Controller login >>   
+2018-07-03 14:13:27,469 - flask.app - INFO - Validate_Auth >>   
+2018-07-03 14:13:27,470 - flask.app - INFO - validate user >>   
+2018-07-03 14:13:27,576 - flask.app - INFO - record Exist iotadmin
+2018-07-03 14:13:27,625 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 14:13:27,755 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 14:13:30,056 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 16:33:29,387 - flask.app - INFO - get client id >>   
+2018-07-03 18:16:41,040 - flask.app - INFO - info INIT message
+2018-07-03 18:24:55,926 - flask.app - INFO - info INIT message
+2018-07-03 18:26:13,945 - flask.app - INFO - info INIT message
+2018-07-03 18:27:35,110 - flask.app - INFO - info INIT message
+2018-07-03 18:29:29,404 - flask.app - INFO - info INIT message
+2018-07-03 18:36:14,295 - flask.app - INFO - info INIT message
+2018-07-03 18:37:06,269 - flask.app - INFO - info INIT message
+2018-07-03 18:45:29,119 - flask.app - INFO - info INIT message
+2018-07-03 18:56:41,450 - flask.app - INFO - info INIT message
+2018-07-03 18:59:07,097 - flask.app - INFO - info INIT message
+2018-07-03 18:59:53,149 - flask.app - INFO - info INIT message
+2018-07-03 19:00:31,729 - flask.app - INFO - info INIT message
+2018-07-03 19:02:31,862 - flask.app - INFO - info INIT message
+2018-07-03 19:04:01,356 - flask.app - INFO - info INIT message
+2018-07-03 19:07:07,692 - flask.app - INFO - info INIT message
+2018-07-03 20:26:18,132 - flask.app - INFO - info INIT message
+2018-07-03 20:26:28,992 - flask.app - INFO - Controller login >>   
+2018-07-03 20:26:29,002 - flask.app - INFO - Validate_Auth >>   
+2018-07-03 20:26:29,003 - flask.app - INFO - validate user >>   
+2018-07-03 20:26:29,178 - flask.app - INFO - record Exist iotadmin
+2018-07-03 20:26:29,259 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:26:29,468 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:26:29,891 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 20:28:06,546 - flask.app - INFO - get client id >>   
+2018-07-03 20:38:11,026 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:38:11,033 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:38:11,284 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 20:38:13,157 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:38:13,248 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 20:38:30,021 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:38:30,078 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 20:46:30,108 - flask.app - INFO - -----------------------------
+2018-07-03 20:46:30,121 - flask.app - INFO -  get15MinSummaryData >>2018-07-03 00:00:00
+2018-07-03 20:46:30,122 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:46:36,678 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:46:36,702 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 20:46:40,727 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:46:40,737 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 20:46:40,916 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 21:00:25,922 - flask.app - INFO - info INIT message
+2018-07-03 21:00:40,304 - flask.app - INFO - Controller login >>   
+2018-07-03 21:00:40,668 - flask.app - INFO - Validate_Auth >>   
+2018-07-03 21:00:40,669 - flask.app - INFO - validate user >>   
+2018-07-03 21:00:40,754 - flask.app - INFO - record Exist iotadmin
+2018-07-03 21:00:41,003 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 21:00:41,410 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 21:00:42,103 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 21:02:19,761 - flask.app - INFO - info INIT message
+2018-07-03 21:02:44,587 - flask.app - INFO - info INIT message
+2018-07-03 21:09:12,831 - flask.app - INFO - info INIT message
+2018-07-03 21:09:23,994 - flask.app - INFO - Controller login >>   
+2018-07-03 21:09:24,096 - flask.app - INFO - Validate_Auth >>   
+2018-07-03 21:09:24,097 - flask.app - INFO - validate user >>   
+2018-07-03 21:09:24,312 - flask.app - INFO - record Exist iotadmin
+2018-07-03 21:09:24,741 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 21:09:26,035 - flask.app - INFO - getrecord_from_table >> 
+2018-07-03 21:09:27,453 - flask.app - INFO - getLocationDetails >> 
+2018-07-03 21:12:43,328 - flask.app - INFO - info INIT message
+2018-07-03 21:13:40,038 - flask.app - INFO - info INIT message
+2018-07-03 21:14:48,036 - flask.app - INFO - info INIT message
+2018-07-03 21:30:09,908 - flask.app - INFO - info INIT message
+2018-07-03 21:39:15,492 - flask.app - INFO - info INIT message
+2018-07-03 21:45:15,990 - flask.app - INFO - info INIT message
+2018-07-03 21:46:20,691 - flask.app - INFO - info INIT message
+2018-07-03 21:48:31,829 - flask.app - INFO - info INIT message
+2018-07-03 21:49:56,560 - flask.app - INFO - info INIT message
+2018-07-03 21:58:40,768 - flask.app - INFO - info INIT message
+2018-07-03 21:58:40,802 - flask.app - INFO - get client id >>   
+2018-07-03 22:00:44,715 - flask.app - INFO - info INIT message
+2018-07-03 22:12:56,758 - flask.app - INFO - info INIT message
+2018-07-03 22:13:36,826 - flask.app - INFO - get client id >>   
+2018-07-03 22:15:31,327 - flask.app - INFO - info INIT message
+2018-07-03 22:16:02,895 - flask.app - INFO - get client id >>   
+2018-07-03 22:17:49,534 - flask.app - INFO - info INIT message
+2018-07-03 22:18:04,345 - flask.app - INFO - get client id >>   
+2018-07-03 22:24:18,180 - flask.app - INFO - info INIT message
+2018-07-04 10:25:42,897 - flask.app - INFO - info INIT message
+2018-07-04 10:26:00,192 - flask.app - INFO - Controller login >>   
+2018-07-04 10:26:00,519 - flask.app - INFO - Validate_Auth >>   
+2018-07-04 10:26:00,520 - flask.app - INFO - validate user >>   
+2018-07-04 10:26:00,664 - flask.app - INFO - record Exist iotadmin
+2018-07-04 10:26:00,886 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 10:26:01,621 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 10:26:04,049 - flask.app - INFO - getLocationDetails >> 
+2018-07-04 10:52:55,054 - flask.app - INFO - info INIT message
+2018-07-04 12:30:49,043 - flask.app - INFO - info INIT message
+2018-07-04 12:31:07,050 - flask.app - INFO - Controller login >>   
+2018-07-04 12:31:07,089 - flask.app - INFO - Validate_Auth >>   
+2018-07-04 12:31:07,090 - flask.app - INFO - validate user >>   
+2018-07-04 12:31:07,173 - flask.app - INFO - record Exist iotadmin
+2018-07-04 12:31:07,234 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 12:31:07,479 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 12:31:07,759 - flask.app - INFO - getLocationDetails >> 
+2018-07-04 13:02:44,510 - flask.app - INFO - info INIT message
+2018-07-04 13:03:13,608 - flask.app - INFO - Controller login >>   
+2018-07-04 13:03:13,614 - flask.app - INFO - Validate_Auth >>   
+2018-07-04 13:03:13,615 - flask.app - INFO - validate user >>   
+2018-07-04 13:03:13,620 - flask.app - INFO - record Exist iotadmin
+2018-07-04 13:03:13,651 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 13:03:13,679 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 13:03:13,918 - flask.app - INFO - getLocationDetails >> 
+2018-07-04 13:29:30,507 - flask.app - INFO - info INIT message
+2018-07-04 13:34:41,953 - flask.app - INFO - info INIT message
+2018-07-04 14:26:30,635 - flask.app - INFO - info INIT message
+2018-07-04 14:30:52,806 - flask.app - INFO - info INIT message
+2018-07-04 17:39:28,449 - flask.app - INFO - info INIT message
+2018-07-04 17:39:56,896 - flask.app - INFO - Controller login >>   
+2018-07-04 17:39:57,040 - flask.app - INFO - Validate_Auth >>   
+2018-07-04 17:39:57,041 - flask.app - INFO - validate user >>   
+2018-07-04 17:39:57,570 - flask.app - INFO - record Exist iotadmin
+2018-07-04 17:39:57,647 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 17:39:58,033 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 17:39:58,734 - flask.app - INFO - getLocationDetails >> 
+2018-07-04 17:40:14,774 - flask.app - INFO - Controller login >>   
+2018-07-04 17:40:14,777 - flask.app - INFO - Validate_Auth >>   
+2018-07-04 17:40:14,778 - flask.app - INFO - validate user >>   
+2018-07-04 17:40:14,781 - flask.app - INFO - record Exist iotadmin
+2018-07-04 17:40:15,022 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 17:40:15,030 - flask.app - INFO - getrecord_from_table >> 
+2018-07-04 17:40:15,219 - flask.app - INFO - getLocationDetails >> 
+2018-07-04 18:45:32,927 - flask.app - INFO - info INIT message
+2018-07-04 18:56:16,737 - flask.app - INFO - info INIT message
+2018-07-04 18:59:22,493 - flask.app - INFO - info INIT message
+2018-07-05 14:17:44,818 - flask.app - INFO - info INIT message
+2018-07-05 14:18:01,296 - flask.app - INFO - Controller login >>   
+2018-07-05 14:18:01,336 - flask.app - INFO - Validate_Auth >>   
+2018-07-05 14:18:01,339 - flask.app - INFO - validate user >>   
+2018-07-05 14:18:01,484 - flask.app - INFO - record Exist iotadmin
+2018-07-05 14:18:01,611 - flask.app - INFO - getrecord_from_table >> 
+2018-07-05 14:18:01,770 - flask.app - INFO - getrecord_from_table >> 
+2018-07-05 14:20:10,813 - flask.app - INFO - getLocationDetails >> 
+2018-07-05 15:50:04,705 - flask.app - INFO - info INIT message
+2018-07-05 16:35:14,958 - flask.app - INFO - info INIT message
+2018-07-05 16:41:44,480 - flask.app - INFO - info INIT message
+2018-07-05 16:42:07,835 - flask.app - INFO - info INIT message
+2018-07-05 16:46:31,327 - flask.app - INFO - info INIT message
+2018-07-05 16:48:07,705 - flask.app - INFO - info INIT message
+2018-07-05 16:49:37,989 - flask.app - INFO - info INIT message
+2018-07-05 17:00:30,948 - flask.app - INFO - info INIT message
+2018-07-05 17:18:41,360 - flask.app - INFO - info INIT message
+2018-07-05 17:21:32,584 - flask.app - INFO - info INIT message
+2018-07-05 17:22:18,299 - flask.app - INFO - info INIT message
+2018-07-05 17:36:59,781 - flask.app - INFO - info INIT message
+2018-07-05 17:39:43,947 - flask.app - INFO - info INIT message
+2018-07-05 17:51:10,966 - flask.app - INFO - info INIT message
+2018-07-05 17:53:18,773 - flask.app - INFO - info INIT message
+2018-07-05 18:08:58,990 - flask.app - INFO - info INIT message
+2018-07-05 18:12:19,644 - flask.app - INFO - info INIT message
+2018-07-05 18:14:21,099 - flask.app - INFO - info INIT message
+2018-07-05 18:17:22,660 - flask.app - INFO - info INIT message
+2018-07-05 18:20:20,679 - flask.app - INFO - info INIT message
+2018-07-05 18:22:05,502 - flask.app - INFO - info INIT message
+2018-07-09 11:16:52,958 - flask.app - INFO - info INIT message
+2018-07-09 11:24:40,303 - flask.app - INFO - Controller login >>   
+2018-07-09 11:24:40,450 - flask.app - INFO - Validate_Auth >>   
+2018-07-09 11:24:40,450 - flask.app - INFO - validate user >>   
+2018-07-09 11:24:41,225 - flask.app - INFO - record Exist iotadmin
+2018-07-09 11:24:41,481 - flask.app - INFO - getrecord_from_table >> 
+2018-07-09 11:24:41,803 - flask.app - INFO - getrecord_from_table >> 
+2018-07-09 11:24:43,041 - flask.app - INFO - getLocationDetails >> 
+2018-07-09 13:15:56,848 - flask.app - INFO - info INIT message
+2018-07-09 13:15:56,991 - flask.app - INFO - getrecord_from_table >> 
+2018-07-09 13:15:57,165 - flask.app - INFO - getrecord_from_table >> 
+2018-07-09 13:15:57,928 - flask.app - INFO - getLocationDetails >> 
+2018-07-11 10:59:05,356 - flask.app - INFO - info INIT message
+2018-07-11 10:59:17,838 - flask.app - INFO - Controller login >>   
+2018-07-11 10:59:17,857 - flask.app - INFO - Validate_Auth >>   
+2018-07-11 10:59:17,858 - flask.app - INFO - validate user >>   
+2018-07-11 10:59:18,049 - flask.app - INFO - record Exist iotadmin
+2018-07-11 10:59:18,109 - flask.app - INFO - getrecord_from_table >> 
+2018-07-11 10:59:18,377 - flask.app - INFO - getrecord_from_table >> 
+2018-07-11 10:59:19,502 - flask.app - INFO - getLocationDetails >> 
+2018-07-11 12:28:06,656 - flask.app - INFO - info INIT message
+2018-07-11 12:32:34,747 - flask.app - INFO - info INIT message
+2018-07-11 12:33:06,238 - flask.app - INFO - info INIT message
+2018-07-11 12:41:37,564 - flask.app - INFO - info INIT message
+2018-07-11 12:41:50,858 - flask.app - INFO - Controller login >>   
+2018-07-11 12:41:50,880 - flask.app - INFO - Validate_Auth >>   
+2018-07-11 12:41:50,881 - flask.app - INFO - validate user >>   
+2018-07-11 12:41:50,885 - flask.app - INFO - record Exist iotadmin
+2018-07-11 12:41:50,955 - flask.app - INFO - getrecord_from_table >> 
+2018-07-11 12:41:50,991 - flask.app - INFO - getrecord_from_table >> 
+2018-07-11 12:41:51,328 - flask.app - INFO - getLocationDetails >> 
+2018-07-11 12:49:05,202 - flask.app - INFO - info INIT message
+2018-07-11 14:04:27,142 - flask.app - INFO - info INIT message
+2018-07-11 14:45:20,797 - flask.app - INFO - info INIT message
+2018-07-11 15:00:27,445 - flask.app - INFO - info INIT message
+2018-07-11 15:17:57,116 - flask.app - INFO - info INIT message
+2018-07-11 15:21:23,144 - flask.app - INFO - info INIT message
+2018-07-11 15:37:14,591 - flask.app - INFO - info INIT message
+2018-07-11 15:43:34,391 - flask.app - INFO - info INIT message
+2018-07-11 16:38:19,995 - flask.app - INFO - info INIT message
+2018-07-12 11:19:18,792 - flask.app - INFO - info INIT message
+2018-07-12 11:39:27,165 - flask.app - INFO - Controller login >>   
+2018-07-12 11:39:27,197 - flask.app - INFO - Validate_Auth >>   
+2018-07-12 11:39:27,197 - flask.app - INFO - validate user >>   
+2018-07-12 11:39:27,434 - flask.app - INFO - record Exist iotadmin
+2018-07-12 11:39:27,546 - flask.app - INFO - getrecord_from_table >> 
+2018-07-12 11:39:27,724 - flask.app - INFO - getrecord_from_table >> 
+2018-07-12 11:39:28,622 - flask.app - INFO - getLocationDetails >> 
+2018-07-14 17:49:01,194 - flask.app - INFO - info INIT message
+2018-07-14 17:49:24,656 - flask.app - INFO - Controller login >>   
+2018-07-14 17:49:24,691 - flask.app - INFO - Validate_Auth >>   
+2018-07-14 17:49:24,692 - flask.app - INFO - validate user >>   
+2018-07-14 17:49:24,807 - flask.app - INFO - record Exist iotadmin
+2018-07-14 17:49:24,906 - flask.app - INFO - getrecord_from_table >> 
+2018-07-14 17:49:25,091 - flask.app - INFO - getrecord_from_table >> 
+2018-07-14 17:49:25,566 - flask.app - INFO - getLocationDetails >> 
+2018-07-14 18:17:16,075 - flask.app - INFO - info INIT message
+2018-07-14 18:18:10,685 - flask.app - INFO - info INIT message
+2018-07-14 18:19:39,206 - flask.app - INFO - info INIT message
+2018-07-14 18:20:03,473 - flask.app - INFO - info INIT message
+2018-07-14 18:21:28,747 - flask.app - INFO - info INIT message
+2018-07-14 18:22:51,517 - flask.app - INFO - info INIT message
+2018-07-14 18:26:39,305 - flask.app - INFO - info INIT message
+2018-07-14 18:27:49,448 - flask.app - INFO - info INIT message
+2018-07-14 18:31:15,507 - flask.app - INFO - info INIT message
+2018-07-14 18:32:01,678 - flask.app - INFO - info INIT message
+2018-07-14 18:35:05,300 - flask.app - INFO - info INIT message
+2018-07-14 18:37:02,862 - flask.app - INFO - info INIT message
+2018-07-14 18:59:28,833 - flask.app - INFO - info INIT message
+2018-07-14 19:10:27,531 - flask.app - INFO - info INIT message
+2018-07-14 19:47:36,319 - flask.app - INFO - info INIT message
+2018-07-14 19:48:45,997 - flask.app - INFO - info INIT message
+2018-07-14 19:50:58,732 - flask.app - INFO - info INIT message
+2018-07-14 19:51:44,072 - flask.app - INFO - info INIT message
+2018-07-14 19:53:43,425 - flask.app - INFO - info INIT message
+2018-07-14 19:55:13,979 - flask.app - INFO - info INIT message
+2018-07-14 19:57:31,852 - flask.app - INFO - info INIT message
+2018-07-14 19:59:15,943 - flask.app - INFO - info INIT message
+2018-07-14 20:00:44,036 - flask.app - INFO - info INIT message
+2018-07-14 20:01:31,045 - flask.app - INFO - info INIT message
+2018-07-14 20:03:14,370 - flask.app - INFO - info INIT message
+2018-07-14 20:07:37,935 - flask.app - INFO - info INIT message
+2018-07-14 20:09:26,997 - flask.app - INFO - info INIT message
+2018-07-14 20:10:08,062 - flask.app - INFO - info INIT message
+2018-07-14 20:10:30,272 - flask.app - INFO - info INIT message
+2018-07-14 20:13:01,525 - flask.app - INFO - info INIT message
+2018-07-14 20:14:48,590 - flask.app - INFO - info INIT message
+2018-07-14 20:21:55,587 - flask.app - INFO - info INIT message

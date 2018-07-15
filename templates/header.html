@@ -1,0 +1,54 @@
+<!-- HEADER -->
+		<header id="header">
+			<div id="logo-group">
+				<!-- PLACE YOUR LOGO HERE -->
+				<div style="margin-bottom: 2px" > <!--img src="../static/images/logo.png" title="EnergyIoT Suite" height="50" width="70"--><b><h3>{{session['APP_NAME']}}</h3></b></div>
+				<!-- END LOGO PLACEHOLDER -->
+			</div>
+
+
+			<!-- pulled right: nav area -->
+			<div class="pull-right">
+
+				<!-- collapse menu button -->
+				<div id="hide-menu" class="btn-header pull-right">
+					<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+				</div>
+
+				<!-- logout button -->
+				<div id="logout" class="btn-header transparent pull-right">
+					<span> <a href="/" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+				</div>
+				<!-- end logout button -->
+				<!-- fullscreen button -->
+				<div id="fullscreen" class="btn-header transparent pull-right">
+					<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
+				</div>
+				<!-- end fullscreen button -->
+
+                <div id="date_time" class="btn-header pull-right" style="padding-top: 10px; height:40px;font-size: 15px;vertical-align: middle"></div>
+
+			</div>
+			<!-- end pulled right: nav area -->
+
+		</header>
+
+        <aside id="left-panel">
+			<!-- User info -->
+			<div class="login-info">
+				<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+						<img src="../static/images/user.png" alt="me" class="online" />
+						<span>
+							{{session['USER'].username}}
+						</span>
+						<i class="fa fa-angle-down"></i>
+					</a>
+
+				</span>
+			</div>
+			<!-- end user info -->
+
+            {% include "navigation.html" %}
+		</aside>

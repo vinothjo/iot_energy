@@ -1,0 +1,156 @@
+<div id="main" role="main">
+            <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- breadcrumb -->
+        <ol class="breadcrumb">
+            <li>Home/{{ title }}</li>
+        </ol>
+    </div>
+    <!-- END RIBBON -->
+
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <section id="widget-grid" class="">
+            <div class="row">
+                <header>
+                    <h2>
+                        <strong>Add New {{ title }}</strong> 
+                    </h2>
+                </header>
+            </div>
+        </section>
+    </div>
+    <div class="head">
+            <h1>Create Client</h1>
+            <h2>Into MongoDB</h2>
+        </div>
+        <div class="newspaper">
+            <form method="POST">
+                {{ cform.hidden_tag() }}
+                <fieldset>
+                    <legend>Create Client</legend>
+                    {{ cform.clientname.label }}<br>
+                    {{ cform.clientname }}<br>
+                    {{ cform.address1.label }}<br>
+                    {{ cform.address1 }}<br>
+                    {{ cform.address2.label }}<br>
+                    {{ cform.address2 }}<br><br>
+                    {{ cform.city.label }}<br>
+                    {{ cform.city }}<br>
+                    {{ cform.state.label }}<br>
+                    {{ cform.state }}<br>
+                    {{ cform.zipcode.label }}<br>
+                    {{ cform.zipcode }}<br><br>
+                    {{ cform.country.label }}<br>
+                    {{ cform.country }}<br>
+                    {{ cform.companyemail.label }}<br>
+                    {{ cform.companyemail }}<br>
+                    {{ cform.website.label }}<br>
+                    {{ cform.website }}<br><br>
+                    {{ cform.tellNo.label }}<br>
+                    {{ cform.tellNo }}<br>
+                    {{ cform.mobileNo.label }}<br>
+                    {{ cform.mobileNo }}<br><br>
+                    {{ cform.faxNo.label }}<br>
+                    {{ cform.faxNo }}<br>
+                    {{ cform.companyemail.label }}<br>
+                    {{ cform.companyemail }}<br>
+                    {{ cform.companylogo.label }}<br>
+                    {{ cform.companylogo }}<br><br>
+                    {{ cform.remarks.label }}<br>
+                    {{ cform.remarks }}<br>
+                    {{ cform.firstname.label }}<br>
+                    {{ cform.firstname }}<br><br>
+                    {{ cform.lastname.label }}<br>
+                    {{ cform.lastname }}<br><br>
+                    {{ cform.clientemail.label }}<br>
+                    {{ cform.clientemail }}<br>
+                    {{ cform.uen_entity_nric.label }}<br>
+                    {{ cform.uen_entity_nric }}<br><br>
+                    {{ cform.legal_trading_displayname.label }}<br>
+                    {{ cform.legal_trading_displayname }}<br><br>
+                    {{ cform.taxref_no.label }}<br>
+                    {{ cform.taxref_no }}<br><br>
+                    {{ cform.create }}
+                </fieldset>
+            </form>
+            <form  method="POST">
+                {{ uform.hidden_tag() }}
+                <fieldset>
+                    <legend>Update Client</legend>
+                    {{ uform.key.label }}<br>
+                    {{ uform.key }}<br><br>
+                    Set Update<br><br>
+                    {{ cform.clientname.label }}<br>
+                    {{ cform.clientname }}<br>
+                    {{ cform.address1.label }}<br>
+                    {{ cform.address1 }}<br>
+                    {{ cform.address2.label }}<br>
+                    {{ cform.address2 }}<br><br>
+                    {{ cform.city.label }}<br>
+                    {{ cform.city }}<br>
+                    {{ cform.state.label }}<br>
+                    {{ cform.state }}<br>
+                    {{ cform.zipcode.label }}<br>
+                    {{ cform.zipcode }}<br><br>
+                    {{ cform.country.label }}<br>
+                    {{ cform.country }}<br>
+                    {{ cform.companyemail.label }}<br>
+                    {{ cform.companyemail }}<br>
+                    {{ cform.website.label }}<br>
+                    {{ cform.website }}<br><br>
+                    {{ cform.tellNo.label }}<br>
+                    {{ cform.tellNo }}<br>
+                    {{ cform.mobileNo.label }}<br>
+                    {{ cform.mobileNo }}<br><br>
+                    {{ cform.faxNo.label }}<br>
+                    {{ cform.faxNo }}<br>
+                    {{ cform.companyemail.label }}<br>
+                    {{ cform.companyemail }}<br>
+                    {{ cform.companylogo.label }}<br>
+                    {{ cform.companylogo }}<br><br>
+                    {{ cform.remarks.label }}<br>
+                    {{ cform.remarks }}<br>
+                    {{ cform.firstname.label }}<br>
+                    {{ cform.firstname }}<br><br>
+                    {{ cform.lastname.label }}<br>
+                    {{ cform.lastname }}<br><br>
+                    {{ cform.clientemail.label }}<br>
+                    {{ cform.clientemail }}<br>
+                    {{ cform.uen_entity_nric.label }}<br>
+                    {{ cform.uen_entity_nric }}<br><br>
+                    {{ cform.legal_trading_displayname.label }}<br>
+                    {{ cform.legal_trading_displayname }}<br><br>
+                    {{ cform.taxref_no.label }}<br>
+                    {{ cform.taxref_no }}<br><br>
+                    {{ uform.update }}
+                </fieldset>
+            </form>
+            <form method="POST">
+                {{ dform.hidden_tag() }}
+                <fieldset>
+                    <legend>Delete Client</legend>
+                    {{ dform.key.label }}<br>
+                    {{ dform.key }}<br>
+                    <br>OR<br><br>
+                    {{ dform.clientname.label }}<br>
+                    {{ dform.clientname }}<br><br>
+                    {{ dform.delete }}
+                </fieldset>
+            </form>
+            <form method="POST">
+                {{ reset.hidden_tag() }}
+                <b>Search All Client: </b> {{ sform.sform }}
+            </form>
+        </div>
+        <br>
+        <br>
+        <b>Client List:</b><br><br>
+        {% for i in data %}
+            ID = {{ i["id"] }} <br>
+            clientname = {{ i["clientname"] }}<br>
+            address1 = {{ i["address1"] }} <br>
+            address2 = {{ i["address2"] }}<br><br>
+        {% endfor %}
+                
+</div>

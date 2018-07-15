@@ -1,0 +1,93 @@
+									<!-- widget content -->
+									<div class="widget-body">
+
+										<form id="search_form" class="" method="post">
+
+											<fieldset>
+												<div class="row">
+                                                <table width="100%" style="margin: 2px">
+                                                    <tr>
+                                                        <td width="50%">
+                                                            <div class="form-group">
+                                                            <label>Location</label>
+                                                            <div class="input-group">
+                                                                <select name="filter_location_list[]" multiple style="width:75%" class="select2">
+                                                                    <option value="ALL" >ALL</option>
+                                                                    <optgroup label="Location Code">
+                                                                        {% for x in location_detail %}
+                                                                            <option value="{{ x.resource_path }}"  {% if x.selected == 'Y' %}selected{% endif %}>{{ x.location_code  }}</option>
+                                                                       {% endfor %}
+                                                                    </optgroup>
+                                                                </select>
+                                                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                                            </div>
+												            </div>
+                                                        </td>
+                                                        <td width="15%">
+                                                            <div class="form-group">
+															<label>Select a date:</label>
+															<div class="input-group">
+																<input type="text" name="filter_date" {% if  req_param.filter_date%}value="{{ req_param.filter_date }}"{% endif %} placeholder="Select a date" class="form-control datepicker" data-dateformat="dd/mm/yy">
+																<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+															</div>
+														    </div>
+                                                        </td>
+                                                        <td width="5%">
+                                                            <label>&nbsp;</label>
+                                                             <div class="form-group">
+                                                                <div class="input-group">
+                                                                            <button class="btn btn-primary" type="submit">
+                                                                            <i class="fa fa-filter"></i>
+                                                                            Apply
+                                                                            </button>
+                                                                    </div>
+                                                             </div>
+                                                        </td>
+                                                        <td width="30%">
+                                                        <div class="form-group" style="padding: 4px">
+                                                                    <div class="btn-group btn-group-sm" style="margin:0px; display: inline">
+                                                                        <input type="hidden" value="{{ filter_type }}" name="filter_type" id="filter_type">
+                                                                        <input type="hidden" value="{{ filter_type_nev }}" name="filter_type_nev" id="filter_type_nev">
+                                                                        <a href="javascript:on_btn_click_prev();"  class="btn btn-default" style="color: #0c7cd5"><b>&lt;&lt;</b></a>
+                                                                        <a id="YEAR" {% if filter_type == "YEAR" %} style="background-color: #8AA1B3"{% endif %}href="javascript:on_btn_click('YEAR');" class="btn btn-default">Year</a>
+                                                                        <a id="MONTH" {% if filter_type == "MONTH" %} style="background-color: #8AA1B3"{% endif %} href="javascript:on_btn_click('MONTH');" class="btn btn-default">Month</a>
+                                                                        <a id="WEEK" {% if filter_type == "WEEK" %} style="background-color: #8AA1B3"{% endif %} href="javascript:on_btn_click('WEEK');" class="btn btn-default">Week</a>
+                                                                        <a id="DAY" {% if filter_type == "DAY" %} style="background-color: #8AA1B3"{% endif %} href="javascript:on_btn_click('DAY');" class="btn btn-default">Day</a>
+                                                                        <a href="javascript:on_btn_click_next();" class="btn btn-default" style="color: #0c7cd5"><b>&gt;&gt;</b></a>
+                                                                    </div>
+
+                                                        </div>
+                                                        </td>
+
+                                                    </tr>
+                                                </table>
+
+
+												</div>
+
+
+											</fieldset>
+
+
+										</form>
+
+									</div>
+
+<script>
+    function on_btn_click(val){
+        $( "#filter_type_nev" ).val("")
+        $( "#filter_type" ).val(val)
+        $( "#search_form" ).submit();
+    }
+
+    function on_btn_click_prev(){
+        $( "#filter_type_nev" ).val("PREV")
+        $( "#search_form" ).submit();
+    }
+
+    function on_btn_click_next(){
+        $( "#filter_type_nev" ).val("NEXT")
+        $( "#search_form" ).submit();
+    }
+</script>
+									<!-- end widget content -->

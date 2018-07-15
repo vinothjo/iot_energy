@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='animated_favicon.gif') }}">
+
+		<title>EnergyIoT Suite - PINNACLE INFO SYS PTE LTD</title>
+		<meta name="description" content="EnergyIoT">
+		<meta name="author" content="Pinnacle">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        {% include "css.html" %}
+
+	</head>
+
+	<!--
+
+	TABLE OF CONTENTS.
+
+	Use search to find needed section.
+
+	===================================================================
+
+	|  01. #CSS Links                |  all CSS links and file paths  |
+	|  02. #FAVICONS                 |  Favicon links and file paths  |
+	|  03. #GOOGLE FONT              |  Google font link              |
+	|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+	|  05. #BODY                     |  body tag                      |
+	|  06. #HEADER                   |  header tag                    |
+	|  07. #PROJECTS                 |  project lists                 |
+	|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+	|  09. #MOBILE                   |  mobile view dropdown          |
+	|  10. #SEARCH                   |  search field                  |
+	|  11. #NAVIGATION               |  left panel & navigation       |
+	|  12. #RIGHT PANEL              |  right panel userlist          |
+	|  13. #MAIN PANEL               |  main panel                    |
+	|  14. #MAIN CONTENT             |  content holder                |
+	|  15. #PAGE FOOTER              |  page footer                   |
+	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  17. #PLUGINS                  |  all scripts and plugins       |
+
+	===================================================================
+
+	-->
+
+	<!-- #BODY -->
+	<!-- Possible Classes
+
+		* 'smart-style-{SKIN#}'
+		* 'smart-rtl'         - Switch theme mode to RTL
+		* 'menu-on-top'       - Switch to top navigation (no DOM change required)
+		* 'no-menu'			  - Hides the menu completely
+		* 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+		* 'fixed-header'      - Fixes the header
+		* 'fixed-navigation'  - Fixes the main menu
+		* 'fixed-ribbon'      - Fixes breadcrumb
+		* 'fixed-page-footer' - Fixes footer
+		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+	-->
+	<body class="">
+        <!-- HEADER -->
+        {% include "header.html" %}
+		<!-- END HEADER -->
+
+
+<div id="main" role="main">
+
+			<!-- RIBBON -->
+			<div id="ribbon">
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Performance Dashboard</li>
+				</ol>
+			</div>
+			<!-- END RIBBON -->
+
+			<!-- MAIN CONTENT -->
+			<div id="content">
+
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
+
+                    <div class="row">
+
+                        {% for id in ids %}
+                        <article class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+
+							<!-- Widget ID (each widget will need unique ID)-->
+
+							<div class="jarviswidget" id="wid-id-0{{ loop.index }}" data-widget-colorbutton="false"  data-widget-deletebutton="false" data-widget-editbutton="false">
+								<header>
+									<h2><strong>Graph {{ loop.index  }}</strong> </h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+									<!-- widget content -->
+									<div class="widget-body">
+
+                                            <div id="{{id}}"></div>
+
+								    </div>
+								<!-- end widget div -->
+
+							    </div>
+							<!-- end widget -->
+                            </div>
+
+						</article>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+</div>
+
+
+
+<footer>
+
+<!-- D3.js -->
+    <script src="{{ url_for('static', filename='js/d3.min.js')}}"></script>
+<!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js')}}"></script>
+<!-- Plotly.js -->
+    <script src="{{ url_for('static', filename='js/plotly-basic.js')}}"></script>
+    <script type="text/javascript">
+        var graphs = {{graphJSON | safe}};
+        var ids = {{ids | safe}};
+        for(var i in graphs) {
+            Plotly.plot(ids[i], // the ID of the div, created above
+                        graphs[i].data,
+                        graphs[i].layout || {},{showLink:false});
+        }
+    </script>
+</footer>
+
+
+
+		<!-- PAGE FOOTER -->
+		{% include "shortcut.html" %}
+        {% include "footer.html" %}
+        {% include "js.html" %}
+        <!-- END PAGE FOOTER -->
+
+
+	</body>
+
+</html>

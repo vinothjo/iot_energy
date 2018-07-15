@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+	<head>
+		<meta charset="utf-8">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+		<title>{{ APP_NAME }}</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        {% include "css.html" %}
+	</head>
+	
+	<body class="animated fadeInDown">
+
+		<header id="header">
+
+			<div id="logo-group">
+				<div> <!--img src="../static/images/logo.png" alt="{{ APP_NAME }}" height="75" width="100"--> <b>{{ APP_NAME }}</b></div>
+			</div>
+
+			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="#" class="btn btn-danger">Request account</a> </span>
+
+		</header>
+
+		<div id="main" role="main">
+
+			<!-- MAIN CONTENT -->
+			<div id="content" class="container">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+						<h1 class="txt-color-red login-header-big">{{ APP_NAME }}</h1>
+						<div class="hero">
+								<div class="superbox col-sm-12">
+                                <div class="superbox-list">
+                                    <img src="../static/images/Gallery/Gallery.jpeg" data-img="../static/images/Gallery/Gallery.jpeg" alt="Solar Panel" title="Solar Panel"  class="superbox-img">
+                                </div>
+                                <div class="superbox-list">
+                                    <img src="../static/images/Gallery/Gallery1.jpeg" data-img="../static/images/Gallery/Gallery1.jpeg" alt="Solar Panel" title="Solar Panel" class="superbox-img">
+                                </div>
+                                <div class="superbox-list">
+                                    <img src="../static/images/Gallery/Gallery2.jpeg" data-img="../static/images/Gallery/Gallery2.jpeg" alt="Solar Panel" title="Solar Panel" class="superbox-img">
+                                </div>
+                                <div class="superbox-list">
+                                    <img src="../static/images/Gallery/Gallery4.jpeg" data-img="../static/images/Gallery/Gallery4.jpeg" alt="Solar Panel" title="Solar Panel" class="superbox-img">
+                                </div>
+
+                                <div class="superbox-float"></div>
+                            </div>
+						</div>
+
+
+
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+						<div class="well no-padding">
+							<form action="/admin/login" id="login-form" class="smart-form client-form" method="post">
+								<header>
+									Sign In
+								</header>
+
+								<fieldset>
+									
+									<section>
+										<label class="label">Username</label>
+										<label class="input"> <i class="icon-append fa fa-user"></i>
+											<input type="text" name="username">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
+									</section>
+
+									<section>
+										<label class="label">Password</label>
+										<label class="input"> <i class="icon-append fa fa-lock"></i>
+											<input type="password" name="password">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
+										<div class="note">
+											<a href="#">Forgot password?</a>
+										</div>
+									</section>
+                                    <p style="color: red"><i>{{ error }}</i></p>
+
+								</fieldset>
+								<footer>
+									<button type="submit" class="btn btn-primary">
+										Sign in
+									</button>
+								</footer>
+							</form>
+
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+        {% include "footer.html" %}
+
+
+
+		<script>
+			$(function() {
+				// Validation
+				$("#login-form").validate({
+					// Rules for form validation
+					rules : {
+						email : {
+							required : true,
+							email : true
+						},
+						password : {
+							required : true,
+							minlength : 3,
+							maxlength : 20
+						}
+					},
+
+					// Messages for form validation
+					messages : {
+						email : {
+							required : 'Please enter your email address',
+							email : 'Please enter a VALID email address'
+						},
+						password : {
+							required : 'Please enter your password'
+						}
+					},
+
+					// Do not change code below
+					errorPlacement : function(error, element) {
+						error.insertAfter(element.parent());
+					}
+				});
+			});
+		</script>
+
+	</body>
+</html>

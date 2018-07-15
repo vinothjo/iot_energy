@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='animated_favicon.gif') }}">
+
+		<title>EnergyIoT Suite - PINNACLE INFO SYS PTE LTD</title>
+		<meta name="description" content="EnergyIoT">
+		<meta name="author" content="Pinnacle">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        {% include "css.html" %}
+
+	</head>
+
+	<!--
+
+	TABLE OF CONTENTS.
+
+	Use search to find needed section.
+
+	===================================================================
+
+	|  01. #CSS Links                |  all CSS links and file paths  |
+	|  02. #FAVICONS                 |  Favicon links and file paths  |
+	|  03. #GOOGLE FONT              |  Google font link              |
+	|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+	|  05. #BODY                     |  body tag                      |
+	|  06. #HEADER                   |  header tag                    |
+	|  07. #PROJECTS                 |  project lists                 |
+	|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+	|  09. #MOBILE                   |  mobile view dropdown          |
+	|  10. #SEARCH                   |  search field                  |
+	|  11. #NAVIGATION               |  left panel & navigation       |
+	|  12. #RIGHT PANEL              |  right panel userlist          |
+	|  13. #MAIN PANEL               |  main panel                    |
+	|  14. #MAIN CONTENT             |  content holder                |
+	|  15. #PAGE FOOTER              |  page footer                   |
+	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+	|  17. #PLUGINS                  |  all scripts and plugins       |
+
+	===================================================================
+
+	-->
+
+	<!-- #BODY -->
+	<!-- Possible Classes
+
+		* 'smart-style-{SKIN#}'
+		* 'smart-rtl'         - Switch theme mode to RTL
+		* 'menu-on-top'       - Switch to top navigation (no DOM change required)
+		* 'no-menu'			  - Hides the menu completely
+		* 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+		* 'fixed-header'      - Fixes the header
+		* 'fixed-navigation'  - Fixes the main menu
+		* 'fixed-ribbon'      - Fixes breadcrumb
+		* 'fixed-page-footer' - Fixes footer
+		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+	-->
+	<body class="">
+        <!-- HEADER -->
+        {% include "header.html" %}
+		<!-- END HEADER -->
+
+
+<div id="main" role="main">
+
+			<!-- RIBBON -->
+			<div id="ribbon">
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Map View</li>
+				</ol>
+			</div>
+			<!-- END RIBBON -->
+
+			<!-- MAIN CONTENT -->
+			<div id="content">
+
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
+
+                    <div class="row">
+                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false"  data-widget-deletebutton="false" data-widget-editbutton="false">
+								<header>
+									<h2><strong>Map</strong> </h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+									<!-- widget content -->
+									<div class="widget-body">
+                                      <div id="map" style="width:100%;height:500px"></div>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+
+						</article>
+                    </div>
+                </section>
+            </div>
+</div>
+
+<script>
+                    function myMap() {
+                    var locations = [
+                        {% for dt in map_data %}
+                          ['<b><u>{{ dt.Location_detail.location_code }}</u><br><br>Energy Gen:{{'%0.2f'| format(dt.AGGREGATE_VALUE|float)}} kWh <br></b>', {{ dt.Location_detail.latitude }}, {{ dt.Location_detail.longitude }}],
+                        {% endfor %}
+
+                        ];
+
+                      var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 17,
+                          center: new google.maps.LatLng(1.3644130, 103.8536589),
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                        });
+
+                        var infowindow = new google.maps.InfoWindow();
+
+                        var marker, i;
+
+                        for (i = 0; i < locations.length; i++) {
+                          marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                            map: map
+                          });
+
+                          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                              infowindow.setContent(locations[i][0]);
+                              infowindow.open(map, marker);
+                            }
+                          })(marker, i));
+                        }
+                      marker.setMap(map);
+                    }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQQG0LZG3w5TKjo0VbOnHX22EnCd77_5w&callback=myMap"></script>
+
+
+
+
+
+
+		<!-- PAGE FOOTER -->
+		{% include "shortcut.html" %}
+        {% include "footer.html" %}
+        {% include "js.html" %}
+        <!-- END PAGE FOOTER -->
+
+
+	</body>
+
+</html>

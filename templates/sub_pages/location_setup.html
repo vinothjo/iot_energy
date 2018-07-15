@@ -1,0 +1,685 @@
+<div id="main" role="main">
+    <!-- RIBBON -->
+    <div id="ribbon">
+        <!-- breadcrumb -->
+        <ol class="breadcrumb">
+            <li>Home / {{ title }}</li>
+        </ol>
+    </div>
+    <!-- END RIBBON -->
+
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <!-- widget grid -->
+        <section id="widget-grid" class="">
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <form action="{{ url_for('Admin.location_setup') }}" method="post">
+                    <!--start Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+                        <header>
+                            <h2><strong>Add New {{ title }}</strong> </h2>
+                        </header>
+                        <!--start widget div-->
+                        <div>
+                            <!--start widget content -->
+                            <div class="widget-body">
+                                <div class="row">
+                                    <div class="col-sm-12 pt-1">
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" data-toggle="tab" href="#general_details" role="tab" aria-controls="general_details"><i class="icon-plus"></i>General Details</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#address_details" role="tab" aria-controls="address_details"><i class="icon-plus"></i>Contact Address Details</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#documentsupload" role="tab" aria-controls="documentsupload"><i class="icon-plus"></i>Documents Upload</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane pb-1 active" id="general_details" role="tabpanel">
+                                                <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Location Code</label>
+                                                                <input class="form-control" name="location_code" placeholder="Location Code" type="text" value={{ location_code|string }}>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3" style="display:none;">
+                                                            <div class="form-group">
+                                                                <label>LOcation ID</label>
+                                                                <input class="form-control" placeholder="Location id" name="location_id" type="text" value={{ location_id|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Location Name</label>
+                                                                <input type="text" class="form-control" name="location_name" placeholder="Location Name" value={{ location_name|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Location Description</label>
+                                                                <input type="text" class="form-control" name="location_description" placeholder="Location Description" value={{ location_description|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Resource Path</label>
+                                                                <input type="text" class="form-control" name="resource_path" placeholder="Resource Path" value={{ resource_path|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Area</label>
+                                                                <input type="text" class="form-control" name="area_name" placeholder="Area" value={{ area_name|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Block Code</label>
+                                                                <input type="text" class="form-control" name="block_code" placeholder="Block Code" value={{ block_code|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>City</label>
+                                                                <input class="form-control" placeholder="City" name="city" type="text" value={{ city|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Country</label>
+                                                                <select class="form-control" name="country" data-plugin="select_hrm" data-placeholder="Country" value={{ country|string }}>
+                                                                    <option value="0">Select One</option>
+                                                                    <option value="1"> Afghanistan</option>
+                                                                    <option value="2"> Albania</option>
+                                                                    <option value="3"> Algeria</option>
+                                                                    <option value="4"> American Samoa</option>
+                                                                    <option value="5"> Andorra</option>
+                                                                    <option value="6"> Angola</option>
+                                                                    <option value="7"> Anguilla</option>
+                                                                    <option value="8"> Antarctica</option>
+                                                                    <option value="9"> Antigua and Barbuda</option>
+                                                                    <option value="10"> Argentina</option>
+                                                                    <option value="11"> Armenia</option>
+                                                                    <option value="12"> Aruba</option>
+                                                                    <option value="13"> Australia</option>
+                                                                    <option value="14"> Austria</option>
+                                                                    <option value="15"> Azerbaijan</option>
+                                                                    <option value="16"> Bahamas</option>
+                                                                    <option value="17"> Bahrain</option>
+                                                                    <option value="18"> Bangladesh</option>
+                                                                    <option value="19"> Barbados</option>
+                                                                    <option value="20"> Belarus</option>
+                                                                    <option value="21"> Belgium</option>
+                                                                    <option value="22"> Belize</option>
+                                                                    <option value="23"> Benin</option>
+                                                                    <option value="24"> Bermuda</option>
+                                                                    <option value="25"> Bhutan</option>
+                                                                    <option value="26"> Bolivia</option>
+                                                                    <option value="27"> Bosnia and Herzegovina</option>
+                                                                    <option value="28"> Botswana</option>
+                                                                    <option value="29"> Bouvet Island</option>
+                                                                    <option value="30"> Brazil</option>
+                                                                    <option value="31"> British Indian Ocean Territory</option>
+                                                                    <option value="32"> Brunei Darussalam</option>
+                                                                    <option value="33"> Bulgaria</option>
+                                                                    <option value="34"> Burkina Faso</option>
+                                                                    <option value="35"> Burundi</option>
+                                                                    <option value="36"> Cambodia</option>
+                                                                    <option value="37"> Cameroon</option>
+                                                                    <option value="38"> Canada</option>
+                                                                    <option value="39"> Cape Verde</option>
+                                                                    <option value="40"> Cayman Islands</option>
+                                                                    <option value="41"> Central African Republic</option>
+                                                                    <option value="42"> Chad</option>
+                                                                    <option value="43"> Chile</option>
+                                                                    <option value="44"> China</option>
+                                                                    <option value="45"> Christmas Island</option>
+                                                                    <option value="46"> Cocos (Keeling) Islands</option>
+                                                                    <option value="47"> Colombia</option>
+                                                                    <option value="48"> Comoros</option>
+                                                                    <option value="49"> Congo</option>
+                                                                    <option value="50"> Cook Islands</option>
+                                                                    <option value="51"> Costa Rica</option>
+                                                                    <option value="52"> Croatia (Hrvatska)</option>
+                                                                    <option value="53"> Cuba</option>
+                                                                    <option value="54"> Cyprus</option>
+                                                                    <option value="55"> Czech Republic</option>
+                                                                    <option value="56"> Denmark</option>
+                                                                    <option value="57"> Djibouti</option>
+                                                                    <option value="58"> Dominica</option>
+                                                                    <option value="59"> Dominican Republic</option>
+                                                                    <option value="60"> East Timor</option>
+                                                                    <option value="61"> Ecuador</option>
+                                                                    <option value="62"> Egypt</option>
+                                                                    <option value="63"> El Salvador</option>
+                                                                    <option value="64"> Equatorial Guinea</option>
+                                                                    <option value="65"> Eritrea</option>
+                                                                    <option value="66"> Estonia</option>
+                                                                    <option value="67"> Ethiopia</option>
+                                                                    <option value="68"> Falkland Islands (Malvinas)</option>
+                                                                    <option value="69"> Faroe Islands</option>
+                                                                    <option value="70"> Fiji</option>
+                                                                    <option value="71"> Finland</option>
+                                                                    <option value="72"> France</option>
+                                                                    <option value="73"> France, Metropolitan</option>
+                                                                    <option value="74"> French Guiana</option>
+                                                                    <option value="75"> French Polynesia</option>
+                                                                    <option value="76"> French Southern Territories</option>
+                                                                    <option value="77"> Gabon</option>
+                                                                    <option value="78"> Gambia</option>
+                                                                    <option value="79"> Georgia</option>
+                                                                    <option value="80"> Germany</option>
+                                                                    <option value="81"> Ghana</option>
+                                                                    <option value="82"> Gibraltar</option>
+                                                                    <option value="83"> Guernsey</option>
+                                                                    <option value="84"> Greece</option>
+                                                                    <option value="85"> Greenland</option>
+                                                                    <option value="86"> Grenada</option>
+                                                                    <option value="87"> Guadeloupe</option>
+                                                                    <option value="88"> Guam</option>
+                                                                    <option value="89"> Guatemala</option>
+                                                                    <option value="90"> Guinea</option>
+                                                                    <option value="91"> Guinea-Bissau</option>
+                                                                    <option value="92"> Guyana</option>
+                                                                    <option value="93"> Haiti</option>
+                                                                    <option value="94"> Heard and Mc Donald Islands</option>
+                                                                    <option value="95"> Honduras</option>
+                                                                    <option value="96"> Hong Kong</option>
+                                                                    <option value="97"> Hungary</option>
+                                                                    <option value="98"> Iceland</option>
+                                                                    <option value={{ country|string }} selected> India</option>
+                                                                    <option value="100"> Isle of Man</option>
+                                                                    <option value="101"> Indonesia</option>
+                                                                    <option value="102"> Iran (Islamic Republic of)</option>
+                                                                    <option value="103"> Iraq</option>
+                                                                    <option value="104"> Ireland</option>
+                                                                    <option value="105"> Israel</option>
+                                                                    <option value="106"> Italy</option>
+                                                                    <option value="107"> Ivory Coast</option>
+                                                                    <option value="108"> Jersey</option>
+                                                                    <option value="109"> Jamaica</option>
+                                                                    <option value="110"> Japan</option>
+                                                                    <option value="111"> Jordan</option>
+                                                                    <option value="112"> Kazakhstan</option>
+                                                                    <option value="113"> Kenya</option>
+                                                                    <option value="114"> Kiribati</option>
+                                                                    <option value="115"> Korea, Democratic People's Republic of</option>
+                                                                    <option value="116"> Korea, Republic of</option>
+                                                                    <option value="117"> Kosovo</option>
+                                                                    <option value="118"> Kuwait</option>
+                                                                    <option value="119"> Kyrgyzstan</option>
+                                                                    <option value="120"> Lao People's Democratic Republic</option>
+                                                                    <option value="121"> Latvia</option>
+                                                                    <option value="122"> Lebanon</option>
+                                                                    <option value="123"> Lesotho</option>
+                                                                    <option value="124"> Liberia</option>
+                                                                    <option value="125"> Libyan Arab Jamahiriya</option>
+                                                                    <option value="126"> Liechtenstein</option>
+                                                                    <option value="127"> Lithuania</option>
+                                                                    <option value="128"> Luxembourg</option>
+                                                                    <option value="129"> Macau</option>
+                                                                    <option value="130"> Macedonia</option>
+                                                                    <option value="131"> Madagascar</option>
+                                                                    <option value="132"> Malawi</option>
+                                                                    <option value="133"> Malaysia</option>
+                                                                    <option value="134"> Maldives</option>
+                                                                    <option value="135"> Mali</option>
+                                                                    <option value="136"> Malta</option>
+                                                                    <option value="137"> Marshall Islands</option>
+                                                                    <option value="138"> Martinique</option>
+                                                                    <option value="139"> Mauritania</option>
+                                                                    <option value="140"> Mauritius</option>
+                                                                    <option value="141"> Mayotte</option>
+                                                                    <option value="142"> Mexico</option>
+                                                                    <option value="143"> Micronesia, Federated States of</option>
+                                                                    <option value="144"> Moldova, Republic of</option>
+                                                                    <option value="145"> Monaco</option>
+                                                                    <option value="146"> Mongolia</option>
+                                                                    <option value="147"> Montenegro</option>
+                                                                    <option value="148"> Montserrat</option>
+                                                                    <option value="149"> Morocco</option>
+                                                                    <option value="150"> Mozambique</option>
+                                                                    <option value="151"> Myanmar</option>
+                                                                    <option value="152"> Namibia</option>
+                                                                    <option value="153"> Nauru</option>
+                                                                    <option value="154"> Nepal</option>
+                                                                    <option value="155"> Netherlands</option>
+                                                                    <option value="156"> Netherlands Antilles</option>
+                                                                    <option value="157"> New Caledonia</option>
+                                                                    <option value="158"> New Zealand</option>
+                                                                    <option value="159"> Nicaragua</option>
+                                                                    <option value="160"> Niger</option>
+                                                                    <option value="161"> Nigeria</option>
+                                                                    <option value="162"> Niue</option>
+                                                                    <option value="163"> Norfolk Island</option>
+                                                                    <option value="164"> Northern Mariana Islands</option>
+                                                                    <option value="165"> Norway</option>
+                                                                    <option value="166"> Oman</option>
+                                                                    <option value="167"> Pakistan</option>
+                                                                    <option value="168"> Palau</option>
+                                                                    <option value="169"> Palestine</option>
+                                                                    <option value="170"> Panama</option>
+                                                                    <option value="171"> Papua New Guinea</option>
+                                                                    <option value="172"> Paraguay</option>
+                                                                    <option value="173"> Peru</option>
+                                                                    <option value="174"> Philippines</option>
+                                                                    <option value="175"> Pitcairn</option>
+                                                                    <option value="176"> Poland</option>
+                                                                    <option value="177"> Portugal</option>
+                                                                    <option value="178"> Puerto Rico</option>
+                                                                    <option value="179"> Qatar</option>
+                                                                    <option value="180"> Reunion</option>
+                                                                    <option value="181"> Romania</option>
+                                                                    <option value="182"> Russian Federation</option>
+                                                                    <option value="183"> Rwanda</option>
+                                                                    <option value="184"> Saint Kitts and Nevis</option>
+                                                                    <option value="185"> Saint Lucia</option>
+                                                                    <option value="186"> Saint Vincent and the Grenadines</option>
+                                                                    <option value="187"> Samoa</option>
+                                                                    <option value="188"> San Marino</option>
+                                                                    <option value="189"> Sao Tome and Principe</option>
+                                                                    <option value="190"> Saudi Arabia</option>
+                                                                    <option value="191"> Senegal</option>
+                                                                    <option value="192"> Serbia</option>
+                                                                    <option value="193"> Seychelles</option>
+                                                                    <option value="194"> Sierra Leone</option>
+                                                                    <option value="195"> Singapore</option>
+                                                                    <option value="196"> Slovakia</option>
+                                                                    <option value="197"> Slovenia</option>
+                                                                    <option value="198"> Solomon Islands</option>
+                                                                    <option value="199"> Somalia</option>
+                                                                    <option value="200"> South Africa</option>
+                                                                    <option value="201"> South Georgia South Sandwich Islands</option>
+                                                                    <option value="202"> Spain</option>
+                                                                    <option value="203"> Sri Lanka</option>
+                                                                    <option value="204"> St. Helena</option>
+                                                                    <option value="205"> St. Pierre and Miquelon</option>
+                                                                    <option value="206"> Sudan</option>
+                                                                    <option value="207"> Suriname</option>
+                                                                    <option value="208"> Svalbard and Jan Mayen Islands</option>
+                                                                    <option value="209"> Swaziland</option>
+                                                                    <option value="210"> Sweden</option>
+                                                                    <option value="211"> Switzerland</option>
+                                                                    <option value="212"> Syrian Arab Republic</option>
+                                                                    <option value="213"> Taiwan</option>
+                                                                    <option value="214"> Tajikistan</option>
+                                                                    <option value="215"> Tanzania, United Republic of</option>
+                                                                    <option value="216"> Thailand</option>
+                                                                    <option value="217"> Togo</option>
+                                                                    <option value="218"> Tokelau</option>
+                                                                    <option value="219"> Tonga</option>
+                                                                    <option value="220"> Trinidad and Tobago</option>
+                                                                    <option value="221"> Tunisia</option>
+                                                                    <option value="222"> Turkey</option>
+                                                                    <option value="223"> Turkmenistan</option>
+                                                                    <option value="224"> Turks and Caicos Islands</option>
+                                                                    <option value="225"> Tuvalu</option>
+                                                                    <option value="226"> Uganda</option>
+                                                                    <option value="227"> Ukraine</option>
+                                                                    <option value="228"> United Arab Emirates</option>
+                                                                    <option value="229"> United Kingdom</option>
+                                                                    <option value="230"> United States</option>
+                                                                    <option value="231"> United States minor outlying islands</option>
+                                                                    <option value="232"> Uruguay</option>
+                                                                    <option value="233"> Uzbekistan</option>
+                                                                    <option value="234"> Vanuatu</option>
+                                                                    <option value="235"> Vatican City State</option>
+                                                                    <option value="236"> Venezuela</option>
+                                                                    <option value="237"> Vietnam</option>
+                                                                    <option value="238"> Virgin Islands (British)</option>
+                                                                    <option value="239"> Virgin Islands (U.S.)</option>
+                                                                    <option value="240"> Wallis and Futuna Islands</option>
+                                                                    <option value="241"> Western Sahara</option>
+                                                                    <option value="242"> Yemen</option>
+                                                                    <option value="243"> Zaire</option>
+                                                                    <option value="244"> Zambia</option>
+                                                                    <option value="245"> Zimbabwe</option>
+                                                                </select>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>Geo Code</label>
+                                                                <input type="text" class="form-control" name="geo_code" placeholder="Geo Code" value={{ geo_code|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label>Unit No.</label>
+                                                                <input type="text" class="form-control" name="unit_no" placeholder="Unit No." value={{ unit_no|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label>Postal Code</label>
+                                                                <input type="text" class="form-control" name="postal_code" placeholder="Postal Code" value={{ postal_code|string }}>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+
+                                                                <label>Latitute</label>
+
+                                                                <input id="latitude" readonly class="form-control" name="latitude" placeholder="Latitute" value={{ latitute|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label>Longnitute</label>
+                                                                <input id="longitude" type="text" readonly class="form-control" name="longitude" placeholder="Longnitute" value={{ longitude|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="smart-form">
+                                                                <a id="get_geocode" href="javascript:void(0)">
+                                                                    <i class="fa fa-map-marker fa-fw "></i>Click here get latitute & longnitute</a>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="smart-form">
+                                                                <label class="toggle">
+                                                                    <input type="checkbox" name="status" checked="checked">
+                                                                    <i data-swchon-text="ON" data-swchoff-text="OFF"></i>Status</label>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane pb-1" id="address_details" role="tabpanel">
+                                                <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <table id="datatable_tabletools2" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Contact Person</th>
+                                                                        <th>Address</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr id='addr0'>>
+                                                                        <td class="div_0">
+                                                                            <input class="form-control" type="text" name="suplier_code" value={{ suplier_code|string }}>
+                                                                        </td>
+                                                                        <td class="div_0">
+                                                                            <input class="form-control" type="text" name="supplier_name" value={{ suplier_code|string }}>
+                                                                        </td>
+                                                                        <td class="div_0">
+                                                                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-times-circle-o"></i></a>
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr id='addr1'></tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <a id="addSupplierItem" href="javascript:void(0)"><i class="fa fa-plus" title="Add" style="margin-left:5px"></i>
+                                                            Add Contact Detail</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane pb-1" id="documentsupload" role="tabpanel">
+                                                <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
+                                                    <div row="row">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label>Client logo Upload</label>
+                                                                <input type="file" class="form-group" onchange="readURL(this);" name="client_logo" value={{ client_logo|string }}>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <img id="blah" src="#" alt="your image" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="padding-left:10px;padding-top:10px;padding-bottom:10px;">
+                                <div class="btn-group">
+                                    <div class="">
+                                        <input name="save" class="btn btn-success" type="submit" value="Submit">
+                                        <input type="reset" value="Cancel" class="btn btn-cancel" onclick="return cancel()" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end widget content -->
+                        </div>
+                    </div>
+                    </form>
+
+                    <!--end Widget Id (each widget will need unique ID)-->
+
+                    <!--start Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+                        <header>
+                            <h2><strong>List of All {{ title }}</strong> </h2>
+                        </header>
+                        <!--start widget div-->
+                        <div>
+                            <!--start widget content -->
+                            <div class="widget-body">
+                                <div id="datatable_tabletools_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div class="dt-toolbar">
+                                        <div class="col-xs-12 col-sm-6">
+                                            <div id="datatable_tabletools_filter" class="dataTables_filter">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <table id="datatable_tabletools" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
+                                        <thead>
+                                            <tr role="row">
+                                                <th data-class="expand" class="expand sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 10px;" aria-label="Name: activate to sort column ascending">S.No.</th>
+                                                <th data-class="expand" class="expand sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 40px;" aria-label="Name: activate to sort column ascending">Loc. Code</th>
+                                                <th class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 60px;" aria-label="Phone: activate to sort column ascending">Loc. Name</th>
+                                                <th data-hide="phone" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 40px;" aria-label="Company: activate to sort column ascending">Resource Path</th>
+                                                <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 50px;" aria-label="Zip: activate to sort column ascending">Block Code</th>
+                                                <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 50px;" aria-label="City: activate to sort column ascending">City</th>
+                                                <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 20px;" aria-label="City: activate to sort column ascending">Country</th>
+                                                <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 20px;" aria-label="City: activate to sort column ascending">GeoCode</th>
+<!--
+                                                <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 20px;" aria-label="City: activate to sort column ascending">Active</th>
+                                                <th data-hide="phone,tablet" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 10px;" aria-label="City: activate to sort column ascending">Action</th>
+-->
+                                        </thead>
+                                        <tbody>
+                                            {% for location in location_details %}
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1">{{ loop.index }}</td>
+                                                    <td class=" expand"><span class="responsiveExpander"></span>{{location.location_code}}</td>
+                                                    <td>{{location.location_name}}</td>
+                                                    <td>{{location.resource_path}}</td>
+                                                    <td>{{location.block_code}}</td>
+                                                    <td>{{location.city}}</td>
+                                                    <td>{{location.country}}</td>
+                                                    <td>{{location.geo_code}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+<!--
+                                    <div class="dt-toolbar-footer">
+                                        <div class="col-sm-6 col-xs-12 hidden-xs">
+                                            <div class="dataTables_info" id="datatable_tabletools_info" role="status" aria-live="polite">Showing 1 to 10 of 10 entries
+                                            </div>
+                                        </div>
+-->
+<!--
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="dataTables_paginate paging_simple_numbers" id="datatable_tabletools_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button previous" id="datatable_tabletools_previous">
+                                                        <a href="#" aria-controls="datatable_tabletools" data-dt-idx="0" tabindex="0">Previous</a></li>
+                                                    <li class="paginate_button "><a href="#" aria-controls="datatable_tabletools" data-dt-idx="1" tabindex="0">1</a></li>
+                                                    <li class="paginate_button disabled" id="datatable_tabletools_ellipsis"><a href="#" aria-controls="datatable_tabletools" data-dt-idx="2" tabindex="0">…</a></li>
+                                                    <li class="paginate_button "><a href="#" aria-controls="datatable_tabletools" data-dt-idx="3" tabindex="0">6</a></li>
+                                                    <li class="paginate_button "><a href="#" aria-controls="datatable_tabletools" data-dt-idx="4" tabindex="0">7</a></li>
+                                                    <li class="paginate_button "><a href="#" aria-controls="datatable_tabletools" data-dt-idx="5" tabindex="0">8</a></li>
+                                                    <li class="paginate_button active"><a href="#" aria-controls="datatable_tabletools" data-dt-idx="6" tabindex="0">9</a></li>
+                                                    <li class="paginate_button "><a href="#" aria-controls="datatable_tabletools" data-dt-idx="7" tabindex="0">10</a></li>
+                                                    <li class="paginate_button next" id="datatable_tabletools_next"><a href="#" aria-controls="datatable_tabletools" data-dt-idx="8" tabindex="0">Next</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--end widget content -->
+                    </div>
+                    <!--end widget div-->
+                </article>
+                <!-- end NEW WIDGET-->
+
+            </div>
+        </section>
+        <!-- end widget grid -->
+    </div>
+    <!-- END MAIN CONTENT -->
+</div>
+
+
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script type=text/javascript>
+  $(function() {
+    $('a#get_geocode').bind('click', function() {
+      $.getJSON('/admin/_get_geocode', {
+        city: $('input[name="city"]').val(),
+        postal_code: $('input[name="postal_code"]').val()
+      }, function(data) {
+        $("#latitude").val(data.result[0]);
+        $("#longitude").val(data.result[1]);
+      });
+      return false;
+    });
+  });
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#datatable_tabletools').DataTable();
+} );
+</script>
+
+<script>
+    function cancel() {
+        c=confirm("Do you really want to cancel?");
+
+        // Of course, the following could be shortened to "return c;"
+        if (c==true)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+</script>
+
+<script>
+        
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(80);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    var actions = $("table td:last-child").html();
+    // Append table with add row form on add new button click
+    $(".add-new").click(function(){
+        $(this).attr("disabled", "disabled");
+        var index = $("table tbody tr:last-child").index();
+        var row = '<tr>' +
+            '<td><input type="text" class="form-control" name="Salutation" id="suplier_code"></td>' +
+            '<td><input type="text" class="form-control" name="person_telephone_no" id="suplier_code"></td>' +
+            '<td>' + actions + '</td>' +
+        '</tr>';
+        $("table.new").append(row);
+        $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    // Add row on add button click
+    $(document).on("click", ".add", function(){
+        var empty = false;
+        var input = $(this).parents("tr").find('input[type="text"]');
+        input.each(function(){
+            if(!$(this).val()){
+                $(this).addClass("error");
+                empty = true;
+            } else{
+                $(this).removeClass("error");
+            }
+        });
+        $(this).parents("tr").find(".error").first().focus();
+        if(!empty){
+            input.each(function(){
+                $(this).parent("td").html($(this).val());
+            });
+            $(this).parents("tr").find(".add, .edit").toggle();
+            $(".add-new").removeAttr("disabled");
+        }
+    });
+    // Edit row on edit button click
+    $(document).on("click", ".edit", function(){
+        $(this).parents("tr").find("td:not(:last-child)").each(function(){
+            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+        });
+        $(this).parents("tr").find(".add, .edit").toggle();
+        $(".add-new").attr("disabled", "disabled");
+    });
+    // Delete row on delete button click
+    $(document).on("click", ".delete", function(){
+        $(this).parents("tr").remove();
+        $(".add-new").removeAttr("disabled");
+    });
+});
+</script>
+
+
+

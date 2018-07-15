@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<title>iot Summary</title>
+<head>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='multifreezer.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='multifreezer.css') }}">
+</head>
+<body>
+<form id="form_id" action="/iot/get15MinSummaryData" method="get">
+<table>
+    <input type="hidden" name="deviceType" value="Solar"/>
+    <input type="hidden" id="location" name="location" value=""/>
+    <input type="hidden" id="group_by" name="group_by" value=""/>
+    <tr>
+        <td>From: <input type="date" id="startDateTime"  name="startDateTime" value="{{ startDateTime }}"></td><td>To: <input type="date" id="endDateTime" name="endDateTime" value="{{ endDateTime }}"></td><td></td>
+    </tr>
+    <tr>
+        <td>DPM<input type="radio" name="sensorType" value="DPM" checked {% if sensorType == "DPM"%}checked{% endif %}></td><td>INVERTER<input type="radio" name="sensorType" value="INVERTER" {% if sensorType == "INVERTER"%}checked{% endif %}></td>
+        <td>IRR<input type="radio" name="sensorType" value="IRR"  {% if sensorType == "IRR"%}checked{% endif %}>
+    </tr>
+    <tr>
+        <td><input type="submit"></td>
+        <td><input type="button" value="Export" onclick="Excel_export();"></td><td></td>
+    </tr>
+</table>
+</form>
+<div class="pane pane--table1">
+  <div class="pane-hScroll">
+
+    <table>
+        {% for row in data %}
+        {% if loop.index == 1%}
+        <thead>
+            <tr style="background-color: #eeeeee">
+            {% for v in row %}
+                <th>{{ v | upper}}
+                </th>
+            {% endfor %}
+        </tr>
+        </thead>
+        </table>
+       <div class="pane-vScroll">
+      <table>
+            <tbody>
+        {% endif %}
+    <tr>
+        {% for v in row %}
+            {% if v == "location" %}
+                <td valign="top" title="{{ v}}"><a href="#" onclick="onClicklocation({{ row[v] }})">{{ row[v] }}</a></td>
+
+            {% elif v == "sender_timestamp"%}
+                <td valign="top" title="{{ v}}"><a href="#" onclick="onClickdate({{ row['location'] }},'{{ row[v] }}')">{{ row[v] }}</a></td>
+            {% else %}
+                <td valign="top" title="{{ v}}">{{ row[v] }}</td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+{% endfor %}
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<h3>Count : {{ data | count }}</h3>
+</body>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  font: 14px/1 Arial, sans-serif;
+}
+table {
+  border-collapse: collapse;
+  background: white;
+  table-layout: fixed;
+  width: 100%;
+}
+th, td {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pane {
+  background: #eee;
+}
+.pane-hScroll {
+  overflow: auto;
+  width: 100%;
+  background: green;
+}
+.pane-vScroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 500px;
+  background: #f4fdff;
+}
+
+.pane--table2 {
+  width: 400px;
+  overflow-x: scroll;
+}
+.pane--table2 th, .pane--table2 td {
+  width: auto;
+  min-width: 160px;
+}
+.pane--table2 tbody {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: block;
+  height: 200px;
+}
+.pane--table2 thead {
+    display: table-row;
+}
+</style>
+
+<script>
+    // Example 1
+$('.pane-hScroll').scroll(function() {
+  $('.pane-vScroll').width($('.pane-hScroll').width() + $('.pane-hScroll').scrollLeft());
+});
+
+// Example 2
+$('.pane--table2').scroll(function() {
+  $('.pane--table2 table').width($('.pane--table2').width() + $('.pane--table2').scrollLeft());
+});
+
+
+function onClicklocation(rp){
+    document.getElementById("location").value = rp;
+    document.getElementById("group_by").value = "day";
+    document.getElementById("form_id").submit();
+}
+
+function onClickdate(rp,d){
+    document.getElementById("location").value = rp;
+    document.getElementById("group_by").value = "";
+    document.getElementById("startDateTime").value  = d.substring(6, 10)+ "-" + d.substring(3, 5)+ "-" + d.substring(0, 2);
+    document.getElementById("endDateTime").value  = d.substring(6, 10)+ "-" + d.substring(3, 5)+ "-" + d.substring(0, 2);
+    document.getElementById("form_id").submit();
+}
+
+function Excel_export(){
+    window.open('/iot/get15MinSummaryData_export?startDateTime='+ document.getElementById("startDateTime").value + "&endDateTime="+document.getElementById("endDateTime").value);
+    }
+</script>
+</html>

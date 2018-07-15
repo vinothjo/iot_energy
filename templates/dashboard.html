@@ -1,0 +1,303 @@
+
+
+<div id="main" role="main">
+
+			<!-- RIBBON -->
+			<div id="ribbon">
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Dashboard</li>
+				</ol>
+			</div>
+			<!-- END RIBBON -->
+
+			<!-- MAIN CONTENT -->
+			<div id="content">
+
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
+
+					<div class="row">
+
+						<!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false">
+								<header>
+									<h2><strong>Energy Generation</strong> </h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+									<!-- widget content -->
+									<div class="widget-body">
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">Overall Energy Generation</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/gen.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ dashboard_data.E_Generation.current_val }} kWh</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">Last Hour Generation</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/gen.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b> {{ dashboard_data.E_Generation.last_hr_val }} kWh</b></td>
+                                            </tr>
+                                        </table>
+                                        <div class="well well-sm well-light">
+										<h4 class="txt-color-blueLight"><span class="semi-bold">Last hour Energy Gen</span></h4>
+										<br>
+										<div class="sparkline txt-color-blueLight text-center"
+										data-sparkline-type="bar"
+										data-sparkline-width="96%"
+										data-sparkline-barwidth="11"
+										data-sparkline-barspacing = "5"
+										data-sparkline-height="70px">
+                                            {% for v in dashboard_data.E_Generation.Summary_graphdata.y %}
+                                                {% if loop.index > 1%},{% endif %}
+                                                {{ v }}
+                                            {% endfor %}
+										</div>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+                            </div>
+
+						</article>
+						<!-- WIDGET END -->
+
+                        <article class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false">
+								<header>
+									<h2><strong>Weather Information</strong> </h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+									<!-- widget content -->
+									<div class="widget-body">
+                                        <table>
+                                            <tr height="36">
+                                                <td colspan="2">Temperature</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/cloud_01.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ weatherInfo.Country_temperature }} &deg; C</b></td>
+                                            </tr>
+                                            <tr height="36">
+                                                <td colspan="2">Humidity</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/humidity.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ weatherInfo.RelativeHumidity }}</b></td>
+                                            </tr>
+                                            <tr height="36">
+                                                <td colspan="2">Wind</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/windy.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ weatherInfo.Wind }}</b></td>
+                                            </tr>
+                                        </table>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+
+						</article>
+
+                        <article class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false">
+								<header>
+									<h2><strong>Irradiance Gen</strong> </h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+									<!-- widget content -->
+									<div class="widget-body">
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">Overall Average Reading </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/irradiant.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ dashboard_data.Irr.current_val }} {{ dashboard_data.Irr.current_UOM }}</b> </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">Last Average Reading </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/irradiant.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ dashboard_data.Irr.last_hr_val }}  {{ dashboard_data.Irr.last_hr_UOM }}</b> </td>
+                                            </tr>
+                                        </table>
+                                        <div class="well well-sm well-light">
+										<h4 class="txt-color-blueLight"><span class="semi-bold">Last hour IRR</span></h4>
+										<br>
+										<div class="sparkline txt-color-blueLight text-center"
+										data-sparkline-type="bar"
+										data-sparkline-width="96%"
+										data-sparkline-barwidth="11"
+										data-sparkline-barspacing = "5"
+										data-sparkline-height="70px">
+											{% for v in dashboard_data.Irr.Summary_graphdata.y %}
+                                                {% if loop.index > 1%},{% endif %}
+                                                {{ v }}
+                                            {% endfor %}
+										</div>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+                            </div>
+
+						</article>
+
+                        <article class="col-xs-12 col-sm-3 col-md-3 col-lg-3" >
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false">
+								<header>
+									<h2><strong>Tree Save and CO<sub>2</sub> Reduced</strong> </h2>
+
+								</header>
+
+								<!-- widget div-->
+								<div>
+									<!-- widget content -->
+									<div class="widget-body">
+                                        <table>
+                                            <tr>
+                                                <td colspan="2">Total Tree Saved </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/trees.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ dashboard_data.Tree_save.current_val }} </b></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">CO<sub>2</sub> Emission Reduced</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../static/images/co2.png" alt="gen" width="60" height="60"/></td>
+                                                <td><b>{{ dashboard_data.Tree_save.CO2 }} </b></td>
+                                            </tr>
+                                        </table>
+                                        <div class="well well-sm well-light">
+										<h4 class="txt-color-blueLight"><span class="semi-bold">Last hour Tree save</span></h4>
+										<br>
+										<div class="sparkline txt-color-blueLight text-center"
+										data-sparkline-type="bar"
+										data-sparkline-width="96%"
+										data-sparkline-barwidth="11"
+										data-sparkline-barspacing = "5"
+										data-sparkline-height="70px">
+											{% for v in dashboard_data.Tree_save.Summary_graphdata.y %}
+                                                {% if loop.index > 1%},{% endif %}
+                                                {{ v }}
+                                            {% endfor %}
+										</div>
+									</div>
+									<!-- end widget content -->
+
+								</div>
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+                            </div>
+
+						</article>
+
+
+
+					</div>
+
+
+
+                   <div class="row">
+
+						<!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false"  data-widget-deletebutton="false" data-widget-editbutton="false">
+								<header>
+									<h2><strong>Energy Summary</strong> </h2>
+
+								</header>
+
+
+								<!-- widget div-->
+								<div>
+									<!-- widget content -->
+									<div class="widget-body">
+                                        <!-- div id="dash_board_grp01"></div-->
+
+                                            <div id="dashboard"></div>
+
+                                        <!--iframe src="http://13.229.126.188:8000/dashboard" style="height: 500px;width: 100%; border: none"></iframe -->
+									<!-- end widget content -->
+
+								    </div>
+								<!-- end widget div -->
+
+							    </div>
+							<!-- end widget -->
+                            </div>
+
+						</article>
+						<!-- WIDGET END -->
+
+					</div>
+
+
+                    </section>
+				<!-- end widget grid -->
+				<!-- end widget grid -->
+
+
+
+			</div>
+			<!-- END MAIN CONTENT -->
+
+
+		</div>
+
+<!-- D3.js -->
+    <script src="{{ url_for('static', filename='js/d3.min.js')}}"></script>
+<!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js')}}"></script>
+<!-- Plotly.js -->
+    <script src="{{ url_for('static', filename='js/plotly-basic.js')}}"></script>
+
+    <script type="text/javascript">
+           // var graph = graphJSON | safe;
+        //Plotly.plot("dash_board_grp01", graph.data, graph.layout || {});
+        var graphs = {{graphJSON | safe}};
+        Plotly.plot('dashboard', graphs.data, graphs.layout || {},{showLink:false});
+    </script>

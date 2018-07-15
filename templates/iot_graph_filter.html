@@ -1,0 +1,128 @@
+<!-- widget div-->
+				<div>
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+
+						<form id="checkout-form" class="smart-form" novalidate="novalidate" action="" method="get">
+							<fieldset>
+								<div class="row">
+
+
+                                    <section class="col col-4">
+                                        <table><tr><td><b>Location :</b></td>
+                                            <td>
+                                                <label class="select">
+											    <select name="location" style="width: 150px">
+                                                    <option value="ALL" >ALL</option>
+                                                    {% for x in location_detail %}
+                                                        <option value="{{ x.resource_path }}" {% if req_param.location == x.resource_path  %} Selected {% endif %} >{{ x.location_code  }}</option>
+                                                   {% endfor %}
+											    </select> <i></i> </label>
+                                            </td>
+                                        </tr>
+                                        <tr><td><b>Sensor Type :</b></td>
+                                            <td>
+                                                &nbsp; DPM&nbsp;<input type="radio" id="sensor_type" name="sensor_type" value="DPM">
+                                                &nbsp;&nbsp;INVERTER&nbsp;<input type="radio"  id="sensor_type" name="sensor_type" checked value="INVERTER">
+                                                &nbsp;&nbsp;IRR&nbsp;<input type="radio" id="sensor_type" name="sensor_type" value="IRR">
+                                            </td>
+                                        </tr>
+                                        </table>
+
+									</section>
+
+									<section class="col col-4">
+                                        <table><tr><td><b>Start Date :</b></td>
+                                            <td>
+                                                <label class="input"> <i class="icon-append fa  fa-calendar"></i>
+                                                    <input type="date" name="start_date" placeholder="Start Date" value="{{ req_param.start_date }}">
+										</label>
+                                            </td>
+                                        </tr>
+                                         <tr><td><b>Plot Field :</b></td>
+                                            <td>
+                                                <label class="select">
+											    <select name="projection_DPM" id="dpm_list" style="display: none">
+                                                    <option value="AGGREGATE_VALUE" >AGGREGATE_VALUE</option>
+                                                    <option value="Act_Energy_Del" >Act_Energy_Del</option>
+                                                    <option value="Rect_Energy_Del" >Rect_Energy_Del</option>
+											    </select> <i></i>
+                                                <select name="projection_INVERTER" id="inv_list">
+                                                    <option value="AGGREGATE_VALUE" >AGGREGATE_VALUE</option>
+                                                    <option value="E_DAY" >E_DAY</option>
+                                                    <option value="PV1" >PV1</option>
+                                                    <option value="PV2" >PV2</option>
+                                                    <option value="Ia" >Ia</option>
+                                                    <option value="Ib" >Ib</option>
+											    </select> <i></i>
+                                                <select name="projection_IRR" id="irr_list" style="display: none">
+                                                    <option value="AGGREGATE_VALUE" >AGGREGATE_VALUE</option>
+                                                    <option value="irr" >irr</option>
+                                                    <option value="temp" >temp</option>
+											    </select> <i></i> </label>
+                                            </td>
+                                        </tr>
+                                        </table>
+
+									</section>
+
+									<section class="col col-4">
+                                        <table><tr><td><b>To Date :</b></td>
+                                            <td>
+                                                <label class="input"> <i class="icon-append fa  fa-calendar"></i>
+                                                    <input type="date" name="to_date" placeholder="To Date" value="{{ req_param.to_date }}">
+										</label>
+                                            </td>
+                                        </tr></table>
+
+									</section>
+
+								</div>
+
+							</fieldset>
+
+
+							<footer>
+								<button type="submit" class="btn btn-primary">
+									Apply Filter
+								</button>
+							</footer>
+						</form>
+
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+   $('input[type=radio][name=sensor_type]').change(function() {
+        var selValue = $('input[name=sensor_type]:checked').val();
+        if(selValue=='DPM'){
+            $("#inv_list").css("display", "none");
+            $("#irr_list").css("display", "none");
+            $("#dpm_list").css("display", "block");
+        }
+        if(selValue=='IRR'){
+            $("#inv_list").css("display", "none");
+            $("#irr_list").css("display", "block");
+            $("#dpm_list").css("display", "none");
+        }
+        if(selValue=='INVERTER'){
+            $("#inv_list").css("display", "block");
+            $("#irr_list").css("display", "none");
+            $("#dpm_list").css("display", "none");
+        }
+    });
+});
+</script>
+
