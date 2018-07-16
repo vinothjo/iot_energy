@@ -310,6 +310,8 @@ def createClient():
     id=request.values.get("client_id")
     print(id, "QQQQQQQQQQQQQQ")
     if request.method=='POST':
+        location_name = config.energy_iot_DB_READ[TABLE.Location].find_one({"_id":ObjectId(request.form['location_name'])})
+        location_code = config.energy_iot_DB_READ[TABLE.Location].find_one({"_id":ObjectId(request.form['location_code'])})
         client_code = request.form['client_code']
         client_name = request.form['client_name']
         uen_no = request.form['uen_no']
@@ -348,7 +350,7 @@ def createClient():
 
         if not id:
             print("wwwwwwwwwwwwwwwww")
-            clients={'client_code':client_code, 'client_name':client_name, 'uen_no':uen_no, 'tax_ref_no':tax_ref_no,
+            clients={'location_name':location_name, 'location_code':location_code, 'client_code':client_code, 'client_name':client_name, 'uen_no':uen_no, 'tax_ref_no':tax_ref_no,
             'legal_trading_name':legal_trading_name, 'contract_start_date':contract_start_date, 'contract_end_date':contract_end_date,
             'preferred_currency':preferred_currency,
             'client_logo':client_logo,'address_1':address_1,'city':city,'state_province':state_province,
@@ -369,6 +371,8 @@ def createClient():
             config.energy_iot_DB_READ[TABLE.Client].update_one({"_id": ObjectId(id)},
                                                                             {
                                                                             "$set": {
+                                                                                "location_name":location_name,
+                                                                                "location_code":location_code,
                                                                                 "client_code":client_code,
                                                                                 "client_name":client_name,
                                                                                 "uen_no":uen_no, 
@@ -528,35 +532,22 @@ def locationCustomer():
         geo_code = request.form['geo_code']
         unit_no = request.form['unit_no']
         postal_code = request.form['postal_code']
-        latitute = request.form['latitute']
+        latitude = request.form['latitude']
         longitude = request.form['longitude']
         suplier_code = request.form['suplier_code']
         supplier_name = request.form['supplier_name']
-        logo = request.files['image']
-        f = os.path.join(app.config[UPLOAD_FOLDER], logo.filename)
-        logo.save(f)
-        #~ if field_form.validate_on_submit():
-            #~ flash('Hello, {}. You have successfully signed up'
-                  #~ .format(escape(field_form.name.data)))
-            #~ field_latitude = field_form.field_latitude.data
-            #~ field_longitude = field_form.field_longitude.data
-            #~ mymap = Map(
-                #~ identifier="view-side",
-                #~ lat=field_latitude,
-                #~ lng=field_longitude,
-                #~ zoom=18,
-                #~ style="height:720px;width:720px;margin:0;",  # hardcoded!
-                #~ markers=[(field_latitude, field_longitude)],
-                #~ maptype='SATELLITE'
-            #~ )
+        logo = request.form['logo']
+        #~ f = os.path.join(app.config[UPLOAD_FOLDER], logo.filename)
+        #~ logo.save(f)
+       
             
 
         if not id:
             print("")
             locations={'location_code':location_code,'location_name':location_name, 'location_description':location_description, 
             'resource_path':resource_path, 'area_name':area_name, 'block_code':block_code,
-            'city':city,'country':country,'geo_code':geo_code,'unit_no':unit_no,
-            'postal_code':postal_code,'latitute':latitute,'longitude':longitude,'suplier_code':suplier_code,
+            'city':city,'country':country,'geo_code':geo_code,'unit_no':unit_no,'logo':logo,
+            'postal_code':postal_code,'latitude':latitude,'longitude':longitude,'suplier_code':suplier_code,
             'supplier_name':supplier_name }
 
             data = config.energy_iot_DB_READ[TABLE.Location].insert_one(locations)
@@ -580,8 +571,9 @@ def locationCustomer():
                                                                                 "country":country,
                                                                                 "geo_code":geo_code,
                                                                                 "unit_no":unit_no,
+                                                                                "logo":logo,
                                                                                 "postal_code":postal_code,
-                                                                                "latitute":latitute,
+                                                                                "latitude":latitude,
                                                                                 "longitude":longitude,
                                                                                 "suplier_code":suplier_code,
                                                                                 "supplier_name":supplier_name
@@ -629,6 +621,7 @@ def client_setup_update(client_id):
     client = config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(client_id)})
     return render_template("sub_pages/common_template.html", pagename="client_setup",title="Client",
                             menu="menu_gl", client_code=client.get('client_code'), client_id=client_id,
+                           location_name=customer.get('location_name'),location_code=customer.get('location_code'),
                            client_name=client.get('client_name'),uen_no=client.get('uen_no'),
                            tax_ref_no=client.get('tax_ref_no'),legal_trading_name=client.get('legal_trading_name'),
                            contract_start_date=client.get('contract_start_date'),contract_end_date=client.get('contract_end_date'),
@@ -682,8 +675,8 @@ def location_setup_update(location_id):
                            resource_path=location.get('resource_path'),area_name=location.get('area_name'),
                            block_code=location.get('block_code'),city=location.get('city'),
                            country=location.get('country'),
-                           geo_code=location.get('geo_code'),unit_no=location.get('unit_no'),
-                           postal_code=location.get('postal_code'),latitute=location.get('latitute'),
+                           geo_code=location.get('geo_code'),unit_no=location.get('unit_no'),logo=location.get('logo'),
+                           postal_code=location.get('postal_code'),latitude=location.get('latitude'),
                            longitude=location.get('longitude'),suplier_code=location.get('suplier_code'),
                            supplier_name=location.get('supplier_name'))
                            
@@ -694,7 +687,8 @@ def client_setup():
         for i in config.energy_iot_DB_READ[TABLE.Client].find():
             print(i, '##############')
         return render_template('sub_pages/common_template.html', pagename="client_setup",title="Client",
-                               menu="menu_gl",client_details=config.energy_iot_DB_READ[TABLE.Client].find())
+                               menu="menu_gl",client_details=config.energy_iot_DB_READ[TABLE.Client].find(),
+                               locations=config.energy_iot_DB_READ[TABLE.Location].find(),location_code=config.energy_iot_DB_READ[TABLE.Location].find())
 
 @Admin.route('/customer_setup')
 def customer_setup():
