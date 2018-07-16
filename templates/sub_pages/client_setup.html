@@ -121,6 +121,9 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#otherdetails" role="tab" aria-controls="otherdetails"><i class="icon-plus"></i>Other Details</a>
                                                 </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#locationdetails" role="tab" aria-controls="Location details"><i class="icon-plus"></i>Loaction Details</a>
+                                                </li>
                                             </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane pb-1 active" id="address" role="tabpanel">
@@ -572,6 +575,76 @@
                                                     </div>
 
                                                 </div>
+                                                
+                                                
+                                                <div class="tab-pane pb-1" id="locationdetails" role="tabpanel">
+                                                    <div class="row" style=" padding-left:5px;padding-top:10px;padding-right:5px;">
+                                                        <div class="col-md-12 column">
+                                                            <table class="table table-bordered table-hover new" id="tab_logic">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center">
+                                                                            S.No.
+                                                                        </th>
+                                                                        <th class="text-center">
+                                                                            Location Name
+                                                                        </th>
+                                                                        <th class="text-center">
+                                                                            Location Code
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr id='loc0'>
+                                                                        <td>
+                                                                           <input type="text" name="no" data-plugin="select_hrm" data-placeholder="No" class="form-control" value={{ no|string }}>
+                                                                        </td>
+                                                                        <td>
+<!--
+                                                                            <input type="text" name="location_name" class="form-control" value={{ location_name|string }}>
+-->
+                                                                            <select class="form-control" name="location_name" data-plugin="select_hrm" data-placeholder="Location Name" value={{ location_name|string }}>
+                                                                                <option value="0">Select One</option>
+                                                                                {% for location in locations %}                                                    
+                                                                                    
+                                                                                        <option value="{{location._id}}">{{location.location_name}}</option>
+                                                                                    
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+<!--
+                                                                            <input type="text" name="location_name" class="form-control" value={{ location_name|string }}>
+-->
+                                                                            <select class="form-control" name="location_code" data-plugin="select_hrm" data-placeholder="Location code" value={{ location_name|string }}>
+                                                                                <option value="0">Select One</option>
+                                                                                {% for location in location_code %}                                                    
+                                                                                    
+                                                                                        <option value="{{location._id}}">{{location.location_code}}</option>
+                                                                                    
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                        </td>
+                                                                        
+                                                                        <td>
+                                                                            <a class="add" title="Add" data-toggle="loctooltip"><i class="material-icons">&#xE03B;</i></a>
+                                                                            <a class="edit" title="Edit" data-toggle="loctooltip"><i class="material-icons">&#xE254;</i></a>
+                                                                            <a class="delete" title="Delete" data-toggle="loctooltip"><i class="material-icons">&#xE872;</i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id='loc1'></tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="col-sm-4">
+                                                                <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                
+                                                
 
                                             </div>
                                         </div>
@@ -718,6 +791,7 @@ $(document).ready(function() {
     }
 </script>
 
+
 <script type="text/javascript">
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
@@ -776,5 +850,62 @@ $(document).ready(function(){
     });
 });
 </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="loctooltip"]').loctooltip();
+    var actions = $("table td:last-child").html();
+    // Append table with add row form on add new button click
+    $(".add-new").click(function(){
+        $(this).attr("disabled", "disabled");
+        var index = $("table tbody tr:last-child").index();
+        var row = '<tr>' +
+            '<td><input type="text" class="form-control" name="no" id="no"></td>' +
+            '<td><input type="text" class="form-control" name="location_name" id="location_name"></td>' +
+            '<td><input type="text" class="form-control" name="location_code" id="location_code"></td>' +
+            '<td>' + actions + '</td>' +
+        '</tr>';
+        $("table.new").append(row);
+        $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+        $('[data-toggle="loctooltip"]').loctooltip();
+    });
+    // Add row on add button click
+    $(document).on("click", ".add", function(){
+        var empty = false;
+        var input = $(this).parents("tr").find('input[type="text"]');
+        input.each(function(){
+            if(!$(this).val()){
+                $(this).addClass("error");
+                empty = true;
+            } else{
+                $(this).removeClass("error");
+            }
+        });
+        $(this).parents("tr").find(".error").first().focus();
+        if(!empty){
+            input.each(function(){
+                $(this).parent("td").html($(this).val());
+            });
+            $(this).parents("tr").find(".add, .edit").toggle();
+            $(".add-new").removeAttr("disabled");
+        }
+    });
+    // Edit row on edit button click
+    $(document).on("click", ".edit", function(){
+        $(this).parents("tr").find("td:not(:last-child)").each(function(){
+            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+        });
+        $(this).parents("tr").find(".add, .edit").toggle();
+        $(".add-new").attr("disabled", "disabled");
+    });
+    // Delete row on delete button click
+    $(document).on("click", ".delete", function(){
+        $(this).parents("tr").remove();
+        $(".add-new").removeAttr("disabled");
+    });
+});
+</script>
+
+
 
 

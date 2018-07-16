@@ -368,15 +368,15 @@
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
 
-                                                                <label>Latitute</label>
+                                                                <label>Latitude</label>
 
-                                                                <input id="latitude" readonly class="form-control" name="latitude" placeholder="Latitute" value={{ latitute|string }}>
+                                                                <input id="latitude" readonly class="form-control" name="latitude" placeholder="Latitude" value={{ latitude|string }}>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label>Longnitute</label>
-                                                                <input id="longitude" type="text" readonly class="form-control" name="longitude" placeholder="Longnitute" value={{ longitude|string }}>
+                                                                <input id="longitude" type="text" readonly class="form-control" name="longitude" placeholder="Longnitude" value={{ longitude|string }}>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-3">
@@ -439,8 +439,8 @@
                                                     <div row="row">
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label>Client logo Upload</label>
-                                                                <input type="file" class="form-group" onchange="readURL(this);" name="client_logo" value={{ client_logo|string }}>
+                                                                <label>logo Upload</label>
+                                                                <input type="file" class="form-group" onchange="readURL(this);" name="logo" value={{ logo|string }}>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-3">
@@ -610,7 +610,6 @@ $(document).ready(function() {
 </script>
 
 <script>
-        
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
