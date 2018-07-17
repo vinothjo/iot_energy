@@ -299,6 +299,17 @@ def updateLocationID(value):
         {'$set':
             {'value':location_id}
         })
+        
+        
+#User table Create
+def UserID(value):
+    user_id = config.energy_iot_DB_READ[TABLE.User].find_one()['value']
+    user_id += value
+    config.energy_iot_DB_READ[TABLE.User].update_one(
+        {'user_name':'Admin'},
+        {'$set':
+            {'value':user_id}
+        })
     
     
 
@@ -409,6 +420,76 @@ def createClient():
                                                                             }
                                                                             })
             return redirect('/admin/client_setup')
+
+#User Create From HTML Form
+@Admin.route('/application_user', methods=['POST'])
+def createUser():
+    db=config.energy_iot_DB_READ[TABLE.User]
+    id=request.values.get("user_id")
+    if request.method=='POST':
+        client_name = config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(request.form['client_name'])})
+        customer_name = config.energy_iot_DB_READ[TABLE.Customer].find_one({"_id":ObjectId(request.form['customer_name'])})
+        customer_code = request.form['customer_code']
+        user_name = request.form['user_name']
+        password = request.form['password']
+        password_confirm = request.form['password_confirm']
+        effective_start_date = request.form['effective_start_date']
+        effective_end_date = request.form['effective_end_date']
+        active_status = request.form['active_status']
+        account_status = request.form['account_status']
+        email_id = request.form['email_id']
+        contact_no = request.form['contact_no']
+        mobile_no = request.form['mobile_no']
+        salutation = request.form['salutation']
+        given_name = request.form['given_name']
+        sur_name = request.form['sur_name']
+        gender = request.form['gender']
+        security_question = request.form['security_question']
+        security_answer = request.form['security_answer']
+        
+
+        if not id:
+            users={'client_name':client_name, 'customer_name':customer_name, 
+            'customer_code':customer_code, 'user_name':user_name, 'password':password, 
+            'password_confirm':password_confirm, 'effective_start_date':effective_start_date,
+            'effective_end_date':effective_end_date, 'active_status':active_status,
+            'account_status':account_status, 'email_id':email_id,
+            'contact_no':contact_no, 'mobile_no':mobile_no,
+            'salutation':salutation, 'given_name':given_name,
+            'sur_name':sur_name, 'gender':gender,
+            'security_question':security_question, 'security_answer':security_answer
+            }
+
+            data = config.energy_iot_DB_READ[TABLE.User].insert_one(users)
+            finddata = config.energy_iot_DB_READ[TABLE.User].find(users)
+            return redirect('/admin/application_user')
+        else:
+            print('SSSSSSSSSSSS')
+            config.energy_iot_DB_READ[TABLE.User].update_one({"_id": ObjectId(id)},
+                                                                            {
+                                                                            "$set": {
+                                                                                "client_name":client_name, 
+                                                                                "customer_name":customer_name, 
+                                                                                "customer_code":customer_code, 
+                                                                                "user_name":user_name, 
+                                                                                "password":password, 
+                                                                                "password_confirm":password_confirm, 
+                                                                                "effective_start_date":effective_start_date,
+                                                                                "effective_end_date":effective_end_date, 
+                                                                                "active_status":active_status,
+                                                                                "account_status":account_status, 
+                                                                                "email_id":email_id,
+                                                                                "contact_no":contact_no, 
+                                                                                "mobile_no":mobile_no,
+                                                                                "salutation":salutation, 
+                                                                                "given_name":given_name,
+                                                                                "sur_name":sur_name, 
+                                                                                "gender":gender,
+                                                                                "security_question":security_question, 
+                                                                                "security_answer":security_answer
+                                                                            }
+                                                                            })
+            return redirect('/admin/application_user')
             
             
             
@@ -612,12 +693,19 @@ def location_remove ():
     print(location)
     return render_template("sub_pages/common_template.html", pagename="location_setup",title="location", 
                                 menu="menu_location_setup",location_details=config.energy_iot_DB_READ[TABLE.Location].find())
+                                
+#Deleting a User with key references
+@Admin.route("/user_remove")
+def user_remove ():
+    key=request.values.get("_id")
+    user=config.energy_iot_DB_READ[TABLE.User]
+    user.remove({"_id":ObjectId(key)})
+    return render_template("sub_pages/common_template.html", pagename="application_user",title="User", 
+                                menu="menu_au",user_details=config.energy_iot_DB_READ[TABLE.User].find())
 
 #data finding for client
-@Admin.route("/client_setup_update/<client_id>'")
+@Admin.route("/client_setup_update/<client_id>")
 def client_setup_update(client_id):
-    print (client_id, "DDDDDDDDDDDDDDDDDDDDD")
-    print(config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(client_id)}))
     client = config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(client_id)})
     return render_template("sub_pages/common_template.html", pagename="client_setup",title="Client",
                             menu="menu_gl", client_code=client.get('client_code'), client_id=client_id,
@@ -638,13 +726,27 @@ def client_setup_update(client_id):
                            remarks=client.get('remarks'),no_of_useraccounts=client.get('no_of_useraccounts'),
                            allow_user_creation=client.get('allow_user_creation'),active_status=client.get('active_status'))
                            
+#data finding for User
+@Admin.route("/user_setup_update/<user_id>")
+def user_setup_update(user_id):
+    user = config.energy_iot_DB_READ[TABLE.User].find_one({"_id":ObjectId(user_id)})
+    return render_template("sub_pages/common_template.html", pagename="application_user",title="User",
+                            menu="menu_au", client_name=user.get('client_name'), user_id=user_id,
+                            customer_name=user.get('customer_name'),customer_code=user.get('customer_code'),
+                            user_name=user.get('user_name'),password=user.get('password'),
+                            password_confirm=user.get('password_confirm'),effective_start_date=user.get('effective_start_date'),
+                            effective_end_date=user.get('effective_end_date'),active_status=user.get('active_status'),
+                            account_status=user.get('account_status'),email_id=user.get('email_id'),
+                            contact_no=user.get('contact_no'),mobile_no=user.get('mobile_no'),
+                            salutation=user.get('salutation'),given_name=user.get('given_name'),
+                            sur_name=user.get('sur_name'),gender=user.get('gender'),
+                            security_question=user.get('security_question'),security_answer=user.get('security_answer')
+                            )
 
 
 #data finding for customer
-@Admin.route("/customer_setup_update/<customer_id>'")
+@Admin.route("/customer_setup_update/<customer_id>")
 def customer_setup_update(customer_id):
-    print (customer_id, "DDDDDDDDDDDDDDDDDDDDD")
-    print(config.energy_iot_DB_READ[TABLE.Customer].find_one({"_id":ObjectId(customer_id)}))
     customer = config.energy_iot_DB_READ[TABLE.Customer].find_one({"_id":ObjectId(customer_id)})
     return render_template("sub_pages/common_template.html", pagename="customer_setup",title="customer",
                             menu="menu_cussetup", client_name=customer.get('client_name'),customer_id=customer_id,
@@ -664,7 +766,7 @@ def customer_setup_update(customer_id):
                            allow_customer_portal=customer.get('allow_customer_portal'),active_status=customer.get('active_status'))
                            
 #data finding for location
-@Admin.route("/location_setup_update/<location_id>'")
+@Admin.route("/location_setup_update/<location_id>")
 def location_setup_update(location_id):
     print (location_id, "DDDDDDDDDDDDDDDDDDDDD")
     print(config.energy_iot_DB_READ[TABLE.Location].find_one({"_id":ObjectId(location_id)}))
@@ -696,14 +798,16 @@ def customer_setup():
         for i in config.energy_iot_DB_READ[TABLE.Client].find():
             pprint.pprint(i)
         return render_template('sub_pages/common_template.html', pagename="customer_setup",title="Customer",
-                               menu="menu_cussetup",clients=config.energy_iot_DB_READ[TABLE.Client].find(), customer_details=config.energy_iot_DB_READ[TABLE.Customer].find())
+                               menu="menu_cussetup",customers=config.energy_iot_DB_READ[TABLE.Customer].find(),clients=config.energy_iot_DB_READ[TABLE.Client].find()) 
 
 
-@Admin.route('/application_user', methods=['GET', 'POST'])
+@Admin.route('/application_user')
 def application_user():
         print('Application User')
         return render_template('sub_pages/common_template.html', pagename="application_user",title="Application User",
-                               menu="menu_au")
+                               menu="menu_au",user=config.energy_iot_DB_READ[TABLE.User].find(),
+                               clients=config.energy_iot_DB_READ[TABLE.Client].find(),
+                               customers=config.energy_iot_DB_READ[TABLE.Customer].find())
 
 
 @Admin.route('/location_setup')
