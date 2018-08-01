@@ -23,9 +23,16 @@ import json
 import jsonify
 from flask import request, render_template
 from flask import Flask, session, render_template, redirect, url_for
+import uuid
+
+#~ from gridfs import GridFS
+#~ from flask import Flask, make_response
+
 
 UPLOAD_FOLDER = os.path.basename('uploads')
-UPLOAD_FOLDER = '/home/oscorp/Desktop/iot_energy/images'
+UPLOAD_FOLDER = '/home/oscorp/Desktop/iot_energy/Source/images/'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
 
 
 
@@ -49,6 +56,8 @@ from functools import wraps
 Admin_service = Admin_Service()
 uti_service = Util_Service()
 import pprint
+from werkzeug.utils import secure_filename
+
 
 from bson.objectid import ObjectId
 
@@ -61,6 +70,8 @@ from bson.errors import InvalidId
 from base64 import urlsafe_b64encode, urlsafe_b64decode
 
 from geopy.geocoders import Nominatim
+from urllib.request import Request
+
 
 class ObjectIDConverter(BaseConverter):
     def to_python(self, value):
@@ -84,7 +95,10 @@ def objectid(value):
         return None
 
 
-
+#~ app = Flask(__name__)
+#~ mongo_client = MongoClient('mongodb://localhost:5000/')
+#~ db = mongo_client['iot_app_user']
+#~ grid_fs = GridFS(db)
 
 app.url_map.converters['ObjectID'] = ObjectIDConverter
 
@@ -258,6 +272,26 @@ def user_change_password():
 if config.energy_iot_DB_READ[TABLE.Client].find({'client_name': 'test'}).count() <= 0:
     print("client_id Not found, creating....")
     config.energy_iot_DB_READ[TABLE.Client].insert_one({'client_name':'test', 'value':0})
+
+#Menu Table
+if config.energy_iot_DB_READ[TABLE.Menu].find({'menu_name': 'menu'}).count() <= 0:
+    print("menu_id Not found, creating....")
+    config.energy_iot_DB_READ[TABLE.Menu].insert_one({'menu_name':'menu', 'value':0})
+    
+#Role Table
+if config.energy_iot_DB_READ[TABLE.Role].find({'role_name': 'User'}).count() <= 0:
+    print("role_id Not found, creating....")
+    config.energy_iot_DB_READ[TABLE.Role].insert_one({'role_name':'User', 'value':0})
+    
+#Menu Table
+if config.energy_iot_DB_READ[TABLE.Form].find({'form_name': 'form'}).count() <= 0:
+    print("form_id Not found, creating....")
+    config.energy_iot_DB_READ[TABLE.Form].insert_one({'form_name':'form', 'value':0})
+    
+#privileges Table
+if config.energy_iot_DB_READ[TABLE.privileges].find({'privileges_name': 'privileges'}).count() <= 0:
+    print("privileges_id Not found, creating....")
+    config.energy_iot_DB_READ[TABLE.privileges].insert_one({'privileges_name':'privileges', 'value':0})
     
 #Customer Table
 if config.energy_iot_DB_READ[TABLE.Customer].find({'customer_name': 'Pinnacal'}).count() <= 0:
@@ -268,7 +302,30 @@ if config.energy_iot_DB_READ[TABLE.Customer].find({'customer_name': 'Pinnacal'})
 if config.energy_iot_DB_READ[TABLE.Location].find({'location_name': 'Chennai'}).count() <= 0:
     print("Location_id Not found, creating....")
     config.energy_iot_DB_READ[TABLE.Location].insert_one({'location_name':'Chennai', 'value':0})
+    
+#Location_Group Table
+if config.energy_iot_DB_READ[TABLE.locationgroup].find({'location_group_name': 'Chennai'}).count() <= 0:
+    print("Location_Group_id Not found, creating....")
+    config.energy_iot_DB_READ[TABLE.locationgroup].insert_one({'location_group_name':'Chennai', 'value':0})
+    
+#Location_Group Table
+if config.energy_iot_DB_READ[TABLE.asset].find({'asset_name': 'IOT'}).count() <= 0:
+    print("asset_id Not found, creating....")
+    config.energy_iot_DB_READ[TABLE.asset].insert_one({'asset_name':'IOT', 'value':0})
+    
 
+
+#update asset id
+def updateassetID(value):
+    asset_id = config.energy_iot_DB_READ[TABLE.asset].find_one()['value']
+    asset_id += value
+    config.energy_iot_DB_READ[TABLE.asset].update_one(
+        {'asset_name':'IOT'},
+        {'$set':
+            {'value':asset_id}
+        })
+        
+        
 #update client id
 def updateClientID(value):
     client_id = config.energy_iot_DB_READ[TABLE.Client].find_one()['value']
@@ -277,6 +334,36 @@ def updateClientID(value):
         {'client_name':'test'},
         {'$set':
             {'value':client_id}
+        })
+        
+#update form  id
+def updateFormID(value):
+    form_id = config.energy_iot_DB_READ[TABLE.Form].find_one()['value']
+    form_id += value
+    config.energy_iot_DB_READ[TABLE.Form].update_one(
+        {'form_name':'form'},
+        {'$set':
+            {'value':form_id}
+        })
+        
+#update menu id
+def updateMenuID(value):
+    menu_id = config.energy_iot_DB_READ[TABLE.Menu].find_one()['value']
+    menu_id += value
+    config.energy_iot_DB_READ[TABLE.Menu].update_one(
+        {'menu_name':'menu'},
+        {'$set':
+            {'value':menu_id}
+        })
+
+#update role id
+def updateRoleID(value):
+    role_id = config.energy_iot_DB_READ[TABLE.Role].find_one()['value']
+    role_id += value
+    config.energy_iot_DB_READ[TABLE.Role].update_one(
+        {'role_name':'User'},
+        {'$set':
+            {'value':role_id}
         })
         
 #update customer id
@@ -317,12 +404,16 @@ def UserID(value):
 #Client Setup
 @Admin.route('/client_setup', methods=['POST'])
 def createClient():
+    clicked=None
     db=config.energy_iot_DB_READ[TABLE.Client]
     id=request.values.get("client_id")
     print(id, "QQQQQQQQQQQQQQ")
+    #~ sal=request.form['Salutation']
+    #~ print(sal,"=============>")
+    
     if request.method=='POST':
-        location_name = config.energy_iot_DB_READ[TABLE.Location].find_one({"_id":ObjectId(request.form['location_name'])})
-        location_code = config.energy_iot_DB_READ[TABLE.Location].find_one({"_id":ObjectId(request.form['location_code'])})
+        location_name = config.energy_iot_DB_READ[TABLE.Location].find({"_id":ObjectId(request.form['location_name'])})
+        location_code = config.energy_iot_DB_READ[TABLE.Location].find({"_id":ObjectId(request.form['location_code'])})
         client_code = request.form['client_code']
         client_name = request.form['client_name']
         uen_no = request.form['uen_no']
@@ -345,12 +436,18 @@ def createClient():
         email_id = request.form['email_id']
         web_site = request.form['web_site']
         contact_person = request.form['contact_person']
-        Salutation = request.form['Salutation']
-        person_first_name = request.form['person_first_name']
-        person_last_name = request.form['person_last_name']
-        person_email_id = request.form['person_email_id']
-        person_mobile_no = request.form['person_mobile_no']
-        person_telephone_no = request.form['person_telephone_no']
+        #~ Salutation = request.form['Salutation']
+        #~ person_first_name = request.form['person_first_name']
+        #~ person_last_name = request.form['person_last_name']
+        #~ person_email_id = request.form['person_email_id']
+        #~ person_mobile_no = request.form['person_mobile_no']
+        #~ person_telephone_no = request.form['person_telephone_no']
+        Salutation = request.form.get('Salutation',type=str)
+        person_first_name = request.form.get('person_first_name',type=str)
+        person_last_name = request.form.get('person_last_name',type=str)
+        person_email_id = request.form.get('person_email_id',type=str)
+        person_mobile_no = request.form.get('person_mobile_no',type=str)
+        person_telephone_no = request.form.get('person_telephone_no',type=str)
         header_info = request.form['header_info']
         footer_info = request.form['footer_info']
         remarks = request.form['remarks']
@@ -361,16 +458,19 @@ def createClient():
 
         if not id:
             print("wwwwwwwwwwwwwwwww")
-            clients={'location_name':location_name, 'location_code':location_code, 'client_code':client_code, 'client_name':client_name, 'uen_no':uen_no, 'tax_ref_no':tax_ref_no,
+            clients={
+            'location_name':location_name, 'location_code':location_code, 
+            'client_code':client_code, 'client_name':client_name, 'uen_no':uen_no, 'tax_ref_no':tax_ref_no,
             'legal_trading_name':legal_trading_name, 'contract_start_date':contract_start_date, 'contract_end_date':contract_end_date,
             'preferred_currency':preferred_currency,
             'client_logo':client_logo,'address_1':address_1,'city':city,'state_province':state_province,
             'country':country,'address_2':address_2,'zip_code':zip_code,'telephone_no':telephone_no,
             'mobile_no':mobile_no,'fax_no':fax_no,'email_id':email_id,'web_site':web_site,
-            'contact_person':contact_person,'Salutation':Salutation,'person_first_name':person_first_name,'person_last_name':person_last_name,
+            'contact_person':contact_person,
+            'Salutation':Salutation,'person_first_name':person_first_name,'person_last_name':person_last_name,
             'person_email_id':person_email_id,'person_mobile_no':person_mobile_no,'person_telephone_no':person_telephone_no,
             'header_info':header_info,'footer_info':footer_info,'remarks':remarks,'no_of_useraccounts':no_of_useraccounts,
-            'allow_user_creation':allow_user_creation,'active_status':active_status, }
+            'allow_user_creation':allow_user_creation,'active_status':active_status}
 
             data = config.energy_iot_DB_READ[TABLE.Client].insert_one(clients)
             finddata = config.energy_iot_DB_READ[TABLE.Client].find(clients)
@@ -382,8 +482,10 @@ def createClient():
             config.energy_iot_DB_READ[TABLE.Client].update_one({"_id": ObjectId(id)},
                                                                             {
                                                                             "$set": {
-                                                                                "location_name":location_name,
-                                                                                "location_code":location_code,
+                                                                                #~ "location_name":location_name,
+                                                                                #~ "location_code":location_code,
+                                                                                "location_name":config.energy_iot_DB_READ[TABLE.Location].find({"_id":ObjectId(request.form['location_name'])}),
+                                                                                "location_code":config.energy_iot_DB_READ[TABLE.Location].find({"_id":ObjectId(request.form['location_code'])}),
                                                                                 "client_code":client_code,
                                                                                 "client_name":client_name,
                                                                                 "uen_no":uen_no, 
@@ -420,6 +522,162 @@ def createClient():
                                                                             }
                                                                             })
             return redirect('/admin/client_setup')
+            
+            
+#Asset Setup
+@Admin.route('/asset_setup', methods=['POST'])
+def createAsset():
+    #~ clicked=None
+    db=config.energy_iot_DB_READ[TABLE.asset]
+    id=request.values.get("asset_id")
+    
+    if request.method=='POST':
+        location_name = config.energy_iot_DB_READ[TABLE.Location].find_one({"_id":ObjectId(request.form['location_name'])})
+        sensor_id = request.form['sensor_id']
+        devicetype = request.form['devicetype']
+        model = request.form['model']
+        assetcode = request.form['assetcode']
+        assetname = request.form['assetname']
+        assetdescription = request.form['assetdescription']
+        serialno = request.form['serialno']
+        partno = request.form['partno']
+        quantity = request.form['quantity']
+        uom = request.form['uom']
+        person_incharge = request.form['person_incharge']
+        active_status = request.form['active_status']
+        warranty_detail = request.form['warranty_detail']
+        warranty_start_date = request.form['warranty_start_date']
+        warranty_expiry_date = request.form['warranty_expiry_date']
+        installation_date = request.form['installation_date']
+        technical_info = request.form['technical_info']
+        pv_module_capacity = request.form['pv_module_capacity']
+        pv_panel_type = request.form['pv_panel_type']
+        pv_panel_qty = request.form['pv_panel_qty']
+        pv_panel_area = request.form['pv_panel_area']
+        total_panel_qty = request.form['total_panel_qty']
+        
+        event_required = request.form['event_required']
+        alarm_required = request.form['alarm_required']
+        header = request.form['header']
+        communication = request.form['communication']
+        parameter_name = request.form['parameter_name']
+
+        if not id:
+            asset={
+            'location_name':location_name,  
+            'sensor_id':sensor_id, 'devicetype':devicetype, 'model':model, 'assetcode':assetcode,
+            'assetname':assetname, 'assetdescription':assetdescription, 'serialno':serialno,
+            'partno':partno,
+            'quantity':quantity,'uom':uom,'person_incharge':person_incharge,'active_status':active_status,
+            'warranty_detail':warranty_detail,'warranty_start_date':warranty_start_date,'warranty_expiry_date':warranty_expiry_date,
+            'installation_date':installation_date,
+            'technical_info':technical_info,'pv_module_capacity':pv_module_capacity,
+            'pv_panel_type':pv_panel_type,'pv_panel_qty':pv_panel_qty,
+            'pv_panel_area':pv_panel_area,
+            'total_panel_qty':total_panel_qty,'event_required':event_required,
+            'alarm_required':alarm_required,
+            'header':header,'communication':communication,'parameter_name':parameter_name}
+
+            data = config.energy_iot_DB_READ[TABLE.asset].insert_one(asset)
+            finddata = config.energy_iot_DB_READ[TABLE.Client].find(asset)
+            print (finddata)
+            return redirect('/admin/asset_setup')
+        else:
+            print('assettttttttttttt')
+            
+            return redirect('/admin/asset_setup')
+        
+        
+#~ #Client Setup
+#~ @Admin.route('/location_group', methods=['POST'])
+#~ def location_group():
+    #~ clicked=None
+    #~ db=config.energy_iot_DB_READ[TABLE.locationgroup]
+    #~ id=request.values.get("location_group_id")
+    
+    #~ if request.method=='POST':
+        #~ location = config.energy_iot_DB_READ[TABLE.Location].find()
+        
+        
+#Menu Setup
+@Admin.route('/menu_setup', methods=['POST'])
+def createMenu():
+    #~ clicked=None
+    db=config.energy_iot_DB_READ[TABLE.Menu]
+    id=request.values.get("menu_id")
+    print(id, "etrytgvuhybikjnlk;")
+    
+    if request.method=='POST':
+        menu_name = request.form['menu_name']
+        menu_description = request.form['menu_description']
+        menu_url = request.form['menu_url']
+        active_status = request.form['active_status']
+
+        if not id:
+            menu={
+            'menu_name':menu_name, 'menu_description':menu_description, 
+            'menu_url':menu_url, 'active_status':active_status
+            }
+
+            data = config.energy_iot_DB_READ[TABLE.Menu].insert_one(menu)
+            finddata = config.energy_iot_DB_READ[TABLE.Menu].find(menu)
+            return redirect('/admin/menu_setup')
+        else:
+            config.energy_iot_DB_READ[TABLE.Menu].update_one({"_id": ObjectId(id)},
+                                                                            {
+                                                                            "$set": {
+                                                                                "menu_name":menu_name,
+                                                                                "menu_description":menu_description,
+                                                                                "menu_url":menu_url,
+                                                                                "active_status":active_status
+                                                                            }
+                                                                            })
+            return redirect('/admin/menu_setup')
+            
+            
+            
+#Form Setup
+@Admin.route('/form', methods=['POST'])
+def createForm():
+    #~ clicked=None
+    db=config.energy_iot_DB_READ[TABLE.Form]
+    id=request.values.get("form_id")
+    print(id, "11111111111111;")
+    
+    if request.method=='POST':
+        menu_name = config.energy_iot_DB_READ[TABLE.Menu].find_one({"_id":ObjectId(request.form['menu_name'])})
+        form_name = request.form['form_name']
+        form_description = request.form['form_description']
+        form_url = request.form['form_url']
+        active_status = request.form['active_status']
+
+        if not id:
+            form={
+            'menu_name':menu_name,
+            'form_name':form_name, 'form_description':form_description, 
+            'form_url':form_url, 'active_status':active_status
+            }
+
+            data = config.energy_iot_DB_READ[TABLE.Form].insert_one(form)
+            finddata = config.energy_iot_DB_READ[TABLE.Form].find(form)
+            return redirect('/admin/form')
+        else:
+            config.energy_iot_DB_READ[TABLE.Form].update_one({"_id": ObjectId(id)},
+                                                                            {
+                                                                            "$set": {
+                                                                                "menu_name":menu_name,
+                                                                                "form_name":form_name,
+                                                                                "form_description":form_description,
+                                                                                "form_url":form_url,
+                                                                                "active_status":active_status
+                                                                            }
+                                                                            })
+            return redirect('/admin/form')
+        
+        
+        
+        
+        
 
 #User Create From HTML Form
 @Admin.route('/application_user', methods=['POST'])
@@ -491,7 +749,39 @@ def createUser():
                                                                             })
             return redirect('/admin/application_user')
             
-            
+
+
+#Role Setup
+@Admin.route('/role', methods=['POST'])
+def createRole():
+    clicked=None
+    db=config.energy_iot_DB_READ[TABLE.Role]
+    id=request.values.get("role_id")    
+    if request.method=='POST':
+        role_name = request.form['role_name']
+        role_description = request.form['role_description']
+        active_status = request.form['active_status']
+        if not id:
+            role={
+            'role_name':role_name, 'role_description':role_description, 
+            'active_status':active_status}
+            data = config.energy_iot_DB_READ[TABLE.Role].insert_one(role)
+            findrole = config.energy_iot_DB_READ[TABLE.Role].find(role)
+            print (findrole)
+            return redirect('/admin/role')
+        else:
+            config.energy_iot_DB_READ[TABLE.Role].update_one({"_id": ObjectId(id)},
+                                                                            {
+                                                                            "$set": {
+                                                                                "role_name":role_name,
+                                                                                "role_description":role_description,
+                                                                                "active_status":active_status
+                                                                            }
+                                                                            })
+            return redirect('/admin/role')
+
+
+
             
             
 @Admin.route('/customer_setup', methods=['POST'])
@@ -500,7 +790,7 @@ def createCustomer():
     id=request.values.get("customer_id")
     print(id, "=====================>customerID")
     if request.method=='POST':        
-        client_name = config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(request.form['client_name'])})        
+        client_name = config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(request.form['client_name'])})
         customer_name = request.form['customer_name']
         uen_no = request.form['uen_no']
         tax_ref_no = request.form['tax_ref_no']
@@ -521,12 +811,18 @@ def createCustomer():
         email_id = request.form['email_id']
         web_site = request.form['web_site']
         contact_person = request.form['contact_person']
-        Salutation = request.form['Salutation']
-        cus_first_name = request.form['cus_first_name']
-        cus_last_name = request.form['cus_last_name']
-        cus_email_id = request.form['cus_email_id']
-        cus_mobile_no = request.form['cus_mobile_no']
-        cus_telephone_no = request.form['cus_telephone_no']
+        #~ Salutation = request.form['Salutation']
+        #~ cus_first_name = request.form['cus_first_name']
+        #~ cus_last_name = request.form['cus_last_name']
+        #~ cus_email_id = request.form['cus_email_id']
+        #~ cus_mobile_no = request.form['cus_mobile_no']
+        #~ cus_telephone_no = request.form['cus_telephone_no']
+        Salutation = request.form.get('Salutation',type=str)
+        cus_first_name = request.form.get('cus_first_name',type=str)
+        cus_last_name = request.form.get('cus_last_name',type=str)
+        cus_email_id = request.form.get('cus_email_id',type=str)
+        cus_mobile_no = request.form.get('cus_mobile_no',type=str)
+        cus_telephone_no = request.form.get('cus_telephone_no',type=str)
         remarks = request.form['remarks']
         allow_customer_portal = request.form['allow_customer_portal']
         active_status = request.form['active_status']
@@ -585,13 +881,7 @@ def createCustomer():
                                                                             }
                                                                             })
             return redirect('/admin/customer_setup')
-            
-#~ class GetFieldForm(Form):
-    #~ field_name = StringField('Designation')
-    #~ field_latitude = FloatField(u'Latitude', default=-30, validators=[InputRequired()], description='48.182601')
-    #~ field_longitude = FloatField(u'Longitude', default=150,
-                                 #~ validators=[InputRequired()], description='11.304939')
-    #~ submit = SubmitField(u'Signup')
+ 
 
 
 @Admin.route('/location_setup', methods=['POST'])
@@ -617,7 +907,9 @@ def locationCustomer():
         longitude = request.form['longitude']
         suplier_code = request.form['suplier_code']
         supplier_name = request.form['supplier_name']
-        logo = request.form['logo']
+        #~ file = request.form['file']
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
         #~ f = os.path.join(app.config[UPLOAD_FOLDER], logo.filename)
         #~ logo.save(f)
        
@@ -627,7 +919,8 @@ def locationCustomer():
             print("")
             locations={'location_code':location_code,'location_name':location_name, 'location_description':location_description, 
             'resource_path':resource_path, 'area_name':area_name, 'block_code':block_code,
-            'city':city,'country':country,'geo_code':geo_code,'unit_no':unit_no,'logo':logo,
+            'city':city,'country':country,'geo_code':geo_code,'unit_no':unit_no,
+            #~ 'file':file,
             'postal_code':postal_code,'latitude':latitude,'longitude':longitude,'suplier_code':suplier_code,
             'supplier_name':supplier_name }
 
@@ -652,7 +945,7 @@ def locationCustomer():
                                                                                 "country":country,
                                                                                 "geo_code":geo_code,
                                                                                 "unit_no":unit_no,
-                                                                                "logo":logo,
+                                                                                #~ "logo":logo,
                                                                                 "postal_code":postal_code,
                                                                                 "latitude":latitude,
                                                                                 "longitude":longitude,
@@ -661,6 +954,8 @@ def locationCustomer():
                                                                             }
                                                                             })
             return redirect('/admin/location_setup')
+
+
 
 
 #Deleting a client with key references
@@ -672,7 +967,37 @@ def remove ():
     print(client)
     return render_template("sub_pages/common_template.html", pagename="client_setup",title="Client", 
                                 menu="menu_gl",client_details=config.energy_iot_DB_READ[TABLE.Client].find())
+#Deleting Menu
+@Admin.route("/menu_remove")
+def menu_remove ():
+    key=request.values.get("_id")
+    menu=config.energy_iot_DB_READ[TABLE.Menu]
+    menu.remove({"_id":ObjectId(key)})
+    print(menu)
+    return render_template("sub_pages/common_template.html", pagename="menu",title="Menu",
+                            menu="menu_menumgt",menu_details=config.energy_iot_DB_READ[TABLE.Menu].find())
                                 
+#Deleting Form
+@Admin.route("/form_remove")
+def form_remove ():
+    key=request.values.get("_id")
+    form=config.energy_iot_DB_READ[TABLE.Form]
+    form.remove({"_id":ObjectId(key)})
+    print(form)
+    return render_template("sub_pages/common_template.html", pagename="form",title="Form",
+                               menu="menu_form",form_details=config.energy_iot_DB_READ[TABLE.Form].find())
+                                
+                                
+#Deleting Role
+@Admin.route("/role_remove")
+def role_remove ():
+    key=request.values.get("_id")
+    role=config.energy_iot_DB_READ[TABLE.Role]
+    role.remove({"_id":ObjectId(key)})
+    print(role)
+    return render_template("sub_pages/common_template.html", pagename="user_role",title="Role", 
+                                menu="menu_au",role_details=config.energy_iot_DB_READ[TABLE.Role].find())
+
 
 #Deleting a Customer with key references
 @Admin.route("/customer_remove")
@@ -702,14 +1027,21 @@ def user_remove ():
     user.remove({"_id":ObjectId(key)})
     return render_template("sub_pages/common_template.html", pagename="application_user",title="User", 
                                 menu="menu_au",user_details=config.energy_iot_DB_READ[TABLE.User].find())
+                                
+                                
+
 
 #data finding for client
 @Admin.route("/client_setup_update/<client_id>")
 def client_setup_update(client_id):
     client = config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(client_id)})
+    location = config.energy_iot_DB_READ[TABLE.Client].find({"_id":ObjectId(client_id)})
+    #~ locations = config.energy_iot_DB_READ[TABLE.Client].find({"_id":ObjectId(request.form['location_name'])})
     return render_template("sub_pages/common_template.html", pagename="client_setup",title="Client",
                             menu="menu_gl", client_code=client.get('client_code'), client_id=client_id,
-                           location_name=customer.get('location_name'),location_code=customer.get('location_code'),
+                           #~ location_name = config.energy_iot_DB_READ[TABLE.Location].find_all(),
+                           #~ location_code = config.energy_iot_DB_READ[TABLE.Location].find_all(),
+                           location_name=client.get('location_name'),location_code=client.get('location_code'),
                            client_name=client.get('client_name'),uen_no=client.get('uen_no'),
                            tax_ref_no=client.get('tax_ref_no'),legal_trading_name=client.get('legal_trading_name'),
                            contract_start_date=client.get('contract_start_date'),contract_end_date=client.get('contract_end_date'),
@@ -730,6 +1062,8 @@ def client_setup_update(client_id):
 @Admin.route("/user_setup_update/<user_id>")
 def user_setup_update(user_id):
     user = config.energy_iot_DB_READ[TABLE.User].find_one({"_id":ObjectId(user_id)})
+    client = config.energy_iot_DB_READ[TABLE.Client].find_one({"_id":ObjectId(user_id)})
+    print(user)
     return render_template("sub_pages/common_template.html", pagename="application_user",title="User",
                             menu="menu_au", client_name=user.get('client_name'), user_id=user_id,
                             customer_name=user.get('customer_name'),customer_code=user.get('customer_code'),
@@ -742,14 +1076,55 @@ def user_setup_update(user_id):
                             sur_name=user.get('sur_name'),gender=user.get('gender'),
                             security_question=user.get('security_question'),security_answer=user.get('security_answer')
                             )
+                            
+                           
+                           
+#data finding for menu
+@Admin.route("/menu_setup_update/<menu_id>")
+def menu_setup_update(menu_id):
+    menu = config.energy_iot_DB_READ[TABLE.Menu].find_one({"_id":ObjectId(menu_id)})
+    return render_template("sub_pages/common_template.html", pagename="menu",title="Menu",
+                           menu="menu_menumgt",menu_id=menu_id,
+                           menu_name=menu.get('menu_name'), 
+                           menu_description=menu.get('menu_description'),
+                           menu_url=menu.get('menu_url'),
+                           active_status=menu.get('active_status'))
 
+#data finding for form
+@Admin.route("/form_setup_update/<form_id>")
+def form_setup_update(form_id):
+    form = config.energy_iot_DB_READ[TABLE.Form].find_one({"_id":ObjectId(form_id)})
+    return render_template("sub_pages/common_template.html", pagename="form",title="Form",
+                               menu="menu_form",
+                           menus = config.energy_iot_DB_READ[TABLE.Menu].find(),
+                           form_id=form_id,
+                           form_name=menu.get('form_name'), 
+                           form_description=menu.get('form_description'),
+                           form_url=menu.get('form_url'),
+                           active_status=menu.get('active_status'))
+
+
+                           
+                           
+#data finding for Role
+@Admin.route("/role_setup_update/<role_id>")
+def role_setup_update(role_id):
+    role = config.energy_iot_DB_READ[TABLE.Role].find_one({"_id":ObjectId(role_id)})
+    print(role)
+    return render_template("sub_pages/common_template.html", pagename="user_role",title="Role",
+                            menu="menu_au", role_name=role.get('role_name'), role_id=role_id,
+                            role_description=role.get('role_description'),active_status=role.get('active_status')
+                            )
 
 #data finding for customer
 @Admin.route("/customer_setup_update/<customer_id>")
 def customer_setup_update(customer_id):
     customer = config.energy_iot_DB_READ[TABLE.Customer].find_one({"_id":ObjectId(customer_id)})
     return render_template("sub_pages/common_template.html", pagename="customer_setup",title="customer",
-                            menu="menu_cussetup", client_name=customer.get('client_name'),customer_id=customer_id,
+                            menu="menu_cussetup",
+                           clients = config.energy_iot_DB_READ[TABLE.Client].find(),
+                           #~ clients=customer.get('client_name'),
+                           customer_id=customer_id,
                            customer_name=customer.get('customer_name'),uen_no=customer.get('uen_no'),
                            tax_ref_no=customer.get('tax_ref_no'),legal_trading_name=customer.get('legal_trading_name'),
                            effective_start_date=customer.get('effective_start_date'),effective_end_date=customer.get('effective_end_date'),
@@ -777,7 +1152,8 @@ def location_setup_update(location_id):
                            resource_path=location.get('resource_path'),area_name=location.get('area_name'),
                            block_code=location.get('block_code'),city=location.get('city'),
                            country=location.get('country'),
-                           geo_code=location.get('geo_code'),unit_no=location.get('unit_no'),logo=location.get('logo'),
+                           geo_code=location.get('geo_code'),unit_no=location.get('unit_no'),
+                           #~ logo=location.get('logo'),
                            postal_code=location.get('postal_code'),latitude=location.get('latitude'),
                            longitude=location.get('longitude'),suplier_code=location.get('suplier_code'),
                            supplier_name=location.get('supplier_name'))
@@ -790,7 +1166,7 @@ def client_setup():
             print(i, '##############')
         return render_template('sub_pages/common_template.html', pagename="client_setup",title="Client",
                                menu="menu_gl",client_details=config.energy_iot_DB_READ[TABLE.Client].find(),
-                               locations=config.energy_iot_DB_READ[TABLE.Location].find(),location_code=config.energy_iot_DB_READ[TABLE.Location].find())
+                               location_name=config.energy_iot_DB_READ[TABLE.Location].find(),location_code=config.energy_iot_DB_READ[TABLE.Location].find())
 
 @Admin.route('/customer_setup')
 def customer_setup():
@@ -798,16 +1174,19 @@ def customer_setup():
         for i in config.energy_iot_DB_READ[TABLE.Client].find():
             pprint.pprint(i)
         return render_template('sub_pages/common_template.html', pagename="customer_setup",title="Customer",
-                               menu="menu_cussetup",customers=config.energy_iot_DB_READ[TABLE.Customer].find(),clients=config.energy_iot_DB_READ[TABLE.Client].find()) 
+                               menu="menu_cussetup",customer_details=config.energy_iot_DB_READ[TABLE.Customer].find(),
+                               clients=config.energy_iot_DB_READ[TABLE.Client].find()) 
 
 
 @Admin.route('/application_user')
 def application_user():
         print('Application User')
+        #~ for i in config.energy_iot_DB_READ[TABLE.Client].find():
+            #~ pprint.pprint(i,"22222222222222222222222222")
         return render_template('sub_pages/common_template.html', pagename="application_user",title="Application User",
                                menu="menu_au",user=config.energy_iot_DB_READ[TABLE.User].find(),
-                               clients=config.energy_iot_DB_READ[TABLE.Client].find(),
-                               customers=config.energy_iot_DB_READ[TABLE.Customer].find())
+                               client_name=config.energy_iot_DB_READ[TABLE.Client].find(),
+                               customer_name=config.energy_iot_DB_READ[TABLE.Customer].find())
 
 
 @Admin.route('/location_setup')
@@ -818,18 +1197,43 @@ def location_setup():
                                location_details=config.energy_iot_DB_READ[TABLE.Location].find())
 
 
-@Admin.route('/asset_summary', methods=['GET', 'POST'])
+@Admin.route('/asset_summary')
 def asset_summary():
         print('Asset Summary')
         return render_template('sub_pages/common_template.html', pagename="asset_summary",title="Asset Summary",
                                menu="menu_assetsummary")
 
 
-@Admin.route('/asset_setup', methods=['GET', 'POST'])
+@Admin.route('/asset_setup')
 def asset_setup():
         print('Asset Setup')
         return render_template('sub_pages/common_template.html', pagename="asset_setup",title="Asset Setup",
-                               menu="menu_assetsetup")
+                               menu="menu_assetsetup",asset_name=config.energy_iot_DB_READ[TABLE.asset].find(),
+                               locations=config.energy_iot_DB_READ[TABLE.Location].find())
+                               
+@Admin.route('/menu_setup')
+def menu_setup():
+        print('Menu Setup')
+        for i in config.energy_iot_DB_READ[TABLE.Menu].find():
+            pprint.pprint(i)
+        return render_template('sub_pages/common_template.html', pagename="menu",title="Menu",
+                               menu="menu_menumgt",menu_details=config.energy_iot_DB_READ[TABLE.Menu].find())
+
+
+@Admin.route('/form')
+def form():
+        print('Form Setup')
+        for i in config.energy_iot_DB_READ[TABLE.Form].find():
+            pprint.pprint(i)
+        return render_template('sub_pages/common_template.html', pagename="form",title="Form",
+                               form="menu_form",form_details=config.energy_iot_DB_READ[TABLE.Form].find(),
+                               menus=config.energy_iot_DB_READ[TABLE.Menu].find())
+
+@Admin.route('/role')
+def user_role():
+        print('Role')
+        return render_template('sub_pages/common_template.html', pagename="user_role",title="Role",
+                               menu="menu_au",role_details=config.energy_iot_DB_READ[TABLE.Role].find())
 
 
 @Admin.route('/_get_geocode', methods=['GET', 'POST'])
@@ -847,5 +1251,29 @@ def _get_geocode():
         return jsfy(result=[0, 0])
 
 
+#~ @app.route('/download/<file_name>')
+#~ def index(file_name):
+    #~ grid_fs_file = grid_fs.find_one({'filename': file_name})
+    #~ response = make_response(grid_fs_file.read())
+    #~ response.headers['Content-Type'] = 'application/octet-stream'
+    #~ response.headers["Content-Disposition"] = "attachment; filename={}".format(file_name)
+    #~ return response
 
+@Admin.route('/privileges_setting', methods=['GET', 'POST'])
+def privileges_setting():
+        print('Privileges Settings')
+        return render_template('sub_pages/common_template.html', pagename="privileges_settings",title="Privileges Settings",
+                               menu="menu_privilegessetting")
+
+@Admin.route('/irr_assignment', methods=['GET', 'POST'])
+def irr_assignment():
+        print('IRR Assignments')
+        return render_template('sub_pages/common_template.html', pagename="irr_assignment",title="IRR Assignment",
+                               menu="menu_irrassign")
+
+@Admin.route('/location_group', methods=['GET', 'POST'])
+def location_group():
+        print('Location Group')
+        return render_template('sub_pages/common_template.html', pagename="location_group",title="Location Group",
+                               menu="menu_locgroup")
 
