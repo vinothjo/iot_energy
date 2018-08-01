@@ -1,0 +1,110 @@
+ <!-- MAIN CONTENT -->
+<div id="content">
+<!-- widget content -->
+<div class="widget-body">
+  <div class="row" style="margin-left: -25px;">
+    <div class="col-sm-4">
+      <div class="form-group">
+      <label>Location Group</label>
+      <input class="form-control" name="location_group" placeholder="Location Group" type="text" >
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+      <label>Group Description</label>
+      <input class="form-control" name="group_description" placeholder="Group Description" type="text" >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+<table id="datatable_tabletools" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
+							<thead>
+								<tr role="row">
+                                    <th style="width:5%;">
+                                        <span><input type="checkbox" id="chkall"></span>
+                                    </th>
+                                    <th style="width:20%;">
+                                        Location Code
+                                    </th>
+                                    <th style="width: 35%;">
+                                        Location Name
+                                    </th>
+                                    <th style="width: 40%;">
+                                        Address
+                                    </th>
+							</thead>
+							<tbody id="ChkLocations">
+                            <tr role="row" class="odd">
+							 <td><input class="messageCheckbox" value="1" type="checkbox"></td>
+							 <td>CL0231</td>
+                             <td>Chennai-Guindy</td>
+							 <td>Ram nagar</td>
+       						</tr>
+                            <tr role="row" class="odd">
+							 <td><input class="messageCheckbox" value="2" type="checkbox"></td>
+							 <td>TL5489</td>
+                             <td>Trichy-Anna nagar</td>
+							 <td>TNHB,MM Nagar</td>
+       						</tr>
+                            <tr role="row" class="odd">
+							 <td><input class="messageCheckbox" value="3" type="checkbox"></td>
+							 <td>TL0231</td>
+                             <td>Trichy-Ashoknagar</td>
+							 <td>178,1 street</td>
+       						</tr>
+                            <tr role="row" class="odd">
+							 <td><input class="messageCheckbox" value="4" type="checkbox"></td>
+							 <td>CL9851</td>
+                             <td>Chennai-CMBT</td>
+							 <td>181,7th street</td>
+       						</tr>
+                            
+							</tbody>
+						</table>
+  </div>
+    <div class="row" style="padding-top:10px;">
+     <div class="btn-group">
+         <div class="">
+             <input type="submit" name="save" class="btn btn-success" value="Save">
+             <input type="button" name="cancel" class="btn btn-danger" value="Cancel">
+         </div>
+     </div>
+    </div>
+</div>
+ <!-- widget content -->
+</div>
+  <!--end MAIN CONTENT -->
+
+    <script type="text/javascript">
+
+        $("#chkall").click(function () {
+            ScreenListCheckBox_Validate();
+        });
+
+        function ScreenListCheckBox_Validate() {
+          if($("#chkall").is(":checked")){
+            $("#ChkLocations input[type='checkbox']").prop('checked',true);
+          }
+          else{
+            $("#ChkLocations input[type='checkbox']").prop('checked',false);
+          }
+        }
+
+        $("#ChkLocations input[type='checkbox']").click(function(){
+            if($(this).is(":checked")){
+              var numberNotChecked = $('#ChkLocations input:checkbox:not(":checked")').length;
+              if(numberNotChecked>0){
+              }
+              else{
+               $('#chkall').prop('checked', true);
+              }
+            }
+            else if($(this).is(":not(:checked)")){
+              $('#chkall').prop('checked', false);
+            }
+        });
+    </script>
+
+
+
