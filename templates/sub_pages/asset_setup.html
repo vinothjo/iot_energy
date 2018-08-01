@@ -1,544 +1,591 @@
 <div id="main" role="main">
     <!-- RIBBON -->
-	<div id="ribbon">
-	 <!-- breadcrumb -->
-	   <ol class="breadcrumb">
-	   <li>Home / {{ title }}</li>
-	   </ol>
-	</div>
-	<!-- END RIBBON -->
+    <div id="ribbon">
+        <!-- breadcrumb -->
+        <ol class="breadcrumb">
+            <li>Home / {{ title }}</li>
+        </ol>
+    </div>
+    <!-- END RIBBON -->
     <!-- MAIN CONTENT -->
-	<div id="content">
+    <div id="content">
         <!-- widget grid -->
-		<section id="widget-grid" class="">
+        <section id="widget-grid" class="">
             <div class="row">
-              <!-- NEW WIDGET START -->
-			  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-                <!--start Widget ID (each widget will need unique ID)-->
-                <div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-togglebutton="false"  data-widget-deletebutton="false" data-widget-editbutton="false">
-                  <header>
-                      <h2><strong>{{ title }}</strong> </h2>
-				  </header>
-                <!--start widget div-->
-				<div>
-				<!--start widget content -->
-				 <div class="widget-body">
+                <!-- NEW WIDGET START -->
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <form action="{{ url_for('Admin.asset_setup') }}" method="post">
+                        <!--start Widget ID (each widget will need unique ID)-->
+                        <div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+                            <header>
+                                <h2><strong>{{ title }}</strong> </h2>
+                            </header>
+                            <!--start widget div-->
+                            <div>
+                                <!--start widget content -->
+                                <div class="widget-body">
 
-                  <div class="row">
-                      <div class="col-sm-12 pt-1" >
-                        <ul class="nav nav-tabs">
-                         <li class="nav-item active">
-                         <a class="nav-link" data-toggle="tab" href="#general" role="tab" aria-controls="general"><i class="icon-plus"></i>General</a>
-                         </li>
-                         <li class="nav-item">
-                         <a class="nav-link" data-toggle="tab" href="#technical" role="tab" aria-controls="technical"><i class="icon-plus"></i>Technical</a>
-                         </li>
-                         <li class="nav-item">
-                         <a class="nav-link" data-toggle="tab" href="#configuration" role="tab" aria-controls="configuration"><i class="icon-plus"></i>Configuration</a>
-                         </li>
-                         <li class="nav-item">
-                         <a class="nav-link" data-toggle="tab" href="#documentsupload" role="tab" aria-controls="documentsupload"><i class="icon-plus"></i>Documents Upload</a>
-                         </li>
-                        </ul>
-                       <div class="tab-content">
-                           <div class="tab-pane pb-1 active" id="general" role="tabpanel">
-                             <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
-                                <div class="row">
-                                 <h4 style="margin-left:20px">Location Details</h4>
-                                </div>
-                                 <br>
-                                <div class="row" style="margin-left:20px">
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                    <label>Location</label>
-                                    <input class="form-control" name="location" placeholder="Location" type="text" list="lst_location">
-                                    <datalist id="lst_location">
-									<option value="Alexandra">Alexandra</option>
-									<option value="Alice">Alice</option>
-									<option value="Anastasia">Anastasia</option>
-									<option value="Avelina">Avelina</option>
-									<option value="Basilia">Basilia</option>
-                                    </datalist>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                    <label>Location Code</label>
-                                    <input type="text" readonly class="form-control" name="location_code" placeholder="Location Code">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-4">
-                                    <div class="form-group">
-                                    <label>Location Name</label>
-                                    <input type="text" readonly class="form-control" name="location_name" placeholder="Location Name">
-                                  </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Block</label>
-                                    <input type="text" readonly class="form-control" name="block" placeholder="Block">
-                                    </div>
-                                  </div>
-                                    <div class="col-sm-6">
-                                    <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" readonly class="form-control" name="address" placeholder="Address">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Postal Code</label>
-                                    <input type="text" readonly class="form-control" name="postal_code" placeholder="Postal Code">
-                                    </div>
-                                  </div>
-                                </div>
-                               <hr>
-                               <div class="row">
-                               <h4 style="margin-left:20px">Asset Details</h4>
-                               </div>
-                               <br>
-                               <div class="row" style="margin-left:20px">
+                                    <div class="row">
+                                        <div class="col-sm-12 pt-1">
+                                            <ul class="nav nav-tabs">
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" data-toggle="tab" href="#general" role="tab" aria-controls="general"><i class="icon-plus"></i>General</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#technical" role="tab" aria-controls="technical"><i class="icon-plus"></i>Technical</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#configuration" role="tab" aria-controls="configuration"><i class="icon-plus"></i>Configuration</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#documentsupload" role="tab" aria-controls="documentsupload"><i class="icon-plus"></i>Documents Upload</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane pb-1 active" id="general" role="tabpanel">
+                                                    <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
+                                                        <div class="row">
+                                                            <h4 style="margin-left:20px">Location Details</h4>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row" style="margin-left:20px">
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label>Location</label>
+<!--
+                                                                    <input class="form-control" name="location" placeholder="Location"  list="lst_location">
+                                                                    <datalist id="lst_location">
+-->
+                                                                    <select class="form-control" name="location_name" data-plugin="select_hrm" data-placeholder="Loaction Name">
+                                                                        <option value="{{locations._id}}">{{ locations.location_name|string }}</option>
+                                                                            {% for location in locations %}                                                    
+                                                                                    <option value="{{location._id}}">{{location.location_name}}</option>
+                                                                            {% endfor %}
+                                                                    </select>
+<!--
+                                                                        <option value="Alexandra">Alexandra</option>
+                                                                        <option value="Alice">Alice</option>
+                                                                        <option value="Anastasia">Anastasia</option>
+                                                                        <option value="Avelina">Avelina</option>
+                                                                        <option value="Basilia">Basilia</option>
+                                                                    </datalist>
+-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label>Location Code</label>
+                                                                    <input type="text" readonly class="form-control" name="location_code" placeholder="Location Code">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label>Location Name</label>
+                                                                    <input type="text" readonly class="form-control" name="location_name1" placeholder="Location Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Block</label>
+                                                                    <input type="text" readonly class="form-control" name="block" placeholder="Block">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Address</label>
+                                                                    <input type="text" readonly class="form-control" name="address" placeholder="Address">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Postal Code</label>
+                                                                    <input type="text" readonly class="form-control" name="postal_code" placeholder="Postal Code">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <h4 style="margin-left:20px">Asset Details</h4>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row" style="margin-left:20px">
 
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Sensor Id</label>
-                                   <input type="text" class="form-control" name="sensor_id" placeholder="Sensor Id">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Sensor Type</label>
-                                  <select class="form-control" name="sensor_type" data-plugin="select_hrm" data-placeholder="Sensor Type">
-                                  <option value="">Select One</option>
-                                  </select>
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Device Type</label>
-                                   <input type="text" class="form-control" name="devicetype" placeholder="Device Type" r>
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Model</label>
-                                   <input type="text" class="form-control" name="model" placeholder="Model">
-                                   </div>
-                                 </div>
-                                    <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Asset Code</label>
-                                   <input type="text" class="form-control" name="assetcode" placeholder="Asset code" required="" aria-required="true">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Asset Name</label>
-                                   <input type="text" class="form-control" name="assetname" placeholder="Asset Name" required="" aria-required="true">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-6">
-                                   <div class="form-group">
-                                   <label>Asset Description</label>
-                                   <input type="text" class="form-control" name="assetdescription" placeholder="Asset Description">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Serial No</label>
-                                   <input type="text" class="form-control" name="serialno" placeholder="Serial No">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Part No</label>
-                                   <input type="text" class="form-control" name="partno" placeholder="Part No">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Quantity</label>
-                                   <input type="number" class="form-control" name="quantity" placeholder="Quantity">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>UOM</label>
-                                   <input type="text" class="form-control"  name="uom" placeholder="UOM">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Person Incharge</label>
-                                   <input type="text" class="form-control"  name="person_incharge" placeholder="Person Incharge">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Active Status</label>
-                                     <select class="form-control" name="active_status" data-plugin="select_hrm" data-placeholder="Active Status">
-                                     <option value="">Select One</option>
-                                     <option value="">Yes</option>
-                                     <option value="">No</option>
-								     </select>
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                   <div class="form-group">
-                                   <label>Asset Image</label>
-                                   <input type="file" class="form-control"  name="asset_image" placeholder="Asset Image">
-                                   </div>
-                                 </div>
-                                 <div class="col-sm-3">
-                                  <div class="form-group" style="padding-top:23px;">
-                                      <input type="button" name="view_logo" class="btn btn-primary" value="View">
-                                  </div>
-                                 </div>
-                               </div>
-                                 <hr>
-                                 <div class="row">
-                                 <h4 style="margin-left:20px">Vendor Details Below</h4>
-                                </div>
-                                 <br>
-                                 <div class="row">
-                                     <div class="col-sm-12">
-                                                        <table id="datatable_tabletools" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Vendor Detail Label</th>
-                                                                    <th>Vendor Detail Value</th>
-                                                                    <th>Remarks</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="index-body">
-                                                                <tr>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="vendorlabel[]"></td>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="vendor_value[]"></td>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="remarks[]"></td>
-                                                                     <td class="div_0">
-                                                                     <a href="javascript:void(0)" title="Delete" onclick="delDiv(0)" style="color:red;"><i class="fa fa-times-circle-o"></i></a>
-                                                                     </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Sensor Id</label>
+                                                                    <input type="text" class="form-control" name="sensor_id" placeholder="Sensor Id">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Sensor Type</label>
+                                                                    <select class="form-control" name="sensor_type" data-plugin="select_hrm" data-placeholder="Sensor Type">
+                                                                        <option value="">Select One</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Device Type</label>
+                                                                    <input type="text" class="form-control" name="devicetype" placeholder="Device Type" r>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Model</label>
+                                                                    <input type="text" class="form-control" name="model" placeholder="Model">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Asset Code</label>
+                                                                    <input type="text" class="form-control" name="assetcode" placeholder="Asset code" required="" aria-required="true">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Asset Name</label>
+                                                                    <input type="text" class="form-control" name="assetname" placeholder="Asset Name" required="" aria-required="true">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Asset Description</label>
+                                                                    <input type="text" class="form-control" name="assetdescription" placeholder="Asset Description">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Serial No</label>
+                                                                    <input type="text" class="form-control" name="serialno" placeholder="Serial No">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Part No</label>
+                                                                    <input type="text" class="form-control" name="partno" placeholder="Part No">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Quantity</label>
+                                                                    <input type="number" class="form-control" name="quantity" placeholder="Quantity">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>UOM</label>
+                                                                    <input type="text" class="form-control" name="uom" placeholder="UOM">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Person Incharge</label>
+                                                                    <input type="text" class="form-control" name="person_incharge" placeholder="Person Incharge">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Active Status</label>
+                                                                    <select class="form-control" name="active_status" data-plugin="select_hrm" data-placeholder="Active Status">
+                                                                        <option value="">Select One</option>
+                                                                        <option value="">Yes</option>
+                                                                        <option value="">No</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Asset Image</label>
+                                                                    <input type="file" class="form-control" name="asset_image" placeholder="Asset Image">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group" style="padding-top:23px;">
+                                                                    <input type="button" name="view_logo" class="btn btn-primary" value="View">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <h4 style="margin-left:20px">Vendor Details Below</h4>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <table id="datatable_tabletools" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Vendor Detail Label</th>
+                                                                            <th>Vendor Detail Value</th>
+                                                                            <th>Remarks</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="index-body">
+                                                                        <tr>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="vendorlabel[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="vendor_value[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="remarks[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <a href="javascript:void(0)" title="Delete" onclick="delDiv(0)" style="color:red;"><i class="fa fa-times-circle-o"></i></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <a id="addItem" href="javascript:void(0)"><i class="fa fa-plus" title="Add" style="margin-left:5px"></i>
+                                                                Add Vendor Detail</a>
+                                                            </div>
+
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <h4 style="margin-left:20px">Manufacturer Details Below  </h4>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <table id="datatable_tabletools1" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Manufacturer Code</th>
+                                                                            <th>Manufacturer Name</th>
+                                                                            <th>Detail</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="index-body1">
+                                                                        <tr>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="manufacturer_code[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="manufacturer_name[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="details[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <a href="javascript:void(0)" title="Delete" onclick="delmanufactureDiv(0)" style="color:red;"><i class="fa fa-times-circle-o"></i></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <a id="addManufacturerItem" href="javascript:void(0)"><i class="fa fa-plus" title="Add" style="margin-left:5px"></i>
+                                                                Add Manufacturer  Detail</a>
+                                                            </div>
+
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <h4 style="margin-left:20px">Supplier Details Below</h4>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <table id="datatable_tabletools2" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Supplier Code</th>
+                                                                            <th>Supplier Name</th>
+                                                                            <th>Supplier Detail</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="index-body2">
+                                                                        <tr>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="suplier_code[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="supplier_name[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <input class="form-control" type="text" name="supplier_details[]">
+                                                                            </td>
+                                                                            <td class="div_0">
+                                                                                <a href="javascript:void(0)" title="Delete" onclick="delSupplierDiv(0)" style="color:red;"><i class="fa fa-times-circle-o"></i></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <a id="addSupplierItem" href="javascript:void(0)"><i class="fa fa-plus" title="Add" style="margin-left:5px"></i>
+                                                                Add Supplier Detail</a>
+                                                            </div>
+
+                                                        </div>
+
                                                     </div>
-                                     <div class="col-sm-12">
-                                                        <a id="addItem" href="javascript:void(0)"><i class="fa fa-plus" title="Add" style="margin-left:5px"></i>
-                                                            Add Vendor Detail</a>
+                                                </div>
+                                                <div class="tab-pane pb-1" id="technical" role="tabpanel">
+                                                    <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
+                                                        <div class="row">
+                                                            <h4 style="margin-left:20px">Technical Details</h4>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row" style="margin-left:20px">
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Warranty Detail</label>
+                                                                    <input type="text" class="form-control" name="warranty_detail" placeholder="Warranty Detail">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Warranty Start Date</label>
+                                                                    <input type="text" class="form-control" name="warranty_start_date" placeholder="DD/MM/YYYY">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Warranty Expiry Date</label>
+                                                                    <input type="text" class="form-control" name="warranty_expiry_date" placeholder="DD/MM/YYYY">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Installation Date</label>
+                                                                    <input type="text" class="form-control" name="installation_date" placeholder="DD/MM/YYYY">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Technical Info</label>
+                                                                    <input type="text" class="form-control" name="technical_info" placeholder="Technical Info">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>PV Module Capacity</label>
+                                                                    <input type="number" class="form-control" name="pv_module_capacity" placeholder="PV Module Capacity">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>PV Panel Type</label>
+                                                                    <input type="text" class="form-control" name="pv_panel_type" placeholder="PV Panel Type">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>PV Panel Qty</label>
+                                                                    <input type="number" class="form-control" name="pv_panel_qty" placeholder="PV Panel Qty">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>PV Panel Area(Sqm)</label>
+                                                                    <input type="number" class="form-control" name="pv_panel_area" placeholder="PV Panel Area(Sqm)">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Total Panel Area(Sqm)</label>
+                                                                    <input type="number" class="form-control" name="total_panel_qty" placeholder="Total Panel Area(Sqm)">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Event required</label>
+                                                                    <select class="form-control" name="event_required" data-plugin="select_hrm" data-placeholder="Event required">
+                                                                        <option value="">Select One</option>
+                                                                        <option value="">Yes</option>
+                                                                        <option value="">No</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Alarm required</label>
+                                                                    <select class="form-control" name="alarm_required" data-plugin="select_hrm" data-placeholder="Alarm required">
+                                                                        <option value="">Select One</option>
+                                                                        <option value="">Yes</option>
+                                                                        <option value="">No</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
+                                                </div>
+                                                <div class="tab-pane pb-1" id="configuration" role="tabpanel">
+                                                    <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
+                                                        <div class="row">
+                                                            <h4 style="margin-left:20px">Asset Configuration Details</h4>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row" style="margin-left:10px">
+                                                            <fieldset>
+                                                                <div class="form-group col-sm-12">
+                                                                    <label>Header</label>
+                                                                    <textarea class="form-control" name="header" placeholder="Header" rows="6"></textarea>
+                                                                </div>
+                                                                <div class="form-group col-sm-12">
+                                                                    <label>Communication</label>
+                                                                    <textarea class="form-control" name="communication" placeholder="Communication" rows="6"></textarea>
+                                                                </div>
+                                                                <div class="form-group col-sm-12">
+                                                                    <label>Parameter Name</label>
+                                                                    <textarea class="form-control" name="parameter_name" placeholder="Parameter Name" rows="6"></textarea>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
 
-                                 </div>
-                                 <hr>
-                                  <div class="row">
-                                 <h4 style="margin-left:20px">Manufacturer Details Below  </h4>
-                                </div>
-                                 <br>
-                                 <div class="row">
-                                     <div class="col-sm-12">
-                                                        <table id="datatable_tabletools1" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Manufacturer Code</th>
-                                                                    <th>Manufacturer Name</th>
-                                                                    <th>Detail</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="index-body1">
-                                                                <tr>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="manufacturer_code[]"></td>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="manufacturer_name[]"></td>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="details[]"></td>
-                                                                     <td class="div_0">
-                                                                     <a href="javascript:void(0)" title="Delete" onclick="delmanufactureDiv(0)" style="color:red;"><i class="fa fa-times-circle-o"></i></a>
-                                                                     </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
                                                     </div>
-                                     <div class="col-sm-12">
-                                                       <a id="addManufacturerItem" href="javascript:void(0)"><i class="fa fa-plus" title="Add" style="margin-left:5px"></i>
-                                                            Add Manufacturer  Detail</a>
+                                                </div>
+                                                <div class="tab-pane pb-1" id="documentsupload" role="tabpanel">
+                                                    <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
+                                                        <div row="row">
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Files Upload</label>
+                                                                    <input type="file" class="form-group" name="files_upload">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group" style="padding-top:15px;">
+                                                                    <input type="button" class="btn btn-sm btn-primary" name="view_files" value="View">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </div>
 
-                                 </div>
- <hr>
-                                  <div class="row">
-                                 <h4 style="margin-left:20px">Supplier Details Below</h4>
-                                </div>
-                                 <br>
-                                 <div class="row">
-                                     <div class="col-sm-12">
-                                                       <table id="datatable_tabletools2" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="datatable_tabletools_info" style="width: 100%;" width="100%">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Supplier Code</th>
-                                                                    <th>Supplier Name</th>
-                                                                    <th>Supplier Detail</th>
-                                                                    <th>Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody class="index-body2">
-                                                                <tr>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="suplier_code[]"></td>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="supplier_name[]"></td>
-                                                                    <td class="div_0"><input class="form-control" type="text" name="supplier_details[]"></td>
-                                                                    <td class="div_0">
-                                                                     <a href="javascript:void(0)" title="Delete" onclick="delSupplierDiv(0)" style="color:red;"><i class="fa fa-times-circle-o"></i></a>
-                                                                     </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                     <div class="col-sm-12">
-                                                       <a id="addSupplierItem" href="javascript:void(0)"><i class="fa fa-plus" title="Add" style="margin-left:5px"></i>
-                                                            Add Supplier Detail</a>
-                                                    </div>
-
-                                 </div>
-
-
-                           </div>
-                           </div>
-                            <div class="tab-pane pb-1" id="technical" role="tabpanel">
-                             <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
-                                <div class="row">
-                                 <h4 style="margin-left:20px">Technical Details</h4>
-                                </div>
-                                  <br>
-                                <div class="row" style="margin-left:20px">
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Warranty Detail</label>
-                                    <input type="text" class="form-control" name="warranty_detail" placeholder="Warranty Detail">
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Warranty Start Date</label>
-                                    <input type="text" class="form-control" name="warranty_start_date" placeholder="DD/MM/YYYY">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Warranty Expiry Date</label>
-                                    <input type="text" class="form-control" name="warranty_expiry_date" placeholder="DD/MM/YYYY">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Installation Date</label>
-                                    <input type="text" class="form-control" name="installation_date" placeholder="DD/MM/YYYY">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Technical Info</label>
-                                    <input type="text" class="form-control" name="technical_info" placeholder="Technical Info">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>PV Module Capacity</label>
-                                    <input type="number" class="form-control" name="pv_module_capacity" placeholder="PV Module Capacity">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>PV Panel Type</label>
-                                    <input type="text" class="form-control" name="pv_panel_type" placeholder="PV Panel Type">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>PV Panel Qty</label>
-                                    <input type="number" class="form-control" name="pv_panel_qty" placeholder="PV Panel Qty">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>PV Panel Area(Sqm)</label>
-                                    <input type="number" class="form-control" name="pv_panel_area" placeholder="PV Panel Area(Sqm)">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Total Panel Area(Sqm)</label>
-                                    <input type="number" class="form-control" name="total_panel_qty" placeholder="Total Panel Area(Sqm)">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Event required</label>
-                                    <select class="form-control" name="event_required" data-plugin="select_hrm" data-placeholder="Event required">
-                                     <option value="">Select One</option>
-                                     <option value="">Yes</option>
-                                     <option value="">No</option>
-								     </select>
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                    <div class="form-group">
-                                    <label>Alarm required</label>
-                                     <select class="form-control" name="alarm_required" data-plugin="select_hrm" data-placeholder="Alarm required">
-                                     <option value="">Select One</option>
-                                     <option value="">Yes</option>
-                                     <option value="">No</option>
-								     </select>
-                                    </div>
-                                  </div>
-                                </div>
-
-                             </div>
-                           </div>
-                            <div class="tab-pane pb-1" id="configuration" role="tabpanel">
-                             <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
-                                <div class="row">
-                                 <h4 style="margin-left:20px">Asset Configuration Details</h4>
-                                </div>
-                                  <br>
-                                <div class="row" style="margin-left:10px">
-                               <fieldset>
-								<div class="form-group col-sm-12">
-									<label>Header</label>
-									<textarea class="form-control" name="header" placeholder="Header" rows="6"></textarea>
-								</div>
-								<div class="form-group col-sm-12">
-									<label>Communication</label>
-									<textarea class="form-control" name="communication" placeholder="Communication" rows="6"></textarea>
-								</div>
-                                   <div class="form-group col-sm-12">
-									<label>Parameter Name</label>
-									<textarea class="form-control" name="parameter_name" placeholder="Parameter Name" rows="6"></textarea>
-								</div>
-							    </fieldset>
-                                </div>
-
-                             </div>
-                           </div>
-                            <div class="tab-pane pb-1" id="documentsupload" role="tabpanel">
-                             <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
-                                 <div row="row">
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                     <label>Files Upload</label>
-                                     <input type="file" class="form-group" name="files_upload">
-                                </div>
 
                                 </div>
-                                     <div class="col-sm-3">
-                                    <div class="form-group" style="padding-top:15px;">
-                                     <input type="button" class="btn btn-sm btn-primary" name="view_files" value="View">
+                                <!--End widget content -->
+                                <div class="row" style="padding-left:10px;padding-top:10px;padding-bottom:10px;">
+                                    <div class="btn-group">
+                                        <div class="">
+                                            <input name="save" class="btn btn-success" type="submit" value="Submit">
+                                            <input type="reset" value="Cancel" class="btn btn-cancel" onclick="return cancel()" />
+
+                                        </div>
                                     </div>
-                                 </div>
-                             </div>
-                             </div>
-                           </div>
-                       </div>
-
-                      </div>
-                  </div>
-
-                 </div>
-                <!--End widget content -->
-                     <div class="row" style="padding-left:10px;padding-top:10px;padding-bottom:10px;">
-                            <div class="btn-group">
-                                <div class="">
-                                 <input type="button" name="save" class="btn btn-success" value="Save">
-                                    <input type="button" name="cancel" class="btn btn-danger" value="Cancel">
-
+                                    <div class="row" style="padding-left:15px;padding-top:10px;">
+                                        <div class="form-group">
+                                            <b>Last Update By :</b>
+                                            <label>user name</label>&nbsp; &nbsp;<b>Last Updated On : </b>
+                                            <label>display datetime</label>
+                                        </div>
+                                    </div>
                                 </div>
-                             </div>
-                         <div class="row" style="padding-left:15px;padding-top:10px;">
-                             <div class="form-group" >
-                                 <b>Last Update By :</b> <label>user name</label>&nbsp; &nbsp;<b>Last Updated On : </b> <label>display datetime</label>
-                             </div>
-                         </div>
-                                      </div>
-                </div>
-                <!--end widget content -->
-                </div>
-				<!--end widget div-->
-
-              </article>
-              <!-- end NEW WIDGET-->
+                            </div>
+                            <!--end widget content -->
+                        </div>
+                        <!--end widget div-->
+                    </form>
+                </article>
+                <!-- end NEW WIDGET-->
             </div>
         </section>
         <!-- end widget grid -->
     </div>
-	<!-- END MAIN CONTENT -->
- </div>
+    <!-- END MAIN CONTENT -->
+</div>
 <script>
- var IdCount = 0;
- $('#addItem').click(function(){
-     IdCount += 1;
+    var IdCount = 0;
+    $('#addItem').click(function() {
+        IdCount += 1;
 
-      var addItem='<tr class="div_'+IdCount+'">\n\
-            <td class="div_'+IdCount+'">\n\
+        var addItem = '<tr class="div_' + IdCount + '">\n\
+            <td class="div_' + IdCount + '">\n\
                <input class="form-control" type="text" name="vendorlabel[]"> \n\
             </td>\n\
-            <td class="div_'+IdCount+'">\n\
+            <td class="div_' + IdCount + '">\n\
               <input class="form-control" type="text" name="vendor_value[]">\n\
             </td>\n\
-            <td class="div_'+IdCount+'">\n\
+            <td class="div_' + IdCount + '">\n\
                <input class="form-control" type="text" name="remarks[]"> \n\
             </td>\n\
            <td class="div_"> \n\
-            <a href="javascript:void(0)" onclick="delDiv('+IdCount+')" style="color:red;"><i class="fa fa-times-circle-o"></i></a>\n\
+            <a href="javascript:void(0)" onclick="delDiv(' + IdCount + ')" style="color:red;"><i class="fa fa-times-circle-o"></i></a>\n\
 \n\     </td>\n\
         </tr>';
-         $('.index-body').append(addItem);
+        $('.index-body').append(addItem);
     });
-    function delDiv(id){
-        $('.div_'+id+'').remove();
+
+    function delDiv(id) {
+        $('.div_' + id + '').remove();
     }
 
     var IdCount1 = 0;
- $('#addManufacturerItem').click(function(){
-     IdCount1 += 1;
+    $('#addManufacturerItem').click(function() {
+        IdCount1 += 1;
 
-      var addItem1='<tr class="div_'+IdCount1+'">\n\
-            <td class="div_'+IdCount1+'">\n\
+        var addItem1 = '<tr class="div_' + IdCount1 + '">\n\
+            <td class="div_' + IdCount1 + '">\n\
                <input class="form-control" type="text" name="manufacturer_code[]"> \n\
             </td>\n\
-            <td class="div_'+IdCount1+'">\n\
+            <td class="div_' + IdCount1 + '">\n\
               <input class="form-control" type="text" name="manufacturer_name[]">\n\
             </td>\n\
-            <td class="div_'+IdCount1+'">\n\
+            <td class="div_' + IdCount1 + '">\n\
                <input class="form-control" type="text" name="details[]"> \n\
             </td>\n\
             <td class="div_"> \n\
-            <a href="javascript:void(0)" onclick="delmanufactureDiv('+IdCount1+')" style="color:red;"><i class="fa fa-times-circle-o"></i></a>\n\
+            <a href="javascript:void(0)" onclick="delmanufactureDiv(' + IdCount1 + ')" style="color:red;"><i class="fa fa-times-circle-o"></i></a>\n\
     </td>\n\
         </tr>';
-         $('.index-body1').append(addItem1);
+        $('.index-body1').append(addItem1);
     });
 
-    function delmanufactureDiv(id){
-        $('.div_'+id+'').remove();
+    function delmanufactureDiv(id) {
+        $('.div_' + id + '').remove();
     }
 
-     var IdCount2 = 0;
- $('#addSupplierItem').click(function(){
-     IdCount2 += 1;
-     var addItem1='<tr class="div_'+IdCount2+'">\n\
-            <td class="div_'+IdCount2+'">\n\
+    var IdCount2 = 0;
+    $('#addSupplierItem').click(function() {
+        IdCount2 += 1;
+        var addItem1 = '<tr class="div_' + IdCount2 + '">\n\
+            <td class="div_' + IdCount2 + '">\n\
                <input class="form-control" type="text" name="suplier_code[]"> \n\
             </td>\n\
-            <td class="div_'+IdCount2+'">\n\
+            <td class="div_' + IdCount2 + '">\n\
               <input class="form-control" type="text" name="supplier_name[]">\n\
             </td>\n\
-            <td class="div_'+IdCount2+'">\n\
+            <td class="div_' + IdCount2 + '">\n\
                <input class="form-control" type="text" name="supplier_details[]"> \n\
             </td>\n\
             <td class="div_"> \n\
-            <a href="javascript:void(0)" onclick="delSupplierDiv('+IdCount2+')" style="color:red;"><i class="fa fa-times-circle-o"></i></a>\n\
+            <a href="javascript:void(0)" onclick="delSupplierDiv(' + IdCount2 + ')" style="color:red;"><i class="fa fa-times-circle-o"></i></a>\n\
     </td>\n\
         </tr>';
-         $('.index-body2').append(addItem1);
+        $('.index-body2').append(addItem1);
     });
-    function delSupplierDiv(id){
-       $('.div_'+id+'').remove();
+
+    function delSupplierDiv(id) {
+        $('.div_' + id + '').remove();
+    }
+</script>
+<script>
+    function cancel() {
+        c=confirm("Do you really want to cancel?");
+
+        // Of course, the following could be shortened to "return c;"
+        if (c==true)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+        
     }
 </script>

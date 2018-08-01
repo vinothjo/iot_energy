@@ -15,7 +15,7 @@
             <div class="row">
                 <!-- NEW WIDGET START -->
                 <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <form action="{{ url_for('Admin.location_setup') }}" method="post">
+                    <form action="{{ url_for('Admin.location_setup') }}" method="post" enctype = "multipart/form-data">
                     <!--start Widget ID (each widget will need unique ID)-->
                     <div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
                         <header>
@@ -45,26 +45,26 @@
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label>Location Code</label>
-                                                                <input class="form-control" name="location_code" placeholder="Location Code" type="text" value={{ location_code|string }}>
+                                                                <input class="form-control" name="location_code" placeholder="Location Code" required type="text" value={{ location_code|string }}>
 
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-3" style="display:none;">
                                                             <div class="form-group">
                                                                 <label>LOcation ID</label>
-                                                                <input class="form-control" placeholder="Location id" name="location_id" type="text" value={{ location_id|string }}>
+                                                                <input class="form-control" placeholder="Location id" name="location_id" required type="text" value={{ location_id|string }}>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label>Location Name</label>
-                                                                <input type="text" class="form-control" name="location_name" placeholder="Location Name" value={{ location_name|string }}>
+                                                                <input type="text" class="form-control" name="location_name" required placeholder="Location Name" value={{ location_name|string }}>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label>Location Description</label>
-                                                                <input type="text" class="form-control" name="location_description" placeholder="Location Description" value={{ location_description|string }}>
+                                                                <input type="text" class="form-control" name="location_description" required placeholder="Location Description" value={{ location_description|string }}>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4">
@@ -437,15 +437,19 @@
                                             <div class="tab-pane pb-1" id="documentsupload" role="tabpanel">
                                                 <div class="row" style=" padding-left:10px;padding-top:10px;padding-right:10px;">
                                                     <div row="row">
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <label>logo Upload</label>
-                                                                <input type="file" class="form-group" onchange="readURL(this);" name="logo" value={{ logo|string }}>
+                                                                <label>Document Upload</label>
+                                                                <input class="form-control" id="myFile" type=file name=file required>
+                                                                    
                                                             </div>
+<!--
+                                                            <input type=submit value=Upload>
+-->
                                                         </div>
-                                                        <div class="col-sm-3">
+                                                        <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <img id="blah" src="#" alt="your image" />
+                                                              <input type="button" value="View Document" style="margin-top: 26px;">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -470,6 +474,7 @@
                         </div>
                     </div>
                     </form>
+                   
 
                     <!--end Widget Id (each widget will need unique ID)-->
 
@@ -501,6 +506,7 @@
                                                 <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 50px;" aria-label="City: activate to sort column ascending">City</th>
                                                 <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 20px;" aria-label="City: activate to sort column ascending">Country</th>
                                                 <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 20px;" aria-label="City: activate to sort column ascending">GeoCode</th>
+                                                <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 20px;" aria-label="City: activate to sort column ascending">Edit/Delete</th>
 <!--
                                                 <th data-hide="phone,tablet" class="sorting" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 20px;" aria-label="City: activate to sort column ascending">Active</th>
                                                 <th data-hide="phone,tablet" tabindex="0" aria-controls="datatable_tabletools" rowspan="1" colspan="1" style="width: 10px;" aria-label="City: activate to sort column ascending">Action</th>
@@ -517,6 +523,9 @@
                                                     <td>{{location.city}}</td>
                                                     <td>{{location.country}}</td>
                                                     <td>{{location.geo_code}}</td>
+                                                    <td class="func1"><a href="{{ url_for('Admin.location_setup_update', location_id = location._id) }}"><button class="btn btn-xs btn-default" data-original-title="Edit Row" type="submit"><i class="fa fa-pencil"></i></button></a>
+                                                    <a href="./location_remove?_id={{ location['_id'] }}"><button class="btn btn-xs btn-default" data-original-title="Delete Row" type="submit"><i class="fa fa-trash"></i></button></a></td>
+
                                                 </tr>
                                             {% endfor %}
                                         </tbody>
@@ -587,6 +596,7 @@
   });
 </script>
 
+
 <script>
 $(document).ready(function() {
     $('#datatable_tabletools').DataTable();
@@ -609,22 +619,7 @@ $(document).ready(function() {
     }
 </script>
 
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result)
-                    .width(100)
-                    .height(80);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -680,5 +675,8 @@ $(document).ready(function(){
 });
 </script>
 
-
-
+<script>
+function myFunction() {
+    var x = document.getElementById("myFile").required;
+}
+</script>

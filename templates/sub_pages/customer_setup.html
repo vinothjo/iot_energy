@@ -44,12 +44,10 @@
                                                 <datalist id="lst_client_name">
 -->
                                                 <select class="form-control" name="client_name" data-plugin="select_hrm" data-placeholder="Client Name">
-                                                    <option value="0">Select One</option>
-                                                {% for client in clients %}                                                    
-                                                    
-                                                        <option value="{{client._id}}">{{client.client_name}}</option>
-                                                    
-                                                {% endfor %}
+                                                    <option value="{{clients._id}}">{{ clients.client_name|string }}</option>
+                                                        {% for client in clients %}                                                    
+                                                                <option value="{{client._id}}">{{client.client_name}}</option>
+                                                        {% endfor %}
                                                 </select>
 <!--
                                                 <datalist id="lst_client_name">
@@ -498,11 +496,54 @@
                                                                         <th class="text-center">
                                                                             Telephone No.
                                                                         </th>
+<!--
                                                                         <th class="text-center">
                                                                             Action
                                                                         </th>
+-->
                                                                     </tr>
                                                                 </thead>
+                                                                <tbody id='room_fileds'>
+                                                                    <tr>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="no" id="no"/>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="Salutation" id="Salutation" value={{ Salutation|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                         <td style="text-align:center">
+                                                                             <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="cus_first_name" id="cus_first_name" value={{ cus_first_name|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="cus_last_name" id="cus_last_name" value={{ cus_last_name|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                         <td style="text-align:center">
+                                                                             <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="cus_email_id" id="cus_email_id" value={{ cus_email_id|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="cus_mobile_no" id="cus_mobile_no" value={{ cus_mobile_no|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                         <td style="text-align:center">
+                                                                             <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="cus_telephone_no" id="cus_telephone_no" value={{ cus_telephone_no|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                     </tr>
+                                                                </tbody>
+                                                            </table>
+<!--
                                                                 <tbody>
                                                                     <tr id='addr0'>
                                                                         <td>
@@ -535,8 +576,12 @@
                                                                     <tr id='addr1'></tr>
                                                                 </tbody>
                                                             </table>
+-->
                                                             <div class="col-sm-4">
+                                                                <input type="button" id="more_fields" onclick="add_fields();" value="Add More" /> 
+<!--
                                                                 <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -699,6 +744,7 @@ $(document).ready(function() {
         }
     }
 </script>
+<!--
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -758,3 +804,33 @@ $(document).ready(function(){
     });
 });
 </script>
+-->
+
+<script>
+var count = 0
+function add_fields() {
+count++
+var county = count.toString();
+var objTo = document.getElementById('room_fileds')
+var divtest = document.createElement("tr");
+divtest.innerHTML = '<td style="text-align:center"><input type="text" id="no'+count+'"></td><td style="text-align:center"><input type="text" id="Salutation'+count+'"></td><td  style="text-align:center"><input type="text" id="cus_first_name'+count+'"></td><td style="text-align:center"><input type="text" id="cus_last_name'+count+'"></td><td style="text-align:center"><input type="text" id="cus_email_id'+count+'"></td><td style="text-align:center"><input type="text" id="cus_mobile_no'+count+'"></td><td style="text-align:center"><input type="text" id="cus_telephone_no'+count+'"></td>';
+objTo.appendChild(divtest)
+}
+</script>
+
+    arrayObject=[];
+$("#subButon").on("click",function(){
+for(var index=0;index<count+1;index++){
+arrayObject.push(
+{no:$("#no"+index).val(),
+Salutation:$("#Salutation"+index).val(),
+cus_first_name:$("#cus_first_name"+index).val(),
+cus_last_name:$("#cus_last_name"+index).val(),
+cus_email_id:$("#cus_email_id"+index).val(),
+cus_mobile_no:$("#cus_mobile_no"+index).val(),
+cus_telephone_no:$("#cus_telephone_no"+index).val(),}
+)
+}
+console.log(arrayObject);
+alert("objetos guardados")
+})

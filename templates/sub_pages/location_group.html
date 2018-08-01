@@ -1,0 +1,63 @@
+<div id="main" role="main">
+    <!-- RIBBON -->
+			<div id="ribbon">
+				<!-- breadcrumb -->
+				<ol class="breadcrumb">
+					<li>Home / {{ title }}</li>
+				</ol>
+			</div>
+			<!-- END RIBBON -->
+
+     <!-- MAIN CONTENT -->
+			<div id="content">
+<!-- widget grid -->
+				<section id="widget-grid" class="">
+
+  <div class="row">
+       <!-- NEW WIDGET START -->
+						<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                             <!--start Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-0" data-widget-colorbutton="false"  data-widget-deletebutton="false" data-widget-editbutton="false">
+								<header>
+									<h2><strong>Add New {{ title }}</strong> </h2>
+								</header>
+                                <!-- widget div-->
+								<div>
+			                        <!-- HEADER -->
+                                       {% include "create_locationgroup.html" %}
+		                            <!-- END HEADER -->
+                                </div>
+								<!-- widget div-->
+
+                            </div>
+ <!--end Widget ID (each widget will need unique ID)-->
+
+                             <!--start Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false"
+                                 data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+								<header>
+									<h2><strong>List of {{ title }}</strong> </h2>
+								</header>
+                                <!-- widget div-->
+								<div>
+			                        <!-- HEADER -->
+                                       {% include "list_locationgroups.html" %}
+		                            <!-- END HEADER -->
+                                </div>
+								<!-- widget div-->
+
+                            </div>
+ <!--end Widget ID (each widget will need unique ID)-->
+                             </article>
+                        <!-- end NEW WIDGET-->
+
+  </div>
+
+                </section>
+               <!--end widget grid -->
+
+            </div>
+	 <!-- END MAIN CONTENT -->
+
+
+</div>

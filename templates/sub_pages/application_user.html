@@ -36,9 +36,9 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Client Name</label>
-                                                <select class="form-control" name="client_name" data-plugin="select_hrm" data-placeholder="Client Name" value={{ client_name|string }}>
-                                                    <option value="0">Select One</option>
-                                                    {% for client in clients %}
+                                                <select class="form-control" name="client_name" data-plugin="select_hrm" data-placeholder="Client Name">
+                                                    <option value="client_name._id">{{ client_name.client_name|string }}</option>
+                                                    {% for client in client_name %}
                                                             <option value="{{client._id}}">{{client.client_name}}</option>
                                                     {% endfor %}
                                                     </select>
@@ -49,8 +49,8 @@
                                             <div class="form-group">
                                                 <label>Customer Name</label>
                                                 <select class="form-control" name="customer_name" data-plugin="select_hrm" data-placeholder="Customer Name" value={{ customer_name|string }}>
-                                                    <option value="0">Select One</option>
-                                                {% for customer in customers %}                                                    
+                                                    <option value="{{customer_name._id}}">{{ customer_name.customer_name|string }}</option>
+                                                {% for customer in customer_name %}                                                    
                                                         <option value="{{customer._id}}">{{customer.customer_name}}</option>
                                                 {% endfor %}
                                                 </select>

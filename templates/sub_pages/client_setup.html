@@ -464,6 +464,7 @@
                                                 <div class="tab-pane pb-1" id="secondcontactdetails" role="tabpanel">
                                                     <div class="row" style=" padding-left:5px;padding-top:10px;padding-right:5px;">
                                                         <div class="col-md-12 column">
+                                                                                                                        
                                                             <table class="table table-bordered table-hover new" id="tbl_contact">
                                                                 <thead>
                                                                     <tr>
@@ -488,45 +489,66 @@
                                                                         <th class="text-center">
                                                                             Telephone No.
                                                                         </th>
+<!--
                                                                         <th class="text-center">
                                                                             Action
                                                                         </th>
+-->
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <!--<tr id='addr0'>
-                                                                        <td>
-                                                                           <input type="text" name="no" class="form-control" value={{ no|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="Salutation" class="form-control" value={{ Salutation|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_first_name"  class="form-control" value={{ person_first_name|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_last_name"  class="form-control" value={{ person_last_name|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_email_id" class="form-control" value={{ person_email_id|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_mobile_no" class="form-control" value={{ person_mobile_no|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_telephone_no" class="form-control" value={{ person_telephone_no|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <a id="add_contact" class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                                                            <a id="edit_contact" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                                                            <a id="delete_contact" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                                                        </td>
-                                                                    </tr>-->
-
+                                                                <tbody id='room_fileds'>
+                                                                    <tr>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="no" id="no"/>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="Salutation" id="Salutation" value={{ Salutation|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                         <td style="text-align:center">
+                                                                             <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="person_first_name" id="person_first_name" value={{ person_first_name|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="person_last_name" id="person_last_name" value={{ person_last_name|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                         <td style="text-align:center">
+                                                                             <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="person_email_id" id="person_email_id" value={{ person_email_id|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                        <td style="text-align:center">
+                                                                            <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="person_mobile_no" id="person_mobile_no" value={{ person_mobile_no|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                         <td style="text-align:center">
+                                                                             <fieldset class="form-group">
+                                                                                <input class="form-control" type="text" name="person_telephone_no" id="person_telephone_no" value={{ person_telephone_no|string }}>
+                                                                             </fieldset>
+                                                                         </td>
+                                                                     </tr>
                                                                 </tbody>
                                                             </table>
                                                             <div class="col-sm-4">
+                                                                <input type="button" id="more_fields" onclick="add_fields();" value="Add More" /> 
+<!--
+                                                                <input type='submit' value='Submit' id='subButon'/>
+-->
+
+<!--
                                                                 <button id="btn-addcontact-newrow" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+-->
+<!--
+                                                                <span id="contact" name="contact_details">loaction
+                                                                </span>
+-->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -598,37 +620,7 @@
                                                                         </th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                    <!--<tr id='addr0'>
-                                                                        <td>
-                                                                           <input type="text" name="no" class="form-control" value={{ no|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="Salutation" class="form-control" value={{ Salutation|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_first_name"  class="form-control" value={{ person_first_name|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_last_name"  class="form-control" value={{ person_last_name|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_email_id" class="form-control" value={{ person_email_id|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_mobile_no" class="form-control" value={{ person_mobile_no|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="text" name="person_telephone_no" class="form-control" value={{ person_telephone_no|string }}>
-                                                                        </td>
-                                                                        <td>
-                                                                            <a id="add_contact" class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                                                            <a id="edit_contact" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                                                            <a id="delete_contact" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                                                        </td>
-                                                                    </tr>-->
 
-                                                                </tbody>
                                                             </table>
                                                             <div class="col-sm-4">
                                                                 <button id="btn-addlocation-newrow" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
@@ -789,66 +781,10 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 $(document).ready(function(){
-ViewContactDetails();
+//~ ViewContactDetails();
 ViewLocationDetails();
 });
-function ViewContactDetails(){
-$('[data-toggle="tooltip"]').tooltip();
-    var actions = '<a id="add_contact" class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a><a id="edit_contact" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> <a id="delete_contact" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>';
-    //$("table td:last-child").html();
-    // Append table with add row form on add new button click
-    $("#btn-addcontact-newrow").click(function(){
-        $(this).attr("disabled", "disabled");
-        var index = $("[id*=tbl_contact] tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td><input type="text" class="form-control" name="no" id="no" value={{ no|string }}></td>' +
-            '<td><input type="text" class="form-control" name="Salutation" id="salutation" value={{ Salutation|string }}></td>' +
-            '<td><input type="text" class="form-control" name="person_first_name" id="fname" value={{ person_first_name|string }}></td>' +
-            '<td><input type="text" class="form-control" name="person_last_name" id="lname" value={{ person_last_name|string }}></td>' +
-            '<td><input type="text" class="form-control" name="person_email_id" id="email" value={{ person_email_id|string }}></td>' +
-            '<td><input type="text" class="form-control" name="person_mobile_no" id="mobile" value={{ person_mobile_no|string }}></td>' +
-            '<td><input type="text" class="form-control" name="person_telephone_no" id="telephone" value={{ person_telephone_no|string }}></td>' +
-            '<td>' + actions + '</td>' +
-        '</tr>';
-        $("[id*=tbl_contact]").append(row);
-        $("[id*=tbl_contact] tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    // Add row on add button click
-    $(document).on("click", "#add_contact", function(){
-        var empty = false;
-        var input = $(this).parents("tr").find('input[type="text"]');
-        input.each(function(){
-            if(!$(this).val()){
-                $(this).addClass("error");
-                empty = true;
-            } else{
-                $(this).removeClass("error");
-            }
-        });
-        $(this).parents("tr").find(".error").first().focus();
-        if(!empty){
-            input.each(function(){
-                $(this).parent("td").html($(this).val());
-            });
-            $(this).parents("tr").find(".add, .edit").toggle();
-            $(".add-new").removeAttr("disabled");
-        }
-    });
-    // Edit row on edit button click
-    $(document).on("click", "#edit_contact", function(){
-        $(this).parents("tr").find("td:not(:last-child)").each(function(){
-            $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-        });
-        $(this).parents("tr").find(".add, .edit").toggle();
-        $(".add-new").attr("disabled", "disabled");
-    });
-    // Delete row on delete button click
-    $(document).on("click", "#delete_contact", function(){
-        $(this).parents("tr").remove();
-        $(".add-new").removeAttr("disabled");
-    });
-}
+
 function ViewLocationDetails(){
 $('[data-toggle="tooltip_location"]').tooltip();
     var actions = '<a id="add_location" class="add" title="Add" data-toggle="tooltip_location"><i class="material-icons">&#xE03B;</i></a><a id="edit_location" class="edit" title="Edit" data-toggle="tooltip_location"><i class="material-icons">&#xE254;</i></a> <a id="delete_location" class="delete" title="Delete" data-toggle="tooltip_location"><i class="material-icons">&#xE872;</i></a>';
@@ -859,9 +795,8 @@ $('[data-toggle="tooltip_location"]').tooltip();
         var index = $("[id*=tbl_location] tbody tr:last-child").index();
         var row = '<tr>' +
             '<td><input type="text" class="form-control" name="no" id="no" value={{ no|string }}></td>' +
-            '<td><select class="form-control" name="location_name" data-plugin="select_hrm" data-placeholder="Location Name" value={{ location_name|string }}><option value="0">Select One</option>{% for location in locations %}<option value="{{location._id}}">{{location.location_name}}</option>{% endfor %}</select></td>' +
-            '<td><select class="form-control" name="location_code" data-plugin="select_hrm" data-placeholder="Location code" value={{ location_code|string }}><option value="0">Select One</option>{% for location in location_code %}<option value="{{location._id}}">{{location.location_code}}</option>{% endfor %}</select></td>' +
-
+            '<td><select class="form-control" name="location_name" data-plugin="select_hrm" data-placeholder="Location Name" required><option value="{{location_name._id}}">{{ location_name.location_name|string }}</option>{% for location in location_name %}<option value="{{location._id}}" >{{location.location_name}}</option>{% endfor %}</select></td>' +
+            '<td><select class="form-control" name="location_code" data-plugin="select_hrm" data-placeholder="Location code" required><option value="{{location_code._id}}">{{ location_code.location_code|string }}</option>{% for location in location_code %}<option value="{{location._id}}">{{location.location_code}}</option>{% endfor %}</select></td>' +
             '<td>' + actions + '</td>' +
         '</tr>';
         $("[id*=tbl_location]").append(row);
@@ -907,5 +842,32 @@ $('[data-toggle="tooltip_location"]').tooltip();
 
 
 
+<script>
+var count = 0
+function add_fields() {
+count++
+var county = count.toString();
+var objTo = document.getElementById('room_fileds')
+var divtest = document.createElement("tr");
+divtest.innerHTML = '<td style="text-align:center"><input type="text" id="no'+count+'"></td><td style="text-align:center"><input type="text" id="Salutation'+count+'"></td><td  style="text-align:center"><input type="text" id="person_first_name'+count+'"></td><td style="text-align:center"><input type="text" id="person_last_name'+count+'"></td><td style="text-align:center"><input type="text" id="person_email_id'+count+'"></td><td style="text-align:center"><input type="text" id="person_mobile_no'+count+'"></td><td style="text-align:center"><input type="text" id="person_telephone_no'+count+'"></td>';
+objTo.appendChild(divtest)
+}
+</script>
 
+    arrayObject=[];
+$("#subButon").on("click",function(){
+for(var index=0;index<count+1;index++){
+arrayObject.push(
+{no:$("#no"+index).val(),
+Salutation:$("#Salutation"+index).val(),
+person_first_name:$("#person_first_name"+index).val(),
+person_last_name:$("#person_last_name"+index).val(),
+person_email_id:$("#person_email_id"+index).val(),
+person_mobile_no:$("#person_mobile_no"+index).val(),
+person_telephone_no:$("#person_telephone_no"+index).val(),}
+)
+}
+console.log(arrayObject);
+alert("objetos guardados")
+})
 
